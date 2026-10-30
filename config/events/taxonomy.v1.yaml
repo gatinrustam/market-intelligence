@@ -1,0 +1,33 @@
+version: '1.0'
+event_types:
+  - central_bank.policy_statement
+  - central_bank.minutes
+  - central_bank.projections
+  - central_bank.speech
+  - central_bank.interview
+  - central_bank.data_release
+  - central_bank.other
+  - regulator.rule_proposal
+  - regulator.rule_adoption
+  - regulator.guidance
+  - regulator.enforcement
+  - regulator.meeting
+  - regulator.report
+  - regulator.personnel
+  - regulator.other
+  - unknown
+topics:
+  - monetary_policy
+  - interest_rates
+  - inflation
+  - wages
+  - employment
+  - economic_growth
+  - financial_stability
+  - capital_markets
+  - market_structure
+  - regulation
+  - enforcement
+  - banking
+  - payments
+  - digital_assets

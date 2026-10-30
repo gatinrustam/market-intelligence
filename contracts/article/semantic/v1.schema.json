@@ -1,0 +1,1762 @@
+{
+  "$defs": {
+    "Asset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "enum": [
+            "BTC",
+            "ETH",
+            "crypto_market",
+            "USD",
+            "EUR",
+            "US_equities",
+            "specific_company",
+            "rates",
+            "gold",
+            "RUB",
+            "RU_equities",
+            "fx_market"
+          ],
+          "title": "Asset",
+          "type": "string"
+        },
+        "relevance": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Relevance",
+          "type": "string"
+        },
+        "basis": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Basis",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Span"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "direct": {
+          "title": "Direct",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "asset",
+        "relevance",
+        "basis",
+        "evidence",
+        "direct"
+      ],
+      "title": "Asset",
+      "type": "object"
+    },
+    "ChunkReference": {
+      "additionalProperties": false,
+      "properties": {
+        "chunk_id": {
+          "format": "uuid",
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "start_char": {
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "title": "End Char",
+          "type": "integer"
+        },
+        "sentence_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Sentence Ids",
+          "type": "array"
+        },
+        "token_count": {
+          "title": "Token Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "chunk_id",
+        "document_id",
+        "start_char",
+        "end_char",
+        "sentence_ids",
+        "token_count"
+      ],
+      "title": "ChunkReference",
+      "type": "object"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "format": "uuid",
+          "title": "Claim Id",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "subject": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Subject"
+        },
+        "action": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Action"
+        },
+        "object_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Object Value"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Span"
+        },
+        "extractor": {
+          "enum": [
+            "di",
+            "gliner",
+            "semantic"
+          ],
+          "title": "Extractor",
+          "type": "string"
+        },
+        "supporting_fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Supporting Fact Ids",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "deterministic",
+            "supported_candidate",
+            "semantic_candidate"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "claim_id",
+        "type",
+        "subject",
+        "action",
+        "object_value",
+        "evidence",
+        "extractor",
+        "supporting_fact_ids",
+        "status",
+        "reason"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "ClaimDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "start_char": {
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "title": "End Char",
+          "type": "integer"
+        },
+        "decision": {
+          "enum": [
+            "accepted",
+            "rejected"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "start_char",
+        "end_char",
+        "decision",
+        "reasons"
+      ],
+      "title": "ClaimDecision",
+      "type": "object"
+    },
+    "Comparison": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_id": {
+          "format": "uuid",
+          "title": "Baseline Id",
+          "type": "string"
+        },
+        "baseline_hash": {
+          "title": "Baseline Hash",
+          "type": "string"
+        },
+        "concepts_removed": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Concepts Removed",
+          "type": "array"
+        },
+        "concepts_added": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Concepts Added",
+          "type": "array"
+        },
+        "assets_removed": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assets Removed",
+          "type": "array"
+        },
+        "assets_added": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assets Added",
+          "type": "array"
+        },
+        "claims_removed": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Claims Removed",
+          "type": "array"
+        },
+        "claims_added": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Claims Added",
+          "type": "array"
+        },
+        "importance_before": {
+          "title": "Importance Before",
+          "type": "string"
+        },
+        "importance_after": {
+          "title": "Importance After",
+          "type": "string"
+        },
+        "routing_before": {
+          "title": "Routing Before",
+          "type": "string"
+        },
+        "routing_after": {
+          "title": "Routing After",
+          "type": "string"
+        }
+      },
+      "required": [
+        "baseline_id",
+        "baseline_hash",
+        "concepts_removed",
+        "concepts_added",
+        "assets_removed",
+        "assets_added",
+        "claims_removed",
+        "claims_added",
+        "importance_before",
+        "importance_after",
+        "routing_before",
+        "routing_after"
+      ],
+      "title": "Comparison",
+      "type": "object"
+    },
+    "Concept": {
+      "additionalProperties": false,
+      "properties": {
+        "concept_id": {
+          "title": "Concept Id",
+          "type": "string"
+        },
+        "strength": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Strength",
+          "type": "string"
+        },
+        "max_similarity": {
+          "title": "Max Similarity",
+          "type": "number"
+        },
+        "matches": {
+          "items": {
+            "$ref": "#/$defs/Match"
+          },
+          "title": "Matches",
+          "type": "array"
+        }
+      },
+      "required": [
+        "concept_id",
+        "strength",
+        "max_similarity",
+        "matches"
+      ],
+      "title": "Concept",
+      "type": "object"
+    },
+    "ConceptDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "concept_id": {
+          "title": "Concept Id",
+          "type": "string"
+        },
+        "decision": {
+          "enum": [
+            "accepted",
+            "rejected",
+            "review"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "summary": {
+          "$ref": "#/$defs/EvidenceSummary"
+        }
+      },
+      "required": [
+        "concept_id",
+        "decision",
+        "reasons",
+        "summary"
+      ],
+      "title": "ConceptDecision",
+      "type": "object"
+    },
+    "Conflict": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "conflict",
+          "title": "Status",
+          "type": "string"
+        },
+        "deterministic_fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Deterministic Fact Ids",
+          "type": "array"
+        },
+        "semantic_concept_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Semantic Concept Ids",
+          "type": "array"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Span"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "status",
+        "deterministic_fact_ids",
+        "semantic_concept_ids",
+        "reason",
+        "evidence"
+      ],
+      "title": "Conflict",
+      "type": "object"
+    },
+    "Document": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "intelligence_id": {
+          "format": "uuid",
+          "title": "Intelligence Id",
+          "type": "string"
+        },
+        "input_message_id": {
+          "format": "uuid",
+          "title": "Input Message Id",
+          "type": "string"
+        },
+        "source_message_id": {
+          "format": "uuid",
+          "title": "Source Message Id",
+          "type": "string"
+        },
+        "body_hash": {
+          "title": "Body Hash",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Url"
+        },
+        "language": {
+          "title": "Language",
+          "type": "string"
+        },
+        "published_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Published At"
+        },
+        "body_characters": {
+          "title": "Body Characters",
+          "type": "integer"
+        },
+        "document_status": {
+          "title": "Document Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "intelligence_id",
+        "input_message_id",
+        "source_message_id",
+        "body_hash",
+        "title",
+        "source_id",
+        "source_url",
+        "language",
+        "published_at",
+        "body_characters",
+        "document_status"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "extractor": {
+          "enum": [
+            "di",
+            "gliner"
+          ],
+          "title": "Extractor",
+          "type": "string"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Span"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "deterministic",
+            "candidate"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "name",
+        "type",
+        "extractor",
+        "evidence",
+        "status"
+      ],
+      "title": "Entity",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "sentence_id": {
+          "minimum": 0,
+          "title": "Sentence Id",
+          "type": "integer"
+        },
+        "start_char": {
+          "minimum": 0,
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "exclusiveMinimum": 0,
+          "title": "End Char",
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "sentence_id",
+        "start_char",
+        "end_char",
+        "text"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "semantic_evidence_count": {
+          "title": "Semantic Evidence Count",
+          "type": "integer"
+        },
+        "independent_evidence_count": {
+          "title": "Independent Evidence Count",
+          "type": "integer"
+        },
+        "max_similarity": {
+          "title": "Max Similarity",
+          "type": "number"
+        },
+        "mean_supporting_similarity": {
+          "title": "Mean Supporting Similarity",
+          "type": "number"
+        },
+        "di_fact_support": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Di Fact Support",
+          "type": "array"
+        },
+        "entity_support": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Entity Support",
+          "type": "array"
+        },
+        "relation_support": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Relation Support",
+          "type": "array"
+        },
+        "article_section_support": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Article Section Support",
+          "type": "array"
+        },
+        "negative_evidence": {
+          "items": {
+            "$ref": "#/$defs/Match"
+          },
+          "title": "Negative Evidence",
+          "type": "array"
+        },
+        "supporting_spans": {
+          "items": {
+            "$ref": "#/$defs/Span"
+          },
+          "title": "Supporting Spans",
+          "type": "array"
+        }
+      },
+      "required": [
+        "semantic_evidence_count",
+        "independent_evidence_count",
+        "max_similarity",
+        "mean_supporting_similarity",
+        "di_fact_support",
+        "entity_support",
+        "relation_support",
+        "article_section_support",
+        "negative_evidence",
+        "supporting_spans"
+      ],
+      "title": "EvidenceSummary",
+      "type": "object"
+    },
+    "Extraction": {
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "enum": [
+            "registry",
+            "statistical_ner",
+            "rule_based",
+            "dependency_rule"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "extractor": {
+          "title": "Extractor",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "extractor_version": {
+          "title": "Extractor Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "method",
+        "extractor",
+        "rule_id",
+        "extractor_version"
+      ],
+      "title": "Extraction",
+      "type": "object"
+    },
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "fact_id": {
+          "format": "uuid",
+          "title": "Fact Id",
+          "type": "string"
+        },
+        "fact_type": {
+          "enum": [
+            "monetary_policy.rate_decision",
+            "monetary_policy.guidance",
+            "economic_data.inflation",
+            "economic_data.employment",
+            "economic_data.gdp",
+            "economic_data.wages",
+            "regulation.rule_proposal",
+            "regulation.rule_adoption",
+            "regulation.enforcement",
+            "crypto.exchange_outage",
+            "crypto.withdrawal_suspension",
+            "crypto.security_incident",
+            "crypto.stablecoin_depeg",
+            "crypto.treasury_purchase",
+            "crypto.etf_action",
+            "crypto.exchange_listing",
+            "crypto.exchange_delisting",
+            "crypto.deposit_suspension",
+            "crypto.stablecoin_change",
+            "crypto.treasury_sale",
+            "crypto.treasury_holdings",
+            "crypto.institutional_product"
+          ],
+          "title": "Fact Type",
+          "type": "string"
+        },
+        "subject": {
+          "$ref": "#/$defs/Reference"
+        },
+        "action": {
+          "title": "Action",
+          "type": "string"
+        },
+        "relation_id": {
+          "format": "uuid",
+          "title": "Relation Id",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/Measurement"
+          },
+          "title": "Values",
+          "type": "array"
+        },
+        "asset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "aggregate_value_usd": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "average_price_usd": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "fact_id",
+        "fact_type",
+        "subject",
+        "action",
+        "relation_id",
+        "values"
+      ],
+      "title": "Fact",
+      "type": "object"
+    },
+    "Feature": {
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Level",
+          "type": "string"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Reasons",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/Span"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "level",
+        "reasons",
+        "evidence"
+      ],
+      "title": "Feature",
+      "type": "object"
+    },
+    "InformationValue": {
+      "additionalProperties": false,
+      "properties": {
+        "market_relevance": {
+          "$ref": "#/$defs/Feature"
+        },
+        "crypto_relevance": {
+          "$ref": "#/$defs/Feature"
+        },
+        "macro_relevance": {
+          "$ref": "#/$defs/Feature"
+        },
+        "event_specificity": {
+          "$ref": "#/$defs/Feature"
+        },
+        "information_density": {
+          "$ref": "#/$defs/Feature"
+        },
+        "actionability": {
+          "$ref": "#/$defs/Feature"
+        },
+        "source_quality": {
+          "$ref": "#/$defs/Feature"
+        },
+        "document_quality": {
+          "$ref": "#/$defs/Feature"
+        },
+        "semantic_strength": {
+          "$ref": "#/$defs/Feature"
+        },
+        "fact_support": {
+          "$ref": "#/$defs/Feature"
+        }
+      },
+      "required": [
+        "market_relevance",
+        "crypto_relevance",
+        "macro_relevance",
+        "event_specificity",
+        "information_density",
+        "actionability",
+        "source_quality",
+        "document_quality",
+        "semantic_strength",
+        "fact_support"
+      ],
+      "title": "InformationValue",
+      "type": "object"
+    },
+    "Match": {
+      "additionalProperties": false,
+      "properties": {
+        "positive_similarity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Positive Similarity"
+        },
+        "negative_similarity": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Negative Similarity"
+        },
+        "semantic_margin": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Semantic Margin"
+        },
+        "concept_id": {
+          "title": "Concept Id",
+          "type": "string"
+        },
+        "similarity": {
+          "maximum": 1,
+          "minimum": -1,
+          "title": "Similarity",
+          "type": "number"
+        },
+        "chunk_id": {
+          "format": "uuid",
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Span"
+        },
+        "model_version": {
+          "title": "Model Version",
+          "type": "string"
+        },
+        "ontology_version": {
+          "title": "Ontology Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "concept_id",
+        "similarity",
+        "chunk_id",
+        "evidence",
+        "model_version",
+        "ontology_version"
+      ],
+      "title": "Match",
+      "type": "object"
+    },
+    "Measurement": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "measurement_id": {
+          "format": "uuid",
+          "title": "Measurement Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "percentage",
+            "percentage_points",
+            "basis_points",
+            "money",
+            "price",
+            "quantity",
+            "ratio",
+            "rate"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Min"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max"
+        },
+        "unit": {
+          "title": "Unit",
+          "type": "string"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Currency"
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "measurement_id",
+        "kind",
+        "value",
+        "min",
+        "max",
+        "unit",
+        "currency"
+      ],
+      "title": "Measurement",
+      "type": "object"
+    },
+    "Performance": {
+      "additionalProperties": false,
+      "properties": {
+        "latency_seconds": {
+          "title": "Latency Seconds",
+          "type": "number"
+        },
+        "embedding_seconds": {
+          "title": "Embedding Seconds",
+          "type": "number"
+        },
+        "gliner_seconds": {
+          "title": "Gliner Seconds",
+          "type": "number"
+        },
+        "chunks_per_second": {
+          "title": "Chunks Per Second",
+          "type": "number"
+        },
+        "documents_per_second": {
+          "title": "Documents Per Second",
+          "type": "number"
+        },
+        "rss_bytes": {
+          "title": "Rss Bytes",
+          "type": "integer"
+        },
+        "peak_rss_bytes": {
+          "title": "Peak Rss Bytes",
+          "type": "integer"
+        },
+        "chunks": {
+          "title": "Chunks",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "latency_seconds",
+        "embedding_seconds",
+        "gliner_seconds",
+        "chunks_per_second",
+        "documents_per_second",
+        "rss_bytes",
+        "peak_rss_bytes",
+        "chunks"
+      ],
+      "title": "Performance",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "semantic_runtime_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Semantic Runtime Hash"
+        },
+        "semantic_model": {
+          "title": "Semantic Model",
+          "type": "string"
+        },
+        "semantic_model_revision": {
+          "title": "Semantic Model Revision",
+          "type": "string"
+        },
+        "semantic_model_hash": {
+          "title": "Semantic Model Hash",
+          "type": "string"
+        },
+        "gliner_model": {
+          "title": "Gliner Model",
+          "type": "string"
+        },
+        "gliner_model_revision": {
+          "title": "Gliner Model Revision",
+          "type": "string"
+        },
+        "gliner_model_hash": {
+          "title": "Gliner Model Hash",
+          "type": "string"
+        },
+        "gliner_backbone_revision": {
+          "title": "Gliner Backbone Revision",
+          "type": "string"
+        },
+        "ontology_version": {
+          "title": "Ontology Version",
+          "type": "string"
+        },
+        "threshold_version": {
+          "title": "Threshold Version",
+          "type": "string"
+        },
+        "pipeline_version": {
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "chunking_version": {
+          "title": "Chunking Version",
+          "type": "string"
+        },
+        "configuration_hash": {
+          "title": "Configuration Hash",
+          "type": "string"
+        },
+        "input_hash": {
+          "title": "Input Hash",
+          "type": "string"
+        },
+        "runtime_versions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Runtime Versions",
+          "type": "object"
+        },
+        "dtype": {
+          "title": "Dtype",
+          "type": "string"
+        }
+      },
+      "required": [
+        "semantic_model",
+        "semantic_model_revision",
+        "semantic_model_hash",
+        "gliner_model",
+        "gliner_model_revision",
+        "gliner_model_hash",
+        "gliner_backbone_revision",
+        "ontology_version",
+        "threshold_version",
+        "pipeline_version",
+        "chunking_version",
+        "configuration_hash",
+        "input_hash",
+        "runtime_versions",
+        "dtype"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "mention_id": {
+          "format": "uuid",
+          "title": "Mention Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "mention_id"
+      ],
+      "title": "Reference",
+      "type": "object"
+    },
+    "Relation": {
+      "additionalProperties": false,
+      "properties": {
+        "relation_id": {
+          "title": "Relation Id",
+          "type": "string"
+        },
+        "subject": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Subject"
+        },
+        "predicate": {
+          "title": "Predicate",
+          "type": "string"
+        },
+        "object": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Object"
+        },
+        "extractor": {
+          "enum": [
+            "di",
+            "gliner"
+          ],
+          "title": "Extractor",
+          "type": "string"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "support_method": {
+          "title": "Support Method",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "deterministic",
+            "candidate"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Span"
+        },
+        "supporting_fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Supporting Fact Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "relation_id",
+        "subject",
+        "predicate",
+        "object",
+        "extractor",
+        "support_method",
+        "status",
+        "evidence",
+        "supporting_fact_ids"
+      ],
+      "title": "Relation",
+      "type": "object"
+    },
+    "Reranking": {
+      "additionalProperties": false,
+      "properties": {
+        "policy_version": {
+          "title": "Policy Version",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "complete",
+            "failed"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "decisions": {
+          "items": {
+            "$ref": "#/$defs/ConceptDecision"
+          },
+          "title": "Decisions",
+          "type": "array"
+        },
+        "claim_decisions": {
+          "items": {
+            "$ref": "#/$defs/ClaimDecision"
+          },
+          "title": "Claim Decisions",
+          "type": "array"
+        },
+        "importance_components": {
+          "additionalProperties": {
+            "$ref": "#/$defs/Feature"
+          },
+          "title": "Importance Components",
+          "type": "object"
+        },
+        "latency_seconds": {
+          "title": "Latency Seconds",
+          "type": "number"
+        }
+      },
+      "required": [
+        "policy_version",
+        "status",
+        "decisions",
+        "claim_decisions",
+        "importance_components",
+        "latency_seconds"
+      ],
+      "title": "Reranking",
+      "type": "object"
+    },
+    "Routing": {
+      "additionalProperties": false,
+      "properties": {
+        "old_route": {
+          "anyOf": [
+            {
+              "enum": [
+                "critical",
+                "important",
+                "review",
+                "low",
+                "archive"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Old Route"
+        },
+        "old_routing_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Old Routing Id"
+        },
+        "semantic_suggested_route": {
+          "enum": [
+            "critical",
+            "important",
+            "review",
+            "low",
+            "archive"
+          ],
+          "title": "Semantic Suggested Route",
+          "type": "string"
+        },
+        "disagreement": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Disagreement"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "production_switch": {
+          "const": false,
+          "title": "Production Switch",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "old_route",
+        "old_routing_id",
+        "semantic_suggested_route",
+        "disagreement",
+        "reasons",
+        "production_switch"
+      ],
+      "title": "Routing",
+      "type": "object"
+    },
+    "Span": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "chunk_id": {
+          "format": "uuid",
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "start_char": {
+          "minimum": 0,
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "exclusiveMinimum": 0,
+          "title": "End Char",
+          "type": "integer"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "chunk_id",
+        "start_char",
+        "end_char",
+        "text"
+      ],
+      "title": "Span",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "reranking": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Reranking"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "comparison": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Comparison"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "message_id": {
+      "format": "uuid",
+      "title": "Message Id",
+      "type": "string"
+    },
+    "semantic_id": {
+      "format": "uuid",
+      "title": "Semantic Id",
+      "type": "string"
+    },
+    "document": {
+      "$ref": "#/$defs/Document"
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "partial",
+        "failed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "mode": {
+      "const": "research",
+      "title": "Mode",
+      "type": "string"
+    },
+    "domains": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Domains",
+      "type": "array"
+    },
+    "chunks": {
+      "items": {
+        "$ref": "#/$defs/ChunkReference"
+      },
+      "title": "Chunks",
+      "type": "array"
+    },
+    "semantic_concepts": {
+      "items": {
+        "$ref": "#/$defs/Concept"
+      },
+      "title": "Semantic Concepts",
+      "type": "array"
+    },
+    "top_matches": {
+      "items": {
+        "$ref": "#/$defs/Match"
+      },
+      "title": "Top Matches",
+      "type": "array"
+    },
+    "entities": {
+      "items": {
+        "$ref": "#/$defs/Entity"
+      },
+      "title": "Entities",
+      "type": "array"
+    },
+    "relations": {
+      "items": {
+        "$ref": "#/$defs/Relation"
+      },
+      "title": "Relations",
+      "type": "array"
+    },
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/Fact"
+      },
+      "title": "Facts",
+      "type": "array"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "title": "Claims",
+      "type": "array"
+    },
+    "affected_assets": {
+      "items": {
+        "$ref": "#/$defs/Asset"
+      },
+      "title": "Affected Assets",
+      "type": "array"
+    },
+    "article_type": {
+      "enum": [
+        "primary_announcement",
+        "data_release",
+        "regulatory_action",
+        "incident",
+        "analysis",
+        "commentary",
+        "interview",
+        "speech",
+        "personnel",
+        "administrative",
+        "unknown"
+      ],
+      "title": "Article Type",
+      "type": "string"
+    },
+    "article_type_basis": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Article Type Basis",
+      "type": "array"
+    },
+    "information_value": {
+      "$ref": "#/$defs/InformationValue"
+    },
+    "important_numbers": {
+      "items": {
+        "$ref": "#/$defs/Measurement"
+      },
+      "title": "Important Numbers",
+      "type": "array"
+    },
+    "conflicts": {
+      "items": {
+        "$ref": "#/$defs/Conflict"
+      },
+      "title": "Conflicts",
+      "type": "array"
+    },
+    "routing": {
+      "$ref": "#/$defs/Routing"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "performance": {
+      "$ref": "#/$defs/Performance"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "message_id",
+    "semantic_id",
+    "document",
+    "status",
+    "mode",
+    "domains",
+    "chunks",
+    "semantic_concepts",
+    "top_matches",
+    "entities",
+    "relations",
+    "facts",
+    "claims",
+    "affected_assets",
+    "article_type",
+    "article_type_basis",
+    "information_value",
+    "important_numbers",
+    "conflicts",
+    "routing",
+    "provenance",
+    "warnings",
+    "performance",
+    "generated_at"
+  ],
+  "title": "Output",
+  "type": "object"
+}

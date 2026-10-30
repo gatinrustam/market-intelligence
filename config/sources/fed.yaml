@@ -1,0 +1,12 @@
+id: fed_monetary_policy
+name: Federal Reserve Monetary Policy
+enabled: true
+connector:
+  type: rss
+  url: https://www.federalreserve.gov/feeds/press_monetary.xml
+poll:
+  interval_seconds: 60
+classification:
+  categories: [macro, monetary_policy]
+priority: critical
+language: en

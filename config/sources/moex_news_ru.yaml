@@ -1,0 +1,13 @@
+id: moex_news_ru
+name: Московская биржа — новости
+enabled: true
+connector:
+  type: rss
+  url: https://www.moex.com/export/news.aspx?cat=100
+poll:
+  interval_seconds: 900
+classification:
+  categories: ["markets"]
+priority: high
+language: ru
+max_items_per_poll: 20

@@ -1,0 +1,821 @@
+{
+  "$defs": {
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "mention_id": {
+          "format": "uuid",
+          "title": "Mention Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "entity_type": {
+          "title": "Entity Type",
+          "type": "string"
+        },
+        "resolution": {
+          "enum": [
+            "canonical",
+            "unresolved"
+          ],
+          "title": "Resolution",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "mention_id",
+        "name",
+        "entity_type",
+        "resolution"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "Alternative": {
+      "additionalProperties": false,
+      "properties": {
+        "event_type": {
+          "title": "Event Type",
+          "type": "string"
+        },
+        "basis": {
+          "enum": [
+            "primary_fact",
+            "supporting_rule",
+            "fallback_rule",
+            "legacy_v1"
+          ],
+          "title": "Basis",
+          "type": "string"
+        },
+        "rule_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Rule Ids",
+          "type": "array"
+        },
+        "fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Fact Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "event_type",
+        "basis",
+        "rule_ids",
+        "fact_ids"
+      ],
+      "title": "Alternative",
+      "type": "object"
+    },
+    "Basis": {
+      "additionalProperties": false,
+      "properties": {
+        "ruleset_version": {
+          "title": "Ruleset Version",
+          "type": "string"
+        },
+        "configuration_hash": {
+          "title": "Configuration Hash",
+          "type": "string"
+        },
+        "input_hash": {
+          "title": "Input Hash",
+          "type": "string"
+        },
+        "context_hash": {
+          "title": "Context Hash",
+          "type": "string"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Versions"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "ignored_facts": {
+          "items": {
+            "$ref": "#/$defs/IgnoredFact"
+          },
+          "title": "Ignored Facts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "ruleset_version",
+        "configuration_hash",
+        "input_hash",
+        "context_hash",
+        "extraction",
+        "warnings",
+        "ignored_facts"
+      ],
+      "title": "Basis",
+      "type": "object"
+    },
+    "Candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "format": "uuid",
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "event_type": {
+          "title": "Event Type",
+          "type": "string"
+        },
+        "primary_fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Primary Fact Ids",
+          "type": "array"
+        },
+        "supporting_fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Supporting Fact Ids",
+          "type": "array"
+        },
+        "fact_references": {
+          "items": {
+            "$ref": "#/$defs/FactReference"
+          },
+          "title": "Fact References",
+          "type": "array"
+        },
+        "actors": {
+          "items": {
+            "$ref": "#/$defs/Actor"
+          },
+          "title": "Actors",
+          "type": "array"
+        },
+        "topics": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Topics",
+          "type": "array"
+        },
+        "measurements": {
+          "items": {
+            "$ref": "#/$defs/FactMeasurement"
+          },
+          "title": "Measurements",
+          "type": "array"
+        },
+        "dates": {
+          "items": {
+            "$ref": "#/$defs/FactDate"
+          },
+          "title": "Dates",
+          "type": "array"
+        },
+        "event_time": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Event Time"
+        },
+        "event_time_basis": {
+          "enum": [
+            "explicit_fact_datetime",
+            "unavailable"
+          ],
+          "title": "Event Time Basis",
+          "type": "string"
+        },
+        "classification_basis": {
+          "enum": [
+            "primary_fact",
+            "fallback_rule"
+          ],
+          "title": "Classification Basis",
+          "type": "string"
+        },
+        "signals": {
+          "items": {
+            "$ref": "#/$defs/Signal"
+          },
+          "title": "Signals",
+          "type": "array"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "document_id",
+        "event_type",
+        "primary_fact_ids",
+        "supporting_fact_ids",
+        "fact_references",
+        "actors",
+        "topics",
+        "measurements",
+        "dates",
+        "event_time",
+        "event_time_basis",
+        "classification_basis",
+        "signals"
+      ],
+      "title": "Candidate",
+      "type": "object"
+    },
+    "Conflict": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "classification_conflict",
+          "title": "Kind",
+          "type": "string"
+        },
+        "selected_event_types": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Selected Event Types",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "$ref": "#/$defs/Alternative"
+          },
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "selected_event_types",
+        "alternatives",
+        "reason"
+      ],
+      "title": "Conflict",
+      "type": "object"
+    },
+    "Date": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "date_id": {
+          "format": "uuid",
+          "title": "Date Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "date",
+            "time",
+            "date_range",
+            "period"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "raw": {
+          "title": "Raw",
+          "type": "string"
+        },
+        "normalized": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Normalized"
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "date_id",
+        "kind",
+        "raw",
+        "normalized"
+      ],
+      "title": "Date",
+      "type": "object"
+    },
+    "Document": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "intelligence_id": {
+          "format": "uuid",
+          "title": "Intelligence Id",
+          "type": "string"
+        },
+        "input_message_id": {
+          "format": "uuid",
+          "title": "Input Message Id",
+          "type": "string"
+        },
+        "source_message_id": {
+          "format": "uuid",
+          "title": "Source Message Id",
+          "type": "string"
+        },
+        "body_hash": {
+          "title": "Body Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "intelligence_id",
+        "input_message_id",
+        "source_message_id",
+        "body_hash"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "sentence_id": {
+          "minimum": 0,
+          "title": "Sentence Id",
+          "type": "integer"
+        },
+        "start_char": {
+          "minimum": 0,
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "exclusiveMinimum": 0,
+          "title": "End Char",
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "sentence_id",
+        "start_char",
+        "end_char",
+        "text"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Extraction": {
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "enum": [
+            "registry",
+            "statistical_ner",
+            "rule_based",
+            "dependency_rule"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "extractor": {
+          "title": "Extractor",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "extractor_version": {
+          "title": "Extractor Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "method",
+        "extractor",
+        "rule_id",
+        "extractor_version"
+      ],
+      "title": "Extraction",
+      "type": "object"
+    },
+    "FactDate": {
+      "additionalProperties": false,
+      "properties": {
+        "fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Fact Ids",
+          "type": "array"
+        },
+        "date": {
+          "$ref": "#/$defs/Date"
+        }
+      },
+      "required": [
+        "fact_ids",
+        "date"
+      ],
+      "title": "FactDate",
+      "type": "object"
+    },
+    "FactMeasurement": {
+      "additionalProperties": false,
+      "properties": {
+        "fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Fact Ids",
+          "type": "array"
+        },
+        "measurement": {
+          "$ref": "#/$defs/Measurement"
+        }
+      },
+      "required": [
+        "fact_ids",
+        "measurement"
+      ],
+      "title": "FactMeasurement",
+      "type": "object"
+    },
+    "FactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "fact_id": {
+          "format": "uuid",
+          "title": "Fact Id",
+          "type": "string"
+        },
+        "fact_type": {
+          "title": "Fact Type",
+          "type": "string"
+        },
+        "relation_id": {
+          "format": "uuid",
+          "title": "Relation Id",
+          "type": "string"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        }
+      },
+      "required": [
+        "document_id",
+        "fact_id",
+        "fact_type",
+        "relation_id",
+        "evidence",
+        "extraction"
+      ],
+      "title": "FactReference",
+      "type": "object"
+    },
+    "IgnoredFact": {
+      "additionalProperties": false,
+      "properties": {
+        "fact_id": {
+          "format": "uuid",
+          "title": "Fact Id",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "fact_id",
+        "reason"
+      ],
+      "title": "IgnoredFact",
+      "type": "object"
+    },
+    "Measurement": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "measurement_id": {
+          "format": "uuid",
+          "title": "Measurement Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "percentage",
+            "percentage_points",
+            "basis_points",
+            "money",
+            "price",
+            "quantity",
+            "ratio",
+            "rate"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Min"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max"
+        },
+        "unit": {
+          "title": "Unit",
+          "type": "string"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Currency"
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "measurement_id",
+        "kind",
+        "value",
+        "min",
+        "max",
+        "unit",
+        "currency"
+      ],
+      "title": "Measurement",
+      "type": "object"
+    },
+    "Models": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "title": "En",
+          "type": "string"
+        },
+        "ru": {
+          "title": "Ru",
+          "type": "string"
+        }
+      },
+      "required": [
+        "en",
+        "ru"
+      ],
+      "title": "Models",
+      "type": "object"
+    },
+    "Signal": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "primary_fact",
+            "supporting_rule",
+            "fallback_rule"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "event_type": {
+          "title": "Event Type",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Fact Ids",
+          "type": "array"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "event_type",
+        "rule_id",
+        "fact_ids",
+        "reason"
+      ],
+      "title": "Signal",
+      "type": "object"
+    },
+    "Versions": {
+      "additionalProperties": false,
+      "properties": {
+        "pipeline_version": {
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "entity_registry_version": {
+          "title": "Entity Registry Version",
+          "type": "string"
+        },
+        "fact_ruleset_version": {
+          "title": "Fact Ruleset Version",
+          "type": "string"
+        },
+        "configuration_hash": {
+          "title": "Configuration Hash",
+          "type": "string"
+        },
+        "nlp_models": {
+          "$ref": "#/$defs/Models"
+        }
+      },
+      "required": [
+        "pipeline_version",
+        "entity_registry_version",
+        "fact_ruleset_version",
+        "configuration_hash",
+        "nlp_models"
+      ],
+      "title": "Versions",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "2.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "message_id": {
+      "format": "uuid",
+      "title": "Message Id",
+      "type": "string"
+    },
+    "research_id": {
+      "format": "uuid",
+      "title": "Research Id",
+      "type": "string"
+    },
+    "mode": {
+      "const": "research",
+      "title": "Mode",
+      "type": "string"
+    },
+    "production_canonical": {
+      "const": false,
+      "title": "Production Canonical",
+      "type": "boolean"
+    },
+    "merge_enabled": {
+      "const": false,
+      "title": "Merge Enabled",
+      "type": "boolean"
+    },
+    "document": {
+      "$ref": "#/$defs/Document"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/Candidate"
+      },
+      "title": "Candidates",
+      "type": "array"
+    },
+    "conflicts": {
+      "items": {
+        "$ref": "#/$defs/Conflict"
+      },
+      "title": "Conflicts",
+      "type": "array"
+    },
+    "basis": {
+      "$ref": "#/$defs/Basis"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "message_id",
+    "research_id",
+    "mode",
+    "production_canonical",
+    "merge_enabled",
+    "document",
+    "candidates",
+    "conflicts",
+    "basis",
+    "generated_at"
+  ],
+  "title": "Output",
+  "type": "object"
+}

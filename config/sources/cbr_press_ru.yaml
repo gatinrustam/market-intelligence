@@ -1,0 +1,13 @@
+id: cbr_press_ru
+name: Банк России — пресс-релизы
+enabled: true
+connector:
+  type: rss
+  url: https://www.cbr.ru/rss/RssPress
+poll:
+  interval_seconds: 900
+classification:
+  categories: ["macro", "regulation"]
+priority: high
+language: ru
+max_items_per_poll: 20

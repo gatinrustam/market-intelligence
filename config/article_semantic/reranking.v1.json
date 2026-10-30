@@ -1,0 +1,243 @@
+{
+  "version": "semantic_reranking_v1",
+  "very_strong": 0.7,
+  "entity_confidence": 0.5,
+  "max_claims": 12,
+  "minimum_claim_characters": 45,
+  "concepts": {
+    "monetary_policy": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "monetary policy|FOMC|federal funds|денежно.кредитн|ключев\\w* ставк",
+      "fact_prefixes": [
+        "monetary_policy."
+      ],
+      "requires_direct_support": false
+    },
+    "interest_rates": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "interest rate|funds rate|policy rate|ключев\\w* ставк|процентн\\w* ставк",
+      "fact_prefixes": [
+        "monetary_policy.rate_decision"
+      ],
+      "requires_direct_support": false
+    },
+    "inflation": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "inflation|consumer prices|инфляц|потребительск\\w* цен|рост цен",
+      "fact_prefixes": [
+        "economic_data.inflation"
+      ],
+      "requires_direct_support": false
+    },
+    "employment": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "employment|unemployment|job gains|labor market|labour market|безработиц|занятост|рын\\w* труда",
+      "fact_prefixes": [
+        "economic_data.employment"
+      ],
+      "requires_direct_support": false
+    },
+    "economic_growth": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "economic growth|economic activity|GDP|economic projections|экономическ\\w* (рост|активност|прогноз)|ВВП|делов\\w* (настроен|активност)",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    },
+    "financial_regulation": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "regulat|proposed.*rules|investment contracts|норматив|регулирован|требовани|разъяснен|правил",
+      "fact_prefixes": [
+        "regulation.rule_"
+      ],
+      "requires_direct_support": false
+    },
+    "crypto_regulation": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "crypto.?asset|cryptocurrenc|биткоин|криптовалют|криптоактив",
+      "fact_prefixes": [],
+      "requires_direct_support": true
+    },
+    "enforcement": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "charged|charges|fraud|enforcement action|обвин|мошеннич|штраф|предписани",
+      "fact_prefixes": [
+        "regulation.enforcement"
+      ],
+      "requires_direct_support": false
+    },
+    "crypto_exchange": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "crypto(?:currency)? exchange|Binance|Coinbase|Kraken|криптобирж|бирж\\w* криптовалют",
+      "fact_prefixes": [],
+      "requires_direct_support": true
+    },
+    "exchange_outage": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "outage|technical failure|сбо[йя]|недоступн\\w* (торг|сервис)|неполадк",
+      "fact_prefixes": [],
+      "requires_direct_support": true
+    },
+    "withdrawal_suspension": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "(suspend|halt|restrict)\\w* withdrawals|withdrawals (suspend|halt)|приостанов\\w* вывод|огранич\\w* вывод",
+      "fact_prefixes": [
+        "crypto.withdrawal_suspension"
+      ],
+      "requires_direct_support": true
+    },
+    "security_incident": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "cyber.attack|security breach|exploit|кибератак|утечк|взлом|уязвимост",
+      "fact_prefixes": [
+        "crypto.security_incident"
+      ],
+      "requires_direct_support": true
+    },
+    "hack": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "hack|stolen|украден|похищен|взлом",
+      "fact_prefixes": [
+        "crypto.security_incident"
+      ],
+      "requires_direct_support": true
+    },
+    "stablecoin": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "stablecoin|стейблкоин|USDT|USDC",
+      "fact_prefixes": [],
+      "requires_direct_support": true
+    },
+    "depeg": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "depeg|lost.*peg|below.*peg|потер\\w* привязк|утрат\\w* привязк|ниже.*паритет",
+      "fact_prefixes": [
+        "crypto.stablecoin_depeg"
+      ],
+      "requires_direct_support": true
+    },
+    "etf": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "\\bETF\\b|exchange.traded fund|БПИФ|биржев\\w* (инвестиционн\\w* )?фонд",
+      "fact_prefixes": [
+        "crypto.etf_action"
+      ],
+      "requires_direct_support": true
+    },
+    "institutional_crypto": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "(Bitcoin|crypto|криптовалют|биткоин).*(fund|institution|институцион|фонд)|(?:fund|institution|институцион|фонд).*(Bitcoin|crypto|криптовалют|биткоин)",
+      "fact_prefixes": [],
+      "requires_direct_support": true
+    },
+    "treasury_purchase": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "(purchase|bought|acquir|купил|приобрел|приобрёл).*(bitcoin|BTC|биткоин)|(?:bitcoin|BTC|биткоин).*(treasury|balance sheet|баланс)",
+      "fact_prefixes": [
+        "crypto.treasury_purchase"
+      ],
+      "requires_direct_support": true
+    },
+    "equities": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "equit|\\bstock[s]?\\b|\\bshare[s]?\\b|акци[йяию]|рын\\w* акций",
+      "fact_prefixes": [],
+      "requires_direct_support": true
+    },
+    "earnings": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "(company|corporat|компани|эмитент).*(earnings|profit|revenue|прибыл|выручк)|(?:earnings|profit|revenue|прибыл|выручк).*(company|corporat|компани|эмитент)",
+      "fact_prefixes": [],
+      "requires_direct_support": true
+    },
+    "merger_acquisition": {
+      "min_positive": 0.48,
+      "min_margin": 0.05,
+      "anchors": "merger|acquisition|acquir\\w* (?:company|stake)|слиян|поглощен|покупк\\w* доли",
+      "fact_prefixes": [],
+      "requires_direct_support": true
+    },
+    "general_commentary": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "outlook|discuss|comment|обсужд|мнен|коммент",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    },
+    "personnel": {
+      "min_positive": 0.43,
+      "min_margin": 0.0,
+      "anchors": "appoint|resign|departure|successor|возглав|назначен|назначил|уш[её]л|полномочи|отставк",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    },
+    "administrative": {
+      "min_positive": 0.43,
+      "min_margin": 0.0,
+      "anchors": "meeting.*(continu|schedul)|FAQ|open day|website.*maintenance|техническ\\w* (работ|причин)|откроет.*двер|онлайн.урок|расписани|информационн\\w* сообщен",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    },
+    "trading_suspension": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "(suspend|resume).*trading|приостанов\\w* торг|возобнов\\w* торг|прекращени\\w* торг",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    },
+    "listing": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "listing|delist|листинг|допущенн\\w* к торгам|начал\\w* торг|включени\\w*.*список|исключени\\w*.*списка",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    },
+    "risk_parameters": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "risk parameter|price band|haircut|риск.параметр|ценов\\w* коридор|границ\\w* цен|ставк\\w* переноса|дестабилизац\\w* цен",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    },
+    "fx_market": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "foreign exchange|currency pair|валютн\\w* (рын|пар)|иностранн\\w* валют|\\b(?:USD|EUR|CNY|UZS|KZT)/RUB\\b",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    },
+    "cash_policy": {
+      "min_positive": 0.48,
+      "min_margin": 0.0,
+      "anchors": "cash|banknote|legal tender|digital euro|наличн\\w*|банкнот|цифров\\w* рубл|законн\\w* платежн",
+      "fact_prefixes": [],
+      "requires_direct_support": false
+    }
+  },
+  "action_pattern": "\\b(held|hold|maintain|raise|lower|cut|decided|approved|proposed|charged|announced|released|published|reported|suspended|resumed|acquired|purchased|appointed|resigned)\\b|сохран\\w*|повыс\\w*|сниз\\w*|принял\\w*|решил\\w*|ввод\\w*|введ\\w*|установ\\w*|измен\\w*|приостанов\\w*|возобнов\\w*|допущ\\w*|включ\\w*|исключ\\w*|опубликов\\w*|предлага\\w*|аннулир\\w*|назнач\\w*|возглав\\w*|составил\\w*|замедлил\\w*|вырос\\w*|снизил\\w*|увелич\\w*",
+  "currencies": {
+    "fed_monetary_policy": "USD",
+    "ecb_press": "EUR",
+    "cbr_events_ru": "RUB",
+    "cbr_press_ru": "RUB"
+  }
+}

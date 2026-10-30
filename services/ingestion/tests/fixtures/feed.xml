@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel><title>Test Authority</title><link>https://example.org</link><description>News</description>
+<item><guid isPermaLink="false">release-1</guid><title> Policy   update </title><description><![CDATA[<p>Rates &amp; outlook.</p>]]></description><link>https://example.org/news/1</link><pubDate>Fri, 18 Sep 2026 12:30:00 GMT</pubDate></item>
+<item><guid isPermaLink="false">release-2</guid><title>Second release</title><description>Second body</description><link>https://example.org/news/2</link></item>
+</channel></rss>

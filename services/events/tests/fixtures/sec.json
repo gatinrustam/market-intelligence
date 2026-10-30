@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "message_id": "5107ff2d-f9f5-4fe5-a4c2-db572be08952",
+  "document_id": "73204fa7-69a9-4656-99d3-b9e9a88d553c",
+  "lineage": {
+    "source_message_id": "78fc6481-1aa3-4cc8-b95c-b1c0fc01a733",
+    "input_subject": "news.raw.v1",
+    "input_content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "source": {
+    "id": "sec_press_releases",
+    "type": "rss",
+    "external_id": null,
+    "url": "https://www.sec.gov/newsroom/press-releases/example"
+  },
+  "timestamps": {
+    "published_at": "2026-04-29T18:00:00Z",
+    "received_at": "2026-09-19T00:00:00Z",
+    "enriched_at": "2026-09-19T00:01:00Z",
+    "ingestion_delay_seconds": 12204000
+  },
+  "content": {
+    "title": "SEC Announces Roundtable on Preparations for 24-Hour Trading",
+    "extracted_title": null,
+    "body": "The commission announced a public roundtable on preparations for extended trading hours and invited industry participants to discuss operational questions\u2026",
+    "language": "en",
+    "body_length": 155,
+    "content_source": "rss"
+  },
+  "classification": {
+    "categories": [
+      "macro",
+      "monetary_policy"
+    ]
+  },
+  "enrichment": {
+    "status": "partial",
+    "required": true,
+    "reason": "rss_body_truncated",
+    "failure_reason": "http_403"
+  },
+  "fetch": {
+    "status": "failed",
+    "requested_url": "https://www.federalreserve.gov/a",
+    "final_url": "https://www.federalreserve.gov/a",
+    "http_status": 403,
+    "content_type": "text/html",
+    "snapshot_id": null,
+    "fetched_at": null,
+    "redirect_count": 0,
+    "attempt_count": 1,
+    "error_reason": "http_403"
+  },
+  "extraction": {
+    "status": "not_requested",
+    "method": "rss",
+    "processor_version": "1.0",
+    "library_version": "2.2.0",
+    "warnings": [],
+    "error_reason": null
+  },
+  "integrity": {
+    "content_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  }
+}

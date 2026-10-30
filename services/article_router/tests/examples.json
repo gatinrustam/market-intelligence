@@ -1,0 +1,3519 @@
+{
+  "Fed": {
+    "document": {
+      "schema_version": "1.0",
+      "message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+      "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+      "lineage": {
+        "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56",
+        "input_subject": "news.raw.v1",
+        "input_content_hash": "da96cfa5123b53bb100c4c7b46d7ee58017390c8cb048727a47244ffa91f28ee"
+      },
+      "source": {
+        "id": "fed_monetary_policy",
+        "type": "rss",
+        "external_id": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+        "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm"
+      },
+      "timestamps": {
+        "published_at": "2026-04-29T18:00:00+00:00",
+        "received_at": "2026-09-19T18:40:37.062893+00:00",
+        "enriched_at": "2026-09-19T19:26:10.680215+00:00",
+        "ingestion_delay_seconds": 12357637.062893
+      },
+      "content": {
+        "title": "Federal Reserve issues FOMC statement",
+        "extracted_title": "Federal Reserve issues FOMC statement",
+        "body": "April 29, 2026\nFederal Reserve issues FOMC statement\nFor release at 2:00 p.m. EDT\nRecent indicators suggest that economic activity has been expanding at a solid pace. Job gains have remained low, on average, and the unemployment rate has been little changed in recent months. Inflation is elevated, in part reflecting the recent increase in global energy prices.\nThe Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run. Developments in the Middle East are contributing to a high level of uncertainty about the economic outlook. The Committee is attentive to the risks to both sides of its dual mandate.\nIn support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3‑1/2 to 3‑3/4 percent. In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective.\nIn assessing the appropriate stance of monetary policy, the Committee will continue to monitor the implications of incoming information for the economic outlook. The Committee would be prepared to adjust the stance of monetary policy as appropriate if risks emerge that could impede the attainment of the Committee's goals. The Committee's assessments will take into account a wide range of information, including readings on labor market conditions, inflation pressures and inflation expectations, and financial and international developments.\nVoting for the monetary policy action were Jerome H. Powell, Chair; John C. Williams, Vice Chair; Michael S. Barr; Michelle W. Bowman; Lisa D. Cook; Philip N. Jefferson; Anna Paulson; and Christopher J. Waller. Voting against this action were Stephen I. Miran, who preferred to lower the target range for the federal funds rate by 1/4 percentage point at this meeting; and Beth M. Hammack, Neel Kashkari, and Lorie K. Logan, who supported maintaining the target range for the federal funds rate but did not support inclusion of an easing bias in the statement at this time.\nFor media inquiries, please email [email protected] or call 202-452-2955.",
+        "body_length": 2309,
+        "language": "en",
+        "content_source": "html"
+      },
+      "classification": {
+        "categories": [
+          "macro",
+          "monetary_policy"
+        ]
+      },
+      "enrichment": {
+        "status": "ready",
+        "required": true,
+        "reason": "rss_body_equals_title",
+        "failure_reason": null
+      },
+      "fetch": {
+        "status": "success",
+        "requested_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+        "final_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+        "http_status": 200,
+        "content_type": "text/html",
+        "snapshot_id": "e9f1843f-fe41-444b-8fec-72685cf3dbfe",
+        "fetched_at": "2026-09-19T19:26:10.136887+00:00",
+        "redirect_count": 0,
+        "attempt_count": 1,
+        "error_reason": null
+      },
+      "extraction": {
+        "status": "success",
+        "method": "trafilatura",
+        "library_version": "2.2.0",
+        "processor_version": "1.0",
+        "warnings": [],
+        "error_reason": null
+      },
+      "integrity": {
+        "content_hash": "ab2747f2bcd1ce0ce1c920a1bd430b2cc35e1b152ba86818a0360476d2875cf8"
+      }
+    },
+    "intelligence": {
+      "schema_version": "1.0",
+      "message_id": "6f88095e-d279-5486-948e-9551cbe52b20",
+      "intelligence_id": "6f88095e-d279-5486-948e-9551cbe52b20",
+      "document": {
+        "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+        "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56",
+        "input_message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+        "body_hash": "96e4ec8e008d086e8f7396b38c621685dcff81bd0d41d55b5b05a2a589ae48a7"
+      },
+      "language": "en",
+      "language_detector": "langdetect_seed_0_rules_v1",
+      "sentences": [
+        {
+          "sentence_id": 0,
+          "start_char": 0,
+          "end_char": 166
+        },
+        {
+          "sentence_id": 1,
+          "start_char": 167,
+          "end_char": 275
+        },
+        {
+          "sentence_id": 2,
+          "start_char": 276,
+          "end_char": 363
+        },
+        {
+          "sentence_id": 3,
+          "start_char": 363,
+          "end_char": 472
+        },
+        {
+          "sentence_id": 4,
+          "start_char": 473,
+          "end_char": 580
+        },
+        {
+          "sentence_id": 5,
+          "start_char": 581,
+          "end_char": 656
+        },
+        {
+          "sentence_id": 6,
+          "start_char": 656,
+          "end_char": 785
+        },
+        {
+          "sentence_id": 7,
+          "start_char": 786,
+          "end_char": 995
+        },
+        {
+          "sentence_id": 8,
+          "start_char": 996,
+          "end_char": 1117
+        },
+        {
+          "sentence_id": 9,
+          "start_char": 1117,
+          "end_char": 1278
+        },
+        {
+          "sentence_id": 10,
+          "start_char": 1279,
+          "end_char": 1440
+        },
+        {
+          "sentence_id": 11,
+          "start_char": 1441,
+          "end_char": 1662
+        },
+        {
+          "sentence_id": 12,
+          "start_char": 1662,
+          "end_char": 1872
+        },
+        {
+          "sentence_id": 13,
+          "start_char": 1873,
+          "end_char": 2236
+        },
+        {
+          "sentence_id": 14,
+          "start_char": 2236,
+          "end_char": 2309
+        }
+      ],
+      "entities": [
+        {
+          "mention_id": "5d453618-8316-5ab2-994e-f456a0f1ef56",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 0,
+            "start_char": 15,
+            "end_char": 30,
+            "text": "Federal Reserve"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "012fd865-a935-56b4-8445-d25e4b958798",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 0,
+            "start_char": 38,
+            "end_char": 42,
+            "text": "FOMC"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "c428c495-8e20-5470-8e9d-7fe2400fedd0",
+          "entity_id": "economic_indicator:employment",
+          "canonical_name": "Employment",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 1,
+            "start_char": 216,
+            "end_char": 228,
+            "text": "unemployment"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:employment",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "927e4d6e-8314-5c00-a699-6a8bf1f64e39",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 2,
+            "start_char": 276,
+            "end_char": 285,
+            "text": "Inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "0ce5a6d1-d65f-51cf-bb9e-84167283465a",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 3,
+            "start_char": 367,
+            "end_char": 376,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "e8113fc1-12e2-52ec-8804-dd7ba06dff97",
+          "entity_id": "economic_indicator:employment",
+          "canonical_name": "Employment",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 3,
+            "start_char": 402,
+            "end_char": 412,
+            "text": "employment"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:employment",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "c4eed77e-729a-5b5b-afc7-a0229b314ea6",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 3,
+            "start_char": 417,
+            "end_char": 426,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "417c5968-70fa-5345-a8c5-070192a1aa6a",
+          "entity_id": "location:mention:e85bf298ffd4770544a1",
+          "canonical_name": "the Middle East",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 4,
+            "start_char": 489,
+            "end_char": 504,
+            "text": "the Middle East"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.LOC",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "d3f3745d-a9b8-5152-92ec-9cb24a9f09a4",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 5,
+            "start_char": 585,
+            "end_char": 594,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "f67f22ab-ba7c-5b6e-b1f0-b67175ece3c9",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 6,
+            "start_char": 685,
+            "end_char": 694,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "64313bfb-4488-5ac5-860e-318e9f687c3a",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 6,
+            "start_char": 719,
+            "end_char": 731,
+            "text": "target range"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "8997f2c7-9167-594e-a95b-0def0a13f761",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 6,
+            "start_char": 740,
+            "end_char": 758,
+            "text": "federal funds rate"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "36c0a108-2b75-570d-8f19-8e2125135034",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 7,
+            "start_char": 856,
+            "end_char": 868,
+            "text": "target range"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "e7bbae55-6fa5-553b-a91f-fa1e99789705",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 7,
+            "start_char": 877,
+            "end_char": 895,
+            "text": "federal funds rate"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "8c580bab-5c5a-5bc7-bcf1-79abcf1a80d7",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 7,
+            "start_char": 901,
+            "end_char": 910,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "83a2f771-14ac-5ba0-85e0-b0719b3b8d98",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 8,
+            "start_char": 1000,
+            "end_char": 1009,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "655ade42-1277-56a8-8426-f872fa5a1f47",
+          "entity_id": "economic_indicator:employment",
+          "canonical_name": "Employment",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 8,
+            "start_char": 1054,
+            "end_char": 1064,
+            "text": "employment"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:employment",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "a7ea824b-3cfd-55f1-8376-ccf1c263caae",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 8,
+            "start_char": 1079,
+            "end_char": 1088,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "6e097351-edfe-5580-b1be-75537675eb83",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 9,
+            "start_char": 1177,
+            "end_char": 1186,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "40b9357b-7333-565c-b0ea-bfa439882d9b",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 10,
+            "start_char": 1283,
+            "end_char": 1292,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "e0b49fab-31ac-5a22-9645-1e4d1597ddc8",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 10,
+            "start_char": 1422,
+            "end_char": 1431,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "f53ca547-d428-52ec-a822-86e7bcc43097",
+          "entity_id": "organization:federal_reserve",
+          "canonical_name": "Federal Reserve",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 11,
+            "start_char": 1445,
+            "end_char": 1454,
+            "text": "Committee"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:federal_reserve",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "31679c60-5725-57ea-83c3-1d6baa40514b",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 11,
+            "start_char": 1568,
+            "end_char": 1577,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "c47b78e5-1c84-5787-81af-64eb129dcaf3",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 11,
+            "start_char": 1592,
+            "end_char": 1601,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "d947e640-50ab-59cc-97c8-2b5a75e6d2f2",
+          "entity_id": "person:mention:edd39a0e9abb709a915e",
+          "canonical_name": "Jerome H. Powell",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1705,
+            "end_char": 1721,
+            "text": "Jerome H. Powell"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "1b682223-5a79-521f-9826-09606b07f811",
+          "entity_id": "person:mention:3d7eb3d3dab17ee509a6",
+          "canonical_name": "Chair",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1723,
+            "end_char": 1728,
+            "text": "Chair"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "a4e71576-d3bb-5feb-bc67-74bc55ef254f",
+          "entity_id": "person:mention:1afe411985649e1417e7",
+          "canonical_name": "John C. Williams",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1730,
+            "end_char": 1746,
+            "text": "John C. Williams"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "9210fd66-a654-542e-81dc-54483916abf4",
+          "entity_id": "person:mention:3d7eb3d3dab17ee509a6",
+          "canonical_name": "Chair",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1753,
+            "end_char": 1758,
+            "text": "Chair"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "9ae9c39d-b828-5d5f-8dcd-9c2743f3569c",
+          "entity_id": "person:mention:6239222ebf6cf407bc17",
+          "canonical_name": "Michael S. Barr",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1760,
+            "end_char": 1775,
+            "text": "Michael S. Barr"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "597084eb-b6b3-5d24-a5e7-1dcbeda7956f",
+          "entity_id": "person:mention:1e6443a15e96c3868c9f",
+          "canonical_name": "Michelle W. Bowman",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1777,
+            "end_char": 1795,
+            "text": "Michelle W. Bowman"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "534facc8-25c9-5432-8868-b74a2a2ed227",
+          "entity_id": "person:mention:cd6f9b21cb46f1552e88",
+          "canonical_name": "Lisa D. Cook",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1797,
+            "end_char": 1809,
+            "text": "Lisa D. Cook"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "f077cb9a-051b-50a9-88ff-3e6cc3d4c0c4",
+          "entity_id": "person:mention:001bddb469d21796cf5d",
+          "canonical_name": "Philip N. Jefferson",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1811,
+            "end_char": 1830,
+            "text": "Philip N. Jefferson"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "d3e63eae-c3aa-51cc-9b58-1b7bbb7d4670",
+          "entity_id": "person:mention:a1af2c1bd58cb35f2b16",
+          "canonical_name": "Anna Paulson",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1832,
+            "end_char": 1844,
+            "text": "Anna Paulson"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "85a283f5-d3bf-512b-837c-8b057a72ed6f",
+          "entity_id": "person:mention:5cdc2052f073a4585488",
+          "canonical_name": "Christopher J. Waller",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 12,
+            "start_char": 1850,
+            "end_char": 1871,
+            "text": "Christopher J. Waller"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "ffead77f-5b62-5944-95ef-445cbd3b2f96",
+          "entity_id": "person:mention:11f788fa8f8b3d3c88f7",
+          "canonical_name": "Stephen I. Miran",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 1905,
+            "end_char": 1921,
+            "text": "Stephen I. Miran"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "2a74f91a-8b8c-5975-891a-da3b1c12a51c",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 1950,
+            "end_char": 1962,
+            "text": "target range"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "31e9b583-b199-5d26-901e-01bed054c639",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 1971,
+            "end_char": 1989,
+            "text": "federal funds rate"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "6718ea9a-703a-56ba-bc89-eabd3556a4db",
+          "entity_id": "person:mention:8d6c8f46d859384a3478",
+          "canonical_name": "Beth M. Hammack",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 2035,
+            "end_char": 2050,
+            "text": "Beth M. Hammack"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "cfbba6a6-a39e-5530-b6f1-5a19f3688f45",
+          "entity_id": "person:mention:813d41dc63a7ad3e1de9",
+          "canonical_name": "Neel Kashkari",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 2052,
+            "end_char": 2065,
+            "text": "Neel Kashkari"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "e006c411-77b5-50bb-8529-628892d3af26",
+          "entity_id": "person:mention:f2ba0bd2034f185b1ae1",
+          "canonical_name": "Lorie K. Logan",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 2071,
+            "end_char": 2085,
+            "text": "Lorie K. Logan"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "149001ec-ad6a-5eb5-acce-9690647d3e99",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 2117,
+            "end_char": 2129,
+            "text": "target range"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "65b7e1fd-b107-5e20-8801-05952c009e1b",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 2138,
+            "end_char": 2156,
+            "text": "federal funds rate"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "measurements": [
+        {
+          "measurement_id": "a401b986-85ef-5359-835a-ae1644a6c16d",
+          "kind": "percentage",
+          "value": "2",
+          "min": null,
+          "max": null,
+          "unit": "percent",
+          "currency": null,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 3,
+            "start_char": 442,
+            "end_char": 451,
+            "text": "2 percent"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "measurements",
+            "rule_id": "measurement.percentage.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "measurement_id": "a6f2f868-43a8-5426-93a5-132aaac1099f",
+          "kind": "rate",
+          "value": null,
+          "min": "3.5",
+          "max": "3.75",
+          "unit": "percent",
+          "currency": null,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 6,
+            "start_char": 762,
+            "end_char": 784,
+            "text": "3‑1/2 to 3‑3/4 percent"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "measurements",
+            "rule_id": "measurement.rate.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "measurement_id": "10b32e98-2d9a-5e98-88b2-55529b3f424d",
+          "kind": "percentage",
+          "value": "2",
+          "min": null,
+          "max": null,
+          "unit": "percent",
+          "currency": null,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 8,
+            "start_char": 1096,
+            "end_char": 1105,
+            "text": "2 percent"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "measurements",
+            "rule_id": "measurement.percentage.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "measurement_id": "bd4e551d-ede4-57b8-a5f2-92d2be0646d3",
+          "kind": "percentage_points",
+          "value": "0.25",
+          "min": null,
+          "max": null,
+          "unit": "percentage_points",
+          "currency": null,
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 13,
+            "start_char": 1993,
+            "end_char": 2013,
+            "text": "1/4 percentage point"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "measurements",
+            "rule_id": "measurement.percentage_points.v1",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "dates": [
+        {
+          "date_id": "93df7749-29d5-501f-94e6-58a9adc17f10",
+          "kind": "date",
+          "raw": "April 29, 2026",
+          "normalized": "2026-04-29",
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 0,
+            "start_char": 0,
+            "end_char": 14,
+            "text": "April 29, 2026"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "dates",
+            "rule_id": "date.date.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "date_id": "6b53c271-acad-5679-9efe-f21edf308d99",
+          "kind": "time",
+          "raw": "2:00",
+          "normalized": "2:00",
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 0,
+            "start_char": 68,
+            "end_char": 72,
+            "text": "2:00"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "dates",
+            "rule_id": "date.time.v1",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "relations": [
+        {
+          "relation_id": "ce9ef37e-e391-522b-bcf6-0c00ab1ccf22",
+          "subject": {
+            "entity_id": "organization:federal_reserve",
+            "mention_id": "f67f22ab-ba7c-5b6e-b1f0-b67175ece3c9"
+          },
+          "action": "hold",
+          "predicate": {
+            "text": "maintain",
+            "start_char": 706,
+            "end_char": 714
+          },
+          "object": {
+            "entity_id": "economic_indicator:interest_rates",
+            "mention_id": "64313bfb-4488-5ac5-860e-318e9f687c3a",
+            "text": "the target range for the federal funds rate at 3‑1/2",
+            "start_char": 715,
+            "end_char": 767
+          },
+          "modality": "asserted",
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 6,
+            "start_char": 656,
+            "end_char": 785,
+            "text": "In support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3‑1/2 to 3‑3/4 percent."
+          },
+          "extraction": {
+            "method": "dependency_rule",
+            "extractor": "dependency_relations",
+            "rule_id": "monetary_policy.rate_decision.hold.v1",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "facts": [
+        {
+          "fact_id": "a43b1ed3-2b32-5e98-a45b-9d2bc1a62879",
+          "fact_type": "monetary_policy.rate_decision",
+          "subject": {
+            "entity_id": "organization:federal_reserve",
+            "mention_id": "f67f22ab-ba7c-5b6e-b1f0-b67175ece3c9"
+          },
+          "action": "hold",
+          "relation_id": "ce9ef37e-e391-522b-bcf6-0c00ab1ccf22",
+          "values": [
+            {
+              "measurement_id": "a6f2f868-43a8-5426-93a5-132aaac1099f",
+              "kind": "rate",
+              "value": null,
+              "min": "3.5",
+              "max": "3.75",
+              "unit": "percent",
+              "currency": null,
+              "evidence": {
+                "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+                "sentence_id": 6,
+                "start_char": 762,
+                "end_char": 784,
+                "text": "3‑1/2 to 3‑3/4 percent"
+              },
+              "extraction": {
+                "method": "rule_based",
+                "extractor": "measurements",
+                "rule_id": "measurement.rate.v1",
+                "extractor_version": "1.0"
+              }
+            }
+          ],
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 6,
+            "start_char": 656,
+            "end_char": 785,
+            "text": "In support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3‑1/2 to 3‑3/4 percent."
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "domain_facts",
+            "rule_id": "monetary_policy.rate_decision.hold.v1",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "topics": [
+        {
+          "topic": "monetary_policy",
+          "fact_ids": [
+            "a43b1ed3-2b32-5e98-a45b-9d2bc1a62879"
+          ],
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 6,
+            "start_char": 656,
+            "end_char": 785,
+            "text": "In support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3‑1/2 to 3‑3/4 percent."
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "fact_topics",
+            "rule_id": "topic.monetary_policy.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "topic": "interest_rates",
+          "fact_ids": [
+            "a43b1ed3-2b32-5e98-a45b-9d2bc1a62879"
+          ],
+          "evidence": {
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "sentence_id": 6,
+            "start_char": 656,
+            "end_char": 785,
+            "text": "In support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3‑1/2 to 3‑3/4 percent."
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "fact_topics",
+            "rule_id": "topic.interest_rates.v1",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "extraction": {
+        "pipeline_version": "1.0",
+        "entity_registry_version": "1.0",
+        "fact_ruleset_version": "1.0",
+        "configuration_hash": "2813a8c0fd294969864c5ba624f5f61873f715b7637c37f53b10104009c63de6",
+        "nlp_models": {
+          "en": "en_core_web_sm-3.8.0",
+          "ru": "ru_core_news_sm-3.8.0"
+        }
+      },
+      "processing": {
+        "status": "complete",
+        "warnings": []
+      }
+    },
+    "events": [
+      {
+        "schema_version": "1.0",
+        "message_id": "07348aad-9c18-4719-91b8-2e24361e2195",
+        "event": {
+          "id": "d9b482b8-af7e-4fc9-970a-52b30196142e",
+          "revision": 1,
+          "change_type": "created"
+        },
+        "taxonomy": {
+          "version": "1.0",
+          "event_type": "central_bank.policy_statement",
+          "topics": [
+            "monetary_policy",
+            "interest_rates"
+          ],
+          "classification_basis": "exact_rule"
+        },
+        "content": {
+          "canonical_title": "Federal Reserve issues FOMC statement"
+        },
+        "actors": [
+          {
+            "entity_id": "organization:federal_reserve",
+            "entity_type": "organization",
+            "name": "Federal Reserve",
+            "role": "issuer",
+            "resolution": "canonical"
+          }
+        ],
+        "jurisdictions": [
+          "US"
+        ],
+        "time": {
+          "event_time": null,
+          "event_time_precision": "unknown",
+          "event_time_source": "not_extracted",
+          "earliest_source_published_at": "2026-04-29T18:00:00+00:00",
+          "latest_source_published_at": "2026-04-29T18:00:00+00:00",
+          "first_detected_at": "2026-09-19T19:50:19.274982+00:00",
+          "last_updated_at": "2026-09-19T19:50:19.274982+00:00"
+        },
+        "lifecycle": {
+          "status": "detected"
+        },
+        "evidence": {
+          "quality": "high",
+          "document_count": 1,
+          "independent_source_count": 1,
+          "documents": [
+            {
+              "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+              "input_message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+              "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56",
+              "source_id": "fed_monetary_policy",
+              "relation": "primary",
+              "document_status": "ready",
+              "content_chars": 2309,
+              "quality": "high",
+              "extraction_run_id": "fd28abc8-1ae1-4add-872b-737bcfa22611"
+            }
+          ]
+        },
+        "extraction": {
+          "extractor": "rule_based",
+          "extractor_version": "1.0",
+          "ruleset_version": "1.0",
+          "entity_registry_version": "1.0",
+          "matched_rule_ids": [
+            "fed.fomc_statement"
+          ],
+          "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+          "core_version": "1.0"
+        },
+        "correlation": {
+          "method": "new_event",
+          "exact_event_key": null
+        }
+      }
+    ],
+    "event_intelligence": [],
+    "metadata_warnings": [],
+    "repeated_source_item": false
+  },
+  "Speech": {
+    "document": {
+      "schema_version": "1.0",
+      "message_id": "b4347cdd-f24a-44fa-b2f0-e8c5fa5b52d4",
+      "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+      "lineage": {
+        "source_message_id": "12570f31-6252-4166-b75d-461807965497",
+        "input_subject": "news.raw.v1",
+        "input_content_hash": "a0d2b997c09c603d4641570274b5a4f7f5068efec9b62e7f4f10bb262d5e65be"
+      },
+      "source": {
+        "id": "ecb_press",
+        "type": "rss",
+        "external_id": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260912~3cc706f4d6.en.html",
+        "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260912~3cc706f4d6.en.html"
+      },
+      "timestamps": {
+        "published_at": "2026-09-12T20:00:00+00:00",
+        "received_at": "2026-09-19T18:40:37.142907+00:00",
+        "enriched_at": "2026-09-19T19:26:08.120815+00:00",
+        "ingestion_delay_seconds": 600037.142907
+      },
+      "content": {
+        "title": "Christine Lagarde: Interview with Ouest-France",
+        "extracted_title": "Interview with Ouest-France",
+        "body": "- INTERVIEW\nInterview with Ouest-France\n12 September 2026\nInterview with Christine Lagarde, President of the ECB, conducted by Jean-Christophe Lalay and Maxime Mainguet on 12 September 2026\nWhat brings you to the Fête de la pomme organised by Hervé Morin this Saturday?\nI’m here as a friend, a neighbour and a Norman to offer a European voice, without being a candidate for anything. I’m here simply to help French people understand the role of Europe a little better.\nOn Thursday you announced an increase in the ECB’s key interest rates, which should help to contain inflation but will penalise people planning to purchase property or invest. Why did you take this decision, in a very uncertain context?\nThe ECB’s task is to maintain price stability. We have an inflation target of 2% over the medium term. Today, inflation is well above 2%, at 3.3% in the euro area, and there has been a major shock that will probably last longer than we had expected. The shock is the result of the conflict in the Middle East, but also the destruction of refining capacity around the world, especially in Russia. It has led to an increase in energy costs, and that drives all prices higher. In this kind of situation, and as we also have a resilient economy, we are obliged to react.\nWhat do you say to the economists who argue that raising interest rates is risky for growth when inflation is related to an external shock rather than an overheating domestic economy?\nThat’s true when the shock is short-lived. But the current shock is longer-lasting. The conflict is continuing. We expect the volatility and pressure on energy prices to continue, even though the increase in prices also poses a risk of lower growth.\nGrowth in France is subdued and inflation is lower than in neighbouring countries. It’s going to be particularly affected by this decision…\nThe ECB has to work for the entire euro area. It can’t look at France, Lithuania or Germany in isolation. Besides, France is one of the countries planning structural reforms, and it would be very important that it implements them.\nWhich reforms?\nFirst, there are European reforms, such as the capital markets union, which will have an impact in France. We also need to simplify administrative regulations both at the European level and in France. We need to go through the regulatory framework governing economy activity with a fine-tooth comb. France has made progress in making its labour market more flexible, something which has worked very well in Germany and Spain, but reform is a continuous process. And there is of course the pension reform, whatever form it takes. We can’t continue with the model of previous decades when life expectancy continues to rise.\nOn the whole, growth in euro area countries is less dynamic than it used to be. Can growth really be revived on a lasting basis in an ageing, already highly developed continent?\nThat’s a legitimate question. Demographics play an important role. But we can offset demographic trends through improved productivity. Even with a smaller workforce, if we become more efficient, we can still generate growth. It’s not a lost cause. Europe has talent, a well-educated population and ample savings, but we are not doing enough to mobilise all of that. We need to take matters into our own hands, and I think the dramatic shift in US policy in recent years should inspire quick, resolute action on our part.\nGovernment borrowing costs are rising almost everywhere. Should we be worried about another sovereign debt crisis?\nThe rise in long-term rates is linked to two factors. The first is the state of public finances in general, and in the United States in particular. The second is the funding needs of economic actors, especially for artificial intelligence, which represent serious competition for sovereign debt: when investors can choose between different issuers, this inevitably drives up costs for those issuers. But the situation is very different from 2008 or 2011: our financial sector is much stronger than it was back then.\nCould French debt held by the Banque de France be cancelled, as some presidential candidates have suggested?\nIf you borrow €1,000 and then go back to the person who lent it to you and say “in the end I’m cancelling my debt, but I still need money”, will that person still want to lend to you? The idea is so absurd to me that I suspect it is an attempt to undermine the system under the guise of a technical argument, though it is nothing of the sort. It’s financially very dangerous, and it also happens to be a violation of the European treaties. That’s quite the list.\nECB staff recently warned of a hypothetical AI-related “stock market correction” in the United States. This would have an impact on Europe. How severe could the shock be here?\nAsset valuations in the AI sector are very high. The various planned initial public offerings are proof of this. There is also an additional risk, which is currently being assessed: circularity risk, whereby one company acquires a stake in another, which then awards it a contract to supply microchips, etc. A correction is entirely possible. When? We don’t know. European banks hold AI-related assets but, as I said, our financial sector is a lot stronger than it used to be.\nComing back to France, what is your position as regards the presidential campaign now getting underway.\nMy only position is to share my perspective as a woman from Normandy, a French citizen and a European who, having experienced it in every role I have held, can make the case for Europe.\nSome people think you would make a good candidate…\nThat’s flattering! But I don’t think so.\nWill you serve out your term at the ECB, which is due to end in October 2027?\nI will leave in 2027. I will say no more than that.\nAre you considering a return to national politics after leaving the ECB?\nNo. I’ll be turning 71 soon, you know. You have to know when to call it a day.",
+        "body_length": 5933,
+        "language": "en",
+        "content_source": "html"
+      },
+      "classification": {
+        "categories": [
+          "macro",
+          "monetary_policy"
+        ]
+      },
+      "enrichment": {
+        "status": "ready",
+        "required": true,
+        "reason": "rss_body_empty",
+        "failure_reason": null
+      },
+      "fetch": {
+        "status": "success",
+        "requested_url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260912~3cc706f4d6.en.html",
+        "final_url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260912~3cc706f4d6.en.html",
+        "http_status": 200,
+        "content_type": "text/html",
+        "snapshot_id": "bbd82ff7-24cb-4f66-a164-eeb675f0a465",
+        "fetched_at": "2026-09-19T19:26:07.227137+00:00",
+        "redirect_count": 0,
+        "attempt_count": 1,
+        "error_reason": null
+      },
+      "extraction": {
+        "status": "success",
+        "method": "trafilatura",
+        "library_version": "2.2.0",
+        "processor_version": "1.0",
+        "warnings": [],
+        "error_reason": null
+      },
+      "integrity": {
+        "content_hash": "e032f98b0401117dba0fabd89b87fded0cd91b0629b8d4dc5856ab0b6eb2266b"
+      }
+    },
+    "intelligence": {
+      "schema_version": "1.0",
+      "message_id": "167db02c-4ca5-5ba8-a3a4-a160a0e3212d",
+      "intelligence_id": "167db02c-4ca5-5ba8-a3a4-a160a0e3212d",
+      "document": {
+        "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+        "source_message_id": "12570f31-6252-4166-b75d-461807965497",
+        "input_message_id": "b4347cdd-f24a-44fa-b2f0-e8c5fa5b52d4",
+        "body_hash": "13a6e2f95d4aa69275f57fd5b21f69f079cb57f2df20accb1929747acf059c03"
+      },
+      "language": "en",
+      "language_detector": "langdetect_seed_0_rules_v1",
+      "sentences": [
+        {
+          "sentence_id": 0,
+          "start_char": 0,
+          "end_char": 190
+        },
+        {
+          "sentence_id": 1,
+          "start_char": 190,
+          "end_char": 270
+        },
+        {
+          "sentence_id": 2,
+          "start_char": 270,
+          "end_char": 383
+        },
+        {
+          "sentence_id": 3,
+          "start_char": 384,
+          "end_char": 469
+        },
+        {
+          "sentence_id": 4,
+          "start_char": 469,
+          "end_char": 644
+        },
+        {
+          "sentence_id": 5,
+          "start_char": 645,
+          "end_char": 706
+        },
+        {
+          "sentence_id": 6,
+          "start_char": 706,
+          "end_char": 752
+        },
+        {
+          "sentence_id": 7,
+          "start_char": 753,
+          "end_char": 808
+        },
+        {
+          "sentence_id": 8,
+          "start_char": 809,
+          "end_char": 955
+        },
+        {
+          "sentence_id": 9,
+          "start_char": 956,
+          "end_char": 1101
+        },
+        {
+          "sentence_id": 10,
+          "start_char": 1102,
+          "end_char": 1179
+        },
+        {
+          "sentence_id": 11,
+          "start_char": 1180,
+          "end_char": 1273
+        },
+        {
+          "sentence_id": 12,
+          "start_char": 1273,
+          "end_char": 1457
+        },
+        {
+          "sentence_id": 13,
+          "start_char": 1457,
+          "end_char": 1499
+        },
+        {
+          "sentence_id": 14,
+          "start_char": 1500,
+          "end_char": 1540
+        },
+        {
+          "sentence_id": 15,
+          "start_char": 1541,
+          "end_char": 1568
+        },
+        {
+          "sentence_id": 16,
+          "start_char": 1569,
+          "end_char": 1707
+        },
+        {
+          "sentence_id": 17,
+          "start_char": 1707,
+          "end_char": 1789
+        },
+        {
+          "sentence_id": 18,
+          "start_char": 1790,
+          "end_char": 1892
+        },
+        {
+          "sentence_id": 19,
+          "start_char": 1893,
+          "end_char": 1952
+        },
+        {
+          "sentence_id": 20,
+          "start_char": 1953,
+          "end_char": 2078
+        },
+        {
+          "sentence_id": 21,
+          "start_char": 2078,
+          "end_char": 2093
+        },
+        {
+          "sentence_id": 22,
+          "start_char": 2093,
+          "end_char": 2199
+        },
+        {
+          "sentence_id": 23,
+          "start_char": 2200,
+          "end_char": 2293
+        },
+        {
+          "sentence_id": 24,
+          "start_char": 2294,
+          "end_char": 2391
+        },
+        {
+          "sentence_id": 25,
+          "start_char": 2392,
+          "end_char": 2554
+        },
+        {
+          "sentence_id": 26,
+          "start_char": 2555,
+          "end_char": 2621
+        },
+        {
+          "sentence_id": 27,
+          "start_char": 2622,
+          "end_char": 2715
+        },
+        {
+          "sentence_id": 28,
+          "start_char": 2715,
+          "end_char": 2794
+        },
+        {
+          "sentence_id": 29,
+          "start_char": 2795,
+          "end_char": 2893
+        },
+        {
+          "sentence_id": 30,
+          "start_char": 2893,
+          "end_char": 2922
+        },
+        {
+          "sentence_id": 31,
+          "start_char": 2923,
+          "end_char": 2959
+        },
+        {
+          "sentence_id": 32,
+          "start_char": 2960,
+          "end_char": 3027
+        },
+        {
+          "sentence_id": 33,
+          "start_char": 3028,
+          "end_char": 3117
+        },
+        {
+          "sentence_id": 34,
+          "start_char": 3118,
+          "end_char": 3140
+        },
+        {
+          "sentence_id": 35,
+          "start_char": 3141,
+          "end_char": 3258
+        },
+        {
+          "sentence_id": 36,
+          "start_char": 3259,
+          "end_char": 3414
+        },
+        {
+          "sentence_id": 37,
+          "start_char": 3414,
+          "end_char": 3470
+        },
+        {
+          "sentence_id": 38,
+          "start_char": 3471,
+          "end_char": 3529
+        },
+        {
+          "sentence_id": 39,
+          "start_char": 3529,
+          "end_char": 3582
+        },
+        {
+          "sentence_id": 40,
+          "start_char": 3583,
+          "end_char": 3676
+        },
+        {
+          "sentence_id": 41,
+          "start_char": 3677,
+          "end_char": 3928
+        },
+        {
+          "sentence_id": 42,
+          "start_char": 3929,
+          "end_char": 3983
+        },
+        {
+          "sentence_id": 43,
+          "start_char": 3984,
+          "end_char": 4045
+        },
+        {
+          "sentence_id": 44,
+          "start_char": 4045,
+          "end_char": 4154
+        },
+        {
+          "sentence_id": 45,
+          "start_char": 4154,
+          "end_char": 4337
+        },
+        {
+          "sentence_id": 46,
+          "start_char": 4338,
+          "end_char": 4496
+        },
+        {
+          "sentence_id": 47,
+          "start_char": 4497,
+          "end_char": 4593
+        },
+        {
+          "sentence_id": 48,
+          "start_char": 4594,
+          "end_char": 4617
+        },
+        {
+          "sentence_id": 49,
+          "start_char": 4617,
+          "end_char": 4719
+        },
+        {
+          "sentence_id": 50,
+          "start_char": 4720,
+          "end_char": 4756
+        },
+        {
+          "sentence_id": 51,
+          "start_char": 4757,
+          "end_char": 4793
+        },
+        {
+          "sentence_id": 52,
+          "start_char": 4793,
+          "end_char": 4841
+        },
+        {
+          "sentence_id": 53,
+          "start_char": 4842,
+          "end_char": 4905
+        },
+        {
+          "sentence_id": 54,
+          "start_char": 4906,
+          "end_char": 5100
+        },
+        {
+          "sentence_id": 55,
+          "start_char": 5101,
+          "end_char": 5135
+        },
+        {
+          "sentence_id": 56,
+          "start_char": 5136,
+          "end_char": 5141
+        },
+        {
+          "sentence_id": 57,
+          "start_char": 5142,
+          "end_char": 5156
+        },
+        {
+          "sentence_id": 58,
+          "start_char": 5157,
+          "end_char": 5270
+        },
+        {
+          "sentence_id": 59,
+          "start_char": 5270,
+          "end_char": 5374
+        },
+        {
+          "sentence_id": 60,
+          "start_char": 5374,
+          "end_char": 5560
+        },
+        {
+          "sentence_id": 61,
+          "start_char": 5560,
+          "end_char": 5629
+        },
+        {
+          "sentence_id": 62,
+          "start_char": 5630,
+          "end_char": 5652
+        },
+        {
+          "sentence_id": 63,
+          "start_char": 5652,
+          "end_char": 5730
+        },
+        {
+          "sentence_id": 64,
+          "start_char": 5730,
+          "end_char": 5751
+        },
+        {
+          "sentence_id": 65,
+          "start_char": 5752,
+          "end_char": 5782
+        },
+        {
+          "sentence_id": 66,
+          "start_char": 5782,
+          "end_char": 5855
+        },
+        {
+          "sentence_id": 67,
+          "start_char": 5855,
+          "end_char": 5858
+        },
+        {
+          "sentence_id": 68,
+          "start_char": 5859,
+          "end_char": 5893
+        },
+        {
+          "sentence_id": 69,
+          "start_char": 5894,
+          "end_char": 5933
+        }
+      ],
+      "entities": [
+        {
+          "mention_id": "a78c6e3d-1bd9-52ef-810b-090b7dd9cfd9",
+          "entity_id": "person:mention:facd1094deb36222c30f",
+          "canonical_name": "Christine Lagarde",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 0,
+            "start_char": 73,
+            "end_char": 90,
+            "text": "Christine Lagarde"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "a700c8ec-21a0-525f-8eeb-a14ef68f3a03",
+          "entity_id": "organization:ecb",
+          "canonical_name": "ECB",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 0,
+            "start_char": 109,
+            "end_char": 112,
+            "text": "ECB"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:ecb",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "79c7623c-8ec8-5651-b4ef-db33f0be93d2",
+          "entity_id": "organization:mention:b209da194159f5f59aed",
+          "canonical_name": "Jean-Christophe Lalay",
+          "type": "organization",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 0,
+            "start_char": 127,
+            "end_char": 148,
+            "text": "Jean-Christophe Lalay"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.ORG",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "b1368b69-bcb8-5788-a025-030f3ad54c32",
+          "entity_id": "person:mention:8bce32c4d488e1f142e4",
+          "canonical_name": "Hervé Morin",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 1,
+            "start_char": 243,
+            "end_char": 254,
+            "text": "Hervé Morin"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "bb4d0167-6cf4-539c-a65c-93053aea9211",
+          "entity_id": "person:mention:8548d75fcb3a2a275a1b",
+          "canonical_name": "Norman",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 2,
+            "start_char": 310,
+            "end_char": 316,
+            "text": "Norman"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "a2e72c20-b735-50ca-a988-c70ff8709311",
+          "entity_id": "location:mention:b11f203e8e6ce90d0ab5",
+          "canonical_name": "Europe",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 3,
+            "start_char": 445,
+            "end_char": 451,
+            "text": "Europe"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.LOC",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "de62d26f-e437-5685-b870-fada04c42f08",
+          "entity_id": "organization:ecb",
+          "canonical_name": "ECB",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 4,
+            "start_char": 514,
+            "end_char": 517,
+            "text": "ECB"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:ecb",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "62a85e90-caaa-5725-9965-e82b45bbc088",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 4,
+            "start_char": 524,
+            "end_char": 538,
+            "text": "interest rates"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "15502eb8-2f81-5e57-abdb-ce3bb7c43cee",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 4,
+            "start_char": 569,
+            "end_char": 578,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "7c45d523-c725-511d-82e1-7670a13265e4",
+          "entity_id": "organization:ecb",
+          "canonical_name": "ECB",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 6,
+            "start_char": 710,
+            "end_char": 713,
+            "text": "ECB"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:ecb",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "a7d1984b-94c1-541f-bbc2-8c391e76cd06",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 7,
+            "start_char": 764,
+            "end_char": 773,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "e1e373f7-8fbf-5f52-9024-feba3988b453",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 8,
+            "start_char": 816,
+            "end_char": 825,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "8cdd95ea-32f5-5a63-b5c1-5d631c37e220",
+          "entity_id": "location:euro_area",
+          "canonical_name": "Euro area",
+          "type": "location",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 8,
+            "start_char": 859,
+            "end_char": 868,
+            "text": "euro area"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.location:euro_area",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "6b887f92-0792-571d-9ee6-23d70d22a508",
+          "entity_id": "location:mention:e85bf298ffd4770544a1",
+          "canonical_name": "the Middle East",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 9,
+            "start_char": 999,
+            "end_char": 1014,
+            "text": "the Middle East"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.LOC",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "1be9c1fc-70b8-5fde-be3c-ea3472851bba",
+          "entity_id": "location:mention:90a6d53df47e4097ad65",
+          "canonical_name": "Russia",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 9,
+            "start_char": 1094,
+            "end_char": 1100,
+            "text": "Russia"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "58b77a7a-b7b1-5705-868d-7812deb822d5",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 12,
+            "start_char": 1330,
+            "end_char": 1344,
+            "text": "interest rates"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "83804e31-92ad-548f-b005-2f17a39c21be",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 12,
+            "start_char": 1370,
+            "end_char": 1379,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "8910c112-89dd-5876-b630-b1cdecc14aa7",
+          "entity_id": "location:mention:2c598436e5575a5769b6",
+          "canonical_name": "France",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 17,
+            "start_char": 1717,
+            "end_char": 1723,
+            "text": "France"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "999b49a7-44c1-55cd-a841-f1127f0741ce",
+          "entity_id": "economic_indicator:inflation",
+          "canonical_name": "Inflation",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 17,
+            "start_char": 1739,
+            "end_char": 1748,
+            "text": "inflation"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:inflation",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "c9262dd8-5766-5860-9392-68aa3c534459",
+          "entity_id": "organization:ecb",
+          "canonical_name": "ECB",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 18,
+            "start_char": 1851,
+            "end_char": 1854,
+            "text": "ECB"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:ecb",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "a4f3314b-3f52-553e-84a0-c68b4bc5bf65",
+          "entity_id": "location:euro_area",
+          "canonical_name": "Euro area",
+          "type": "location",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 18,
+            "start_char": 1882,
+            "end_char": 1891,
+            "text": "euro area"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.location:euro_area",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "4fa3efd1-53a3-5b7b-bb73-39e924a67a04",
+          "entity_id": "location:mention:2c598436e5575a5769b6",
+          "canonical_name": "France",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 19,
+            "start_char": 1910,
+            "end_char": 1916,
+            "text": "France"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "bad4419c-9a07-5f1c-a54d-06ca5cc33c26",
+          "entity_id": "location:mention:2a200e0c356ae8b4a137",
+          "canonical_name": "Lithuania",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 19,
+            "start_char": 1918,
+            "end_char": 1927,
+            "text": "Lithuania"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "9427ca76-3005-5e44-b6d4-f8d1d1c97cf7",
+          "entity_id": "location:mention:b2c01c8a8a0d9a99f145",
+          "canonical_name": "Germany",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 19,
+            "start_char": 1931,
+            "end_char": 1938,
+            "text": "Germany"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "3a5339a6-e63c-5228-a881-ff87f6f9d248",
+          "entity_id": "location:mention:2c598436e5575a5769b6",
+          "canonical_name": "France",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 20,
+            "start_char": 1962,
+            "end_char": 1968,
+            "text": "France"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "d855ca7e-83c1-5be0-ab9e-653aa2a2e417",
+          "entity_id": "location:mention:2c598436e5575a5769b6",
+          "canonical_name": "France",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 22,
+            "start_char": 2192,
+            "end_char": 2198,
+            "text": "France"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "736c2bf4-04d9-5ae3-bd7d-d29d5b6e9d6e",
+          "entity_id": "location:mention:2c598436e5575a5769b6",
+          "canonical_name": "France",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 23,
+            "start_char": 2286,
+            "end_char": 2292,
+            "text": "France"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "69087de1-48ae-5510-ba8f-43253b5012cf",
+          "entity_id": "location:mention:2c598436e5575a5769b6",
+          "canonical_name": "France",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 25,
+            "start_char": 2392,
+            "end_char": 2398,
+            "text": "France"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "87e5f719-b373-544f-a843-a88c18476189",
+          "entity_id": "location:mention:b2c01c8a8a0d9a99f145",
+          "canonical_name": "Germany",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 25,
+            "start_char": 2500,
+            "end_char": 2507,
+            "text": "Germany"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "77fed1ec-2d2f-5b0b-9d5d-8ac795908e46",
+          "entity_id": "location:mention:4c799454ccf37279d378",
+          "canonical_name": "Spain",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 25,
+            "start_char": 2512,
+            "end_char": 2517,
+            "text": "Spain"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "ef2236da-396b-543f-b1be-90c7299cc2f6",
+          "entity_id": "location:euro_area",
+          "canonical_name": "Euro area",
+          "type": "location",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 28,
+            "start_char": 2739,
+            "end_char": 2748,
+            "text": "euro area"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.location:euro_area",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "f93bc736-8544-5ed7-9a14-42de7dbd67a2",
+          "entity_id": "location:mention:b11f203e8e6ce90d0ab5",
+          "canonical_name": "Europe",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 35,
+            "start_char": 3141,
+            "end_char": 3147,
+            "text": "Europe"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.LOC",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "d56019a7-a7fe-5551-9eec-a6b9dffb2783",
+          "entity_id": "location:mention:79adb2a2fce5c6ba215f",
+          "canonical_name": "US",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 36,
+            "start_char": 3337,
+            "end_char": 3339,
+            "text": "US"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "bf27d390-f5ab-5265-aab5-c50e871a83b1",
+          "entity_id": "economic_indicator:interest_rates",
+          "canonical_name": "Interest rates",
+          "type": "economic_indicator",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 39,
+            "start_char": 3551,
+            "end_char": 3556,
+            "text": "rates"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.economic_indicator:interest_rates",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "e8dac06f-97d2-5da3-8d57-811ed4d63971",
+          "entity_id": "location:us",
+          "canonical_name": "United States",
+          "type": "location",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 40,
+            "start_char": 3648,
+            "end_char": 3661,
+            "text": "United States"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.location:us",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "a3fb4e26-0921-5315-99e5-174d89085506",
+          "entity_id": "organization:mention:927326bcfe3b5f9ee29b",
+          "canonical_name": "the Banque de France",
+          "type": "organization",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 44,
+            "start_char": 4071,
+            "end_char": 4091,
+            "text": "the Banque de France"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.ORG",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "c4d39a5e-ec22-5fd0-a8db-52a35872630a",
+          "entity_id": "organization:ecb",
+          "canonical_name": "ECB",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 49,
+            "start_char": 4617,
+            "end_char": 4620,
+            "text": "ECB"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:ecb",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "901fd1c3-e1a7-570a-8f0d-5127f7c57280",
+          "entity_id": "location:mention:32e83e92d45d71f69dcf",
+          "canonical_name": "AI",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 49,
+            "start_char": 4661,
+            "end_char": 4663,
+            "text": "AI"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "a9e67744-1b16-5f89-8d41-0b76644b565b",
+          "entity_id": "location:us",
+          "canonical_name": "United States",
+          "type": "location",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 49,
+            "start_char": 4705,
+            "end_char": 4718,
+            "text": "United States"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.location:us",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "1b3ebb07-0d81-5817-8d20-c2340776566b",
+          "entity_id": "location:mention:b11f203e8e6ce90d0ab5",
+          "canonical_name": "Europe",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 50,
+            "start_char": 4749,
+            "end_char": 4755,
+            "text": "Europe"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.LOC",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "2b453ea3-7492-5d1b-97ec-5fd943882f79",
+          "entity_id": "organization:mention:32e83e92d45d71f69dcf",
+          "canonical_name": "AI",
+          "type": "organization",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 52,
+            "start_char": 4817,
+            "end_char": 4819,
+            "text": "AI"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.ORG",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "4d55b812-ef69-5c30-93f8-7b68b72d3253",
+          "entity_id": "location:mention:32e83e92d45d71f69dcf",
+          "canonical_name": "AI",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 58,
+            "start_char": 5177,
+            "end_char": 5179,
+            "text": "AI"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "9ec513c4-bf13-57ab-a400-b83d4ae572ef",
+          "entity_id": "location:mention:2c598436e5575a5769b6",
+          "canonical_name": "France",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 59,
+            "start_char": 5285,
+            "end_char": 5291,
+            "text": "France"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.GPE",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "832f1c17-ab9c-502e-ace9-097bafb823e4",
+          "entity_id": "organization:mention:9a9842d1ddc92dee984e",
+          "canonical_name": "Normandy",
+          "type": "organization",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 60,
+            "start_char": 5434,
+            "end_char": 5442,
+            "text": "Normandy"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.ORG",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "b6934a6b-0ef9-5ff2-bd3e-a3ff182a4f5d",
+          "entity_id": "location:mention:b11f203e8e6ce90d0ab5",
+          "canonical_name": "Europe",
+          "type": "location",
+          "registry": false,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 60,
+            "start_char": 5552,
+            "end_char": 5558,
+            "text": "Europe"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.LOC",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "705ecf14-584f-5cd8-8a10-bc6e37462190",
+          "entity_id": "organization:ecb",
+          "canonical_name": "ECB",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 63,
+            "start_char": 5688,
+            "end_char": 5691,
+            "text": "ECB"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:ecb",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "e2cf65aa-1932-5f96-9476-109c30b339b6",
+          "entity_id": "organization:ecb",
+          "canonical_name": "ECB",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 66,
+            "start_char": 5850,
+            "end_char": 5853,
+            "text": "ECB"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:ecb",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "measurements": [
+        {
+          "measurement_id": "21a8fc05-552d-525d-85b7-d05fa35443aa",
+          "kind": "percentage",
+          "value": "2",
+          "min": null,
+          "max": null,
+          "unit": "percent",
+          "currency": null,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 7,
+            "start_char": 784,
+            "end_char": 786,
+            "text": "2%"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "measurements",
+            "rule_id": "measurement.percentage.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "measurement_id": "5b515a79-1d0a-5dae-b496-f1c58a4b28fd",
+          "kind": "percentage",
+          "value": "2",
+          "min": null,
+          "max": null,
+          "unit": "percent",
+          "currency": null,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 8,
+            "start_char": 840,
+            "end_char": 842,
+            "text": "2%"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "measurements",
+            "rule_id": "measurement.percentage.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "measurement_id": "719c6432-dd1e-58e2-a90d-313822436f82",
+          "kind": "percentage",
+          "value": "3.3",
+          "min": null,
+          "max": null,
+          "unit": "percent",
+          "currency": null,
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 8,
+            "start_char": 847,
+            "end_char": 851,
+            "text": "3.3%"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "measurements",
+            "rule_id": "measurement.percentage.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "measurement_id": "565e26a0-83ba-5bd3-b11d-e1b95eed7da0",
+          "kind": "money",
+          "value": "1000",
+          "min": null,
+          "max": null,
+          "unit": "EUR",
+          "currency": "EUR",
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 45,
+            "start_char": 4168,
+            "end_char": 4174,
+            "text": "€1,000"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "measurements",
+            "rule_id": "measurement.money.v1",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "dates": [
+        {
+          "date_id": "de9ab72c-1f58-5a49-865a-11ded5514ed4",
+          "kind": "date",
+          "raw": "12 September 2026",
+          "normalized": "2026-09-12",
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 0,
+            "start_char": 40,
+            "end_char": 57,
+            "text": "12 September 2026"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "dates",
+            "rule_id": "date.date.v1",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "date_id": "3fc29611-67a8-565e-afe3-f85a68716864",
+          "kind": "date",
+          "raw": "12 September 2026",
+          "normalized": "2026-09-12",
+          "evidence": {
+            "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+            "sentence_id": 0,
+            "start_char": 172,
+            "end_char": 189,
+            "text": "12 September 2026"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "dates",
+            "rule_id": "date.date.v1",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "relations": [],
+      "facts": [],
+      "topics": [],
+      "extraction": {
+        "pipeline_version": "1.0",
+        "entity_registry_version": "1.0",
+        "fact_ruleset_version": "1.0",
+        "configuration_hash": "2813a8c0fd294969864c5ba624f5f61873f715b7637c37f53b10104009c63de6",
+        "nlp_models": {
+          "en": "en_core_web_sm-3.8.0",
+          "ru": "ru_core_news_sm-3.8.0"
+        }
+      },
+      "processing": {
+        "status": "complete",
+        "warnings": []
+      }
+    },
+    "events": [
+      {
+        "schema_version": "1.0",
+        "message_id": "c60bdaa1-cec6-4ec5-abf0-a8c7499d708b",
+        "event": {
+          "id": "0826f32f-4998-416e-9589-f7ff152df913",
+          "revision": 1,
+          "change_type": "created"
+        },
+        "taxonomy": {
+          "version": "1.0",
+          "event_type": "central_bank.interview",
+          "topics": [],
+          "classification_basis": "exact_rule"
+        },
+        "content": {
+          "canonical_title": "Christine Lagarde: Interview with Ouest-France"
+        },
+        "actors": [
+          {
+            "entity_id": "organization:ecb",
+            "entity_type": "organization",
+            "name": "European Central Bank",
+            "role": "issuer",
+            "resolution": "canonical"
+          },
+          {
+            "entity_id": null,
+            "entity_type": "person",
+            "name": "Christine Lagarde",
+            "role": "speaker",
+            "resolution": "unresolved"
+          }
+        ],
+        "jurisdictions": [
+          "EU"
+        ],
+        "time": {
+          "event_time": null,
+          "event_time_precision": "unknown",
+          "event_time_source": "not_extracted",
+          "earliest_source_published_at": "2026-09-12T20:00:00+00:00",
+          "latest_source_published_at": "2026-09-12T20:00:00+00:00",
+          "first_detected_at": "2026-09-19T19:50:19.251464+00:00",
+          "last_updated_at": "2026-09-19T19:50:19.251464+00:00"
+        },
+        "lifecycle": {
+          "status": "detected"
+        },
+        "evidence": {
+          "quality": "high",
+          "document_count": 1,
+          "independent_source_count": 1,
+          "documents": [
+            {
+              "document_id": "f7a7aac3-427c-44a5-83f2-3b4b18e2cab3",
+              "input_message_id": "b4347cdd-f24a-44fa-b2f0-e8c5fa5b52d4",
+              "source_message_id": "12570f31-6252-4166-b75d-461807965497",
+              "source_id": "ecb_press",
+              "relation": "primary",
+              "document_status": "ready",
+              "content_chars": 5933,
+              "quality": "high",
+              "extraction_run_id": "a4089551-7b92-4048-a386-41e8a3814dfc"
+            }
+          ]
+        },
+        "extraction": {
+          "extractor": "rule_based",
+          "extractor_version": "1.0",
+          "ruleset_version": "1.0",
+          "entity_registry_version": "1.0",
+          "matched_rule_ids": [
+            "ecb.interview"
+          ],
+          "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+          "core_version": "1.0"
+        },
+        "correlation": {
+          "method": "new_event",
+          "exact_event_key": null
+        }
+      }
+    ],
+    "event_intelligence": [],
+    "metadata_warnings": [],
+    "repeated_source_item": false
+  },
+  "Personnel": {
+    "document": {
+      "schema_version": "1.0",
+      "message_id": "492c3f03-def3-461d-b995-96fc7d8192fc",
+      "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+      "lineage": {
+        "source_message_id": "add00a30-6e57-4668-a1db-d7e0124f1b59",
+        "input_subject": "news.raw.v1",
+        "input_content_hash": "391a295caa02de52908cad75c1a3c90da6a1cd831db53328eb2244a7da9dbef7"
+      },
+      "source": {
+        "id": "sec_press_releases",
+        "type": "rss",
+        "external_id": "1cba3a68-748d-4949-a422-89805543be57",
+        "url": "https://www.sec.gov/newsroom/press-releases/2026-68-sec-announces-departure-principal-deputy-director-enforcement-sam-waldon"
+      },
+      "timestamps": {
+        "published_at": "2026-07-22T13:45:25+00:00",
+        "received_at": "2026-09-19T18:40:37.085739+00:00",
+        "enriched_at": "2026-09-19T19:26:37.303886+00:00",
+        "ingestion_delay_seconds": 5115312.085739
+      },
+      "content": {
+        "title": "SEC Announces Departure of Principal Deputy Director of Enforcement Sam Waldon",
+        "extracted_title": null,
+        "body": "The Securities and Exchange Commission today announced that Sam Waldon, Principal Deputy Director of the Division of Enforcement, will depart the agency on July 31, 2026, after more than 14 years at the SEC. He will be succeeded as Principal Deputy…",
+        "body_length": 249,
+        "language": "en",
+        "content_source": "rss"
+      },
+      "classification": {
+        "categories": [
+          "regulation"
+        ]
+      },
+      "enrichment": {
+        "status": "partial",
+        "required": true,
+        "reason": "rss_body_truncated",
+        "failure_reason": "http_403"
+      },
+      "fetch": {
+        "status": "failed",
+        "requested_url": "https://www.sec.gov/newsroom/press-releases/2026-68-sec-announces-departure-principal-deputy-director-enforcement-sam-waldon",
+        "final_url": "https://www.sec.gov/newsroom/press-releases/2026-68-sec-announces-departure-principal-deputy-director-enforcement-sam-waldon",
+        "http_status": 403,
+        "content_type": "text/html",
+        "snapshot_id": null,
+        "fetched_at": null,
+        "redirect_count": 0,
+        "attempt_count": 1,
+        "error_reason": "http_403"
+      },
+      "extraction": {
+        "status": "not_requested",
+        "method": "rss",
+        "library_version": "1.0",
+        "processor_version": "1.0",
+        "warnings": [],
+        "error_reason": null
+      },
+      "integrity": {
+        "content_hash": "785c8e8fb1923fb79b7cf15522b573220a89483905dbff5f00278a33c3154488"
+      }
+    },
+    "intelligence": {
+      "schema_version": "1.0",
+      "message_id": "7683af5b-16c3-5982-a636-6a0d81540285",
+      "intelligence_id": "7683af5b-16c3-5982-a636-6a0d81540285",
+      "document": {
+        "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+        "source_message_id": "add00a30-6e57-4668-a1db-d7e0124f1b59",
+        "input_message_id": "492c3f03-def3-461d-b995-96fc7d8192fc",
+        "body_hash": "926037d0218408cf2e4f36414390182268d6c7b7c871a67e6220d416ba78b779"
+      },
+      "language": "en",
+      "language_detector": "langdetect_seed_0_rules_v1",
+      "sentences": [
+        {
+          "sentence_id": 0,
+          "start_char": 0,
+          "end_char": 207
+        },
+        {
+          "sentence_id": 1,
+          "start_char": 208,
+          "end_char": 249
+        }
+      ],
+      "entities": [
+        {
+          "mention_id": "6448af40-077b-5f57-89bf-be0686727a3d",
+          "entity_id": "organization:sec",
+          "canonical_name": "SEC",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+            "sentence_id": 0,
+            "start_char": 4,
+            "end_char": 38,
+            "text": "Securities and Exchange Commission"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:sec",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "5e12be83-c8b1-5957-82c4-7d2e7fab6ddd",
+          "entity_id": "person:mention:6b6c7317055537012045",
+          "canonical_name": "Sam Waldon",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+            "sentence_id": 0,
+            "start_char": 60,
+            "end_char": 70,
+            "text": "Sam Waldon"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "10b5af65-e96b-560a-a956-56b401ebad77",
+          "entity_id": "person:mention:69e03750027e6b1e9f95",
+          "canonical_name": "Principal",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+            "sentence_id": 0,
+            "start_char": 72,
+            "end_char": 81,
+            "text": "Principal"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "7c61beda-6bfc-5827-a377-125747016bf7",
+          "entity_id": "organization:mention:a72114a532af1c74ebd9",
+          "canonical_name": "the Division of Enforcement",
+          "type": "organization",
+          "registry": false,
+          "evidence": {
+            "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+            "sentence_id": 0,
+            "start_char": 101,
+            "end_char": 128,
+            "text": "the Division of Enforcement"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.ORG",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "c0b8c770-d89e-5434-875b-e4c1f43dee99",
+          "entity_id": "organization:sec",
+          "canonical_name": "SEC",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+            "sentence_id": 0,
+            "start_char": 203,
+            "end_char": 206,
+            "text": "SEC"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:sec",
+            "extractor_version": "1.0"
+          }
+        },
+        {
+          "mention_id": "801356ae-9f8c-533f-9226-242e2c95367c",
+          "entity_id": "person:mention:69e03750027e6b1e9f95",
+          "canonical_name": "Principal",
+          "type": "person",
+          "registry": false,
+          "evidence": {
+            "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+            "sentence_id": 1,
+            "start_char": 232,
+            "end_char": 241,
+            "text": "Principal"
+          },
+          "extraction": {
+            "method": "statistical_ner",
+            "extractor": "spacy_ner",
+            "rule_id": "ner.PERSON",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "measurements": [],
+      "dates": [
+        {
+          "date_id": "ba0fd69f-07a9-5f58-810e-46f2948a917a",
+          "kind": "date",
+          "raw": "July 31, 2026",
+          "normalized": "2026-07-31",
+          "evidence": {
+            "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+            "sentence_id": 0,
+            "start_char": 156,
+            "end_char": 169,
+            "text": "July 31, 2026"
+          },
+          "extraction": {
+            "method": "rule_based",
+            "extractor": "dates",
+            "rule_id": "date.date.v1",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "relations": [],
+      "facts": [],
+      "topics": [],
+      "extraction": {
+        "pipeline_version": "1.0",
+        "entity_registry_version": "1.0",
+        "fact_ruleset_version": "1.0",
+        "configuration_hash": "2813a8c0fd294969864c5ba624f5f61873f715b7637c37f53b10104009c63de6",
+        "nlp_models": {
+          "en": "en_core_web_sm-3.8.0",
+          "ru": "ru_core_news_sm-3.8.0"
+        }
+      },
+      "processing": {
+        "status": "partial",
+        "warnings": [
+          {
+            "component": "input",
+            "code": "partial_enrichment"
+          }
+        ]
+      }
+    },
+    "events": [
+      {
+        "schema_version": "1.0",
+        "message_id": "8a204476-d511-47d2-aec3-62604e3f2406",
+        "event": {
+          "id": "014238f8-89e1-4448-92ef-1c14ff52b20a",
+          "revision": 1,
+          "change_type": "created"
+        },
+        "taxonomy": {
+          "version": "1.0",
+          "event_type": "regulator.enforcement",
+          "topics": [
+            "enforcement"
+          ],
+          "classification_basis": "exact_rule"
+        },
+        "content": {
+          "canonical_title": "SEC Announces Departure of Principal Deputy Director of Enforcement Sam Waldon"
+        },
+        "actors": [
+          {
+            "entity_id": "organization:sec",
+            "entity_type": "organization",
+            "name": "Securities and Exchange Commission",
+            "role": "issuer",
+            "resolution": "canonical"
+          }
+        ],
+        "jurisdictions": [
+          "US"
+        ],
+        "time": {
+          "event_time": null,
+          "event_time_precision": "unknown",
+          "event_time_source": "not_extracted",
+          "earliest_source_published_at": "2026-07-22T13:45:25+00:00",
+          "latest_source_published_at": "2026-07-22T13:45:25+00:00",
+          "first_detected_at": "2026-09-19T19:50:19.637893+00:00",
+          "last_updated_at": "2026-09-19T19:50:19.637893+00:00"
+        },
+        "lifecycle": {
+          "status": "detected"
+        },
+        "evidence": {
+          "quality": "medium",
+          "document_count": 1,
+          "independent_source_count": 1,
+          "documents": [
+            {
+              "document_id": "a5244d2d-c901-492e-a557-39f2d01af39f",
+              "input_message_id": "492c3f03-def3-461d-b995-96fc7d8192fc",
+              "source_message_id": "add00a30-6e57-4668-a1db-d7e0124f1b59",
+              "source_id": "sec_press_releases",
+              "relation": "primary",
+              "document_status": "partial",
+              "content_chars": 249,
+              "quality": "medium",
+              "extraction_run_id": "c44cc448-2768-44fa-9648-79ccf2d1c920"
+            }
+          ]
+        },
+        "extraction": {
+          "extractor": "rule_based",
+          "extractor_version": "1.0",
+          "ruleset_version": "1.0",
+          "entity_registry_version": "1.0",
+          "matched_rule_ids": [
+            "sec.enforcement"
+          ],
+          "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+          "core_version": "1.0"
+        },
+        "correlation": {
+          "method": "new_event",
+          "exact_event_key": null
+        }
+      }
+    ],
+    "event_intelligence": [],
+    "metadata_warnings": [],
+    "repeated_source_item": false
+  },
+  "Crypto": {
+    "document": {
+      "schema_version": "1.0",
+      "message_id": "e364f2f8-ed61-4813-878a-a785a5f16ec2",
+      "document_id": "c24716f9-a609-427d-b910-8904497e9eb1",
+      "lineage": {
+        "source_message_id": "f6c255a0-4166-40da-a8a1-3a672cae29d5",
+        "input_subject": "news.raw.v1",
+        "input_content_hash": "46bb720903359426e45e13459189daf367b5a879fda026f5aa6d12ed2bdb7636"
+      },
+      "source": {
+        "id": "sec_press_releases",
+        "type": "rss",
+        "external_id": "e1c1d2d7-1743-4e9a-8857-9a03028b7fb0",
+        "url": "https://www.sec.gov/newsroom/press-releases/2026-76-sec-proposes-new-regulation-crypto-assets"
+      },
+      "timestamps": {
+        "published_at": "2026-08-18T17:15:48+00:00",
+        "received_at": "2026-09-19T18:40:37.085739+00:00",
+        "enriched_at": "2026-09-19T19:26:28.551355+00:00",
+        "ingestion_delay_seconds": 2769889.085739
+      },
+      "content": {
+        "title": "SEC Proposes New Regulation Crypto Assets",
+        "extracted_title": null,
+        "body": "The Securities and Exchange Commission today announced that it proposed new rules, titled “Regulation Crypto Assets,” that would create a clear and fit-for-purpose framework for certain investment contracts involving crypto assets. This proposal follows…",
+        "body_length": 254,
+        "language": "en",
+        "content_source": "rss"
+      },
+      "classification": {
+        "categories": [
+          "regulation"
+        ]
+      },
+      "enrichment": {
+        "status": "partial",
+        "required": true,
+        "reason": "rss_body_truncated",
+        "failure_reason": "http_403"
+      },
+      "fetch": {
+        "status": "failed",
+        "requested_url": "https://www.sec.gov/newsroom/press-releases/2026-76-sec-proposes-new-regulation-crypto-assets",
+        "final_url": "https://www.sec.gov/newsroom/press-releases/2026-76-sec-proposes-new-regulation-crypto-assets",
+        "http_status": 403,
+        "content_type": "text/html",
+        "snapshot_id": null,
+        "fetched_at": null,
+        "redirect_count": 0,
+        "attempt_count": 1,
+        "error_reason": "http_403"
+      },
+      "extraction": {
+        "status": "not_requested",
+        "method": "rss",
+        "library_version": "1.0",
+        "processor_version": "1.0",
+        "warnings": [],
+        "error_reason": null
+      },
+      "integrity": {
+        "content_hash": "e46a6af585c818a80957fc9fa1324593bcc4ab60fc394e858a97edb6b5190373"
+      }
+    },
+    "intelligence": {
+      "schema_version": "1.0",
+      "message_id": "6ba08de9-5b1b-5619-8779-68aaa0e5a5e2",
+      "intelligence_id": "6ba08de9-5b1b-5619-8779-68aaa0e5a5e2",
+      "document": {
+        "document_id": "c24716f9-a609-427d-b910-8904497e9eb1",
+        "source_message_id": "f6c255a0-4166-40da-a8a1-3a672cae29d5",
+        "input_message_id": "e364f2f8-ed61-4813-878a-a785a5f16ec2",
+        "body_hash": "c935cb26d94931a7e80a5e45b66cede0358cbf5d971764ffc2a638825975b859"
+      },
+      "language": "en",
+      "language_detector": "langdetect_seed_0_rules_v1",
+      "sentences": [
+        {
+          "sentence_id": 0,
+          "start_char": 0,
+          "end_char": 231
+        },
+        {
+          "sentence_id": 1,
+          "start_char": 232,
+          "end_char": 254
+        }
+      ],
+      "entities": [
+        {
+          "mention_id": "c415ff2d-057a-519b-9cd6-f2d7fda41533",
+          "entity_id": "organization:sec",
+          "canonical_name": "SEC",
+          "type": "organization",
+          "registry": true,
+          "evidence": {
+            "document_id": "c24716f9-a609-427d-b910-8904497e9eb1",
+            "sentence_id": 0,
+            "start_char": 4,
+            "end_char": 38,
+            "text": "Securities and Exchange Commission"
+          },
+          "extraction": {
+            "method": "registry",
+            "extractor": "entity_registry",
+            "rule_id": "alias.organization:sec",
+            "extractor_version": "1.0"
+          }
+        }
+      ],
+      "measurements": [],
+      "dates": [],
+      "relations": [],
+      "facts": [],
+      "topics": [],
+      "extraction": {
+        "pipeline_version": "1.0",
+        "entity_registry_version": "1.0",
+        "fact_ruleset_version": "1.0",
+        "configuration_hash": "2813a8c0fd294969864c5ba624f5f61873f715b7637c37f53b10104009c63de6",
+        "nlp_models": {
+          "en": "en_core_web_sm-3.8.0",
+          "ru": "ru_core_news_sm-3.8.0"
+        }
+      },
+      "processing": {
+        "status": "partial",
+        "warnings": [
+          {
+            "component": "input",
+            "code": "partial_enrichment"
+          }
+        ]
+      }
+    },
+    "events": [
+      {
+        "schema_version": "1.0",
+        "message_id": "0d97d2c3-05ad-4120-ab9c-e4431e6c92f2",
+        "event": {
+          "id": "8b6037af-6d76-498e-b276-8efd140b0747",
+          "revision": 1,
+          "change_type": "created"
+        },
+        "taxonomy": {
+          "version": "1.0",
+          "event_type": "regulator.rule_proposal",
+          "topics": [
+            "regulation"
+          ],
+          "classification_basis": "exact_rule"
+        },
+        "content": {
+          "canonical_title": "SEC Proposes New Regulation Crypto Assets"
+        },
+        "actors": [
+          {
+            "entity_id": "organization:sec",
+            "entity_type": "organization",
+            "name": "Securities and Exchange Commission",
+            "role": "issuer",
+            "resolution": "canonical"
+          }
+        ],
+        "jurisdictions": [
+          "US"
+        ],
+        "time": {
+          "event_time": null,
+          "event_time_precision": "unknown",
+          "event_time_source": "not_extracted",
+          "earliest_source_published_at": "2026-08-18T17:15:48+00:00",
+          "latest_source_published_at": "2026-08-18T17:15:48+00:00",
+          "first_detected_at": "2026-09-19T19:50:19.396002+00:00",
+          "last_updated_at": "2026-09-19T19:50:19.396002+00:00"
+        },
+        "lifecycle": {
+          "status": "detected"
+        },
+        "evidence": {
+          "quality": "medium",
+          "document_count": 1,
+          "independent_source_count": 1,
+          "documents": [
+            {
+              "document_id": "c24716f9-a609-427d-b910-8904497e9eb1",
+              "input_message_id": "e364f2f8-ed61-4813-878a-a785a5f16ec2",
+              "source_message_id": "f6c255a0-4166-40da-a8a1-3a672cae29d5",
+              "source_id": "sec_press_releases",
+              "relation": "primary",
+              "document_status": "partial",
+              "content_chars": 254,
+              "quality": "medium",
+              "extraction_run_id": "2c690f30-68df-4451-af28-6d37c15511ce"
+            }
+          ]
+        },
+        "extraction": {
+          "extractor": "rule_based",
+          "extractor_version": "1.0",
+          "ruleset_version": "1.0",
+          "entity_registry_version": "1.0",
+          "matched_rule_ids": [
+            "sec.rule_proposal"
+          ],
+          "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+          "core_version": "1.0"
+        },
+        "correlation": {
+          "method": "new_event",
+          "exact_event_key": null
+        }
+      }
+    ],
+    "event_intelligence": [],
+    "metadata_warnings": [],
+    "repeated_source_item": false
+  }
+}

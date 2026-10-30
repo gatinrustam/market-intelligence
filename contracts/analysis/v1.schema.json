@@ -1,0 +1,363 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "message_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "analysis_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "event_revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "event_id",
+        "event_revision"
+      ],
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "decision_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "decision_basis": {
+          "type": "string",
+          "enum": [
+            "live_observed",
+            "source_published_at"
+          ]
+        },
+        "historical_simulation": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "decision_at",
+        "decision_basis",
+        "historical_simulation"
+      ],
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "const": "BTCUSDT"
+        },
+        "relevance": {
+          "type": "string",
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      },
+      "required": [
+        "symbol",
+        "relevance"
+      ],
+      "additionalProperties": false
+    },
+    "interpretation": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "market_mechanism": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      },
+      "required": [
+        "summary",
+        "market_mechanism"
+      ],
+      "additionalProperties": false
+    },
+    "forecast": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "object",
+          "properties": {
+            "horizon_seconds": {
+              "const": 60
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "up",
+                "down",
+                "neutral",
+                "unclear"
+              ]
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "negligible",
+                "small",
+                "moderate",
+                "large"
+              ]
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          },
+          "required": [
+            "horizon_seconds",
+            "direction",
+            "impact",
+            "confidence"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "horizon_seconds": {
+              "const": 300
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "up",
+                "down",
+                "neutral",
+                "unclear"
+              ]
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "negligible",
+                "small",
+                "moderate",
+                "large"
+              ]
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          },
+          "required": [
+            "horizon_seconds",
+            "direction",
+            "impact",
+            "confidence"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "horizon_seconds": {
+              "const": 900
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "up",
+                "down",
+                "neutral",
+                "unclear"
+              ]
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "negligible",
+                "small",
+                "moderate",
+                "large"
+              ]
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          },
+          "required": [
+            "horizon_seconds",
+            "direction",
+            "impact",
+            "confidence"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "horizon_seconds": {
+              "const": 3600
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "up",
+                "down",
+                "neutral",
+                "unclear"
+              ]
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "negligible",
+                "small",
+                "moderate",
+                "large"
+              ]
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            }
+          },
+          "required": [
+            "horizon_seconds",
+            "direction",
+            "impact",
+            "confidence"
+          ],
+          "additionalProperties": false
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4000
+      },
+      "minItems": 1,
+      "maxItems": 12
+    },
+    "unavailable_data": {
+      "type": "object",
+      "properties": {
+        "market_surprise": {
+          "type": "string",
+          "enum": [
+            "unavailable"
+          ]
+        },
+        "consensus_expectation": {
+          "type": "string",
+          "enum": [
+            "unavailable"
+          ]
+        },
+        "probability_of_fed_action": {
+          "type": "string",
+          "enum": [
+            "unavailable"
+          ]
+        }
+      },
+      "required": [
+        "market_surprise",
+        "consensus_expectation",
+        "probability_of_fed_action"
+      ],
+      "additionalProperties": false
+    },
+    "confidence_basis": {
+      "const": "model_reported_not_calibrated"
+    },
+    "audit": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "const": "openai"
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "reasoning_effort": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "provider",
+        "model",
+        "prompt_version",
+        "input_hash",
+        "reasoning_effort"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "message_id",
+    "analysis_id",
+    "event",
+    "decision",
+    "asset",
+    "interpretation",
+    "forecast",
+    "uncertainties",
+    "unavailable_data",
+    "confidence_basis",
+    "audit"
+  ],
+  "additionalProperties": false
+}

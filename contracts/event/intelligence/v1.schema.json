@@ -1,0 +1,424 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "message_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "intelligence_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "event_revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "event_id",
+        "event_revision"
+      ],
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "const": "BTCUSDT"
+        }
+      },
+      "required": [
+        "symbol"
+      ],
+      "additionalProperties": false
+    },
+    "relevance": {
+      "type": "string",
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "novelty": {
+      "type": "string",
+      "enum": [
+        "new",
+        "update",
+        "duplicate_like",
+        "unknown"
+      ]
+    },
+    "surprise": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "available",
+            "unavailable",
+            "not_applicable"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+        }
+      },
+      "required": [
+        "status",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "expectations": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            null,
+            "market_consensus"
+          ]
+        },
+        "previous": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+        },
+        "consensus": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+        },
+        "actual": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "provider": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "published_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "available_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "provider",
+                "url",
+                "published_at",
+                "available_at"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "previous",
+        "consensus",
+        "actual",
+        "unit",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "information_quality": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "event_specificity": {
+      "type": "string",
+      "enum": [
+        "specific",
+        "general",
+        "commentary",
+        "unknown"
+      ]
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "basis": {
+      "type": "object",
+      "properties": {
+        "ruleset_version": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]{1,32}$"
+        },
+        "ruleset_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "matched_rule_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "canonical_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "input_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "novelty_scope": {
+          "const": "canonical_revision_history_only"
+        },
+        "previous_event_revision": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "evidence_hashes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "document_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "message_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "content_hash": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "document_id",
+              "message_id",
+              "content_hash"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "quality_basis": {
+          "const": "deterministic_not_statistical_confidence"
+        },
+        "expectations_basis": {
+          "type": "string",
+          "enum": [
+            "no_external_provider",
+            "external_provider"
+          ]
+        }
+      },
+      "required": [
+        "ruleset_version",
+        "ruleset_hash",
+        "matched_rule_ids",
+        "canonical_hash",
+        "input_hash",
+        "novelty_scope",
+        "previous_event_revision",
+        "evidence_hashes",
+        "quality_basis",
+        "expectations_basis"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "message_id",
+    "intelligence_id",
+    "event",
+    "asset",
+    "relevance",
+    "novelty",
+    "surprise",
+    "expectations",
+    "information_quality",
+    "event_specificity",
+    "generated_at",
+    "basis"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "event.intelligence.v1",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "surprise": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "unavailable",
+                  "not_applicable"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "surprise": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "basis": {
+            "properties": {
+              "expectations_basis": {
+                "const": "no_external_provider"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "surprise": {
+            "properties": {
+              "status": {
+                "const": "unavailable"
+              }
+            }
+          },
+          "expectations": {
+            "properties": {
+              "type": {
+                "type": "null"
+              },
+              "previous": {
+                "type": "null"
+              },
+              "consensus": {
+                "type": "null"
+              },
+              "actual": {
+                "type": "null"
+              },
+              "unit": {
+                "type": "null"
+              },
+              "source": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "surprise": {
+            "properties": {
+              "status": {
+                "const": "available"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "surprise": {
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          "expectations": {
+            "properties": {
+              "type": {
+                "const": "market_consensus"
+              },
+              "consensus": {
+                "type": "string"
+              },
+              "actual": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string"
+              },
+              "source": {
+                "type": "object"
+              }
+            }
+          },
+          "basis": {
+            "properties": {
+              "expectations_basis": {
+                "const": "external_provider"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

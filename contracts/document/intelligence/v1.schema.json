@@ -1,0 +1,844 @@
+{
+  "$defs": {
+    "Argument": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Entity Id"
+        },
+        "mention_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mention Id"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "start_char": {
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "title": "End Char",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "entity_id",
+        "mention_id",
+        "text",
+        "start_char",
+        "end_char"
+      ],
+      "title": "Argument",
+      "type": "object"
+    },
+    "Date": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "date_id": {
+          "format": "uuid",
+          "title": "Date Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "date",
+            "time",
+            "date_range",
+            "period"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "raw": {
+          "title": "Raw",
+          "type": "string"
+        },
+        "normalized": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Normalized"
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "date_id",
+        "kind",
+        "raw",
+        "normalized"
+      ],
+      "title": "Date",
+      "type": "object"
+    },
+    "Document": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "source_message_id": {
+          "format": "uuid",
+          "title": "Source Message Id",
+          "type": "string"
+        },
+        "input_message_id": {
+          "format": "uuid",
+          "title": "Input Message Id",
+          "type": "string"
+        },
+        "body_hash": {
+          "title": "Body Hash",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "source_message_id",
+        "input_message_id",
+        "body_hash"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "mention_id": {
+          "format": "uuid",
+          "title": "Mention Id",
+          "type": "string"
+        },
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "canonical_name": {
+          "title": "Canonical Name",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "organization",
+            "person",
+            "location",
+            "asset",
+            "currency",
+            "financial_instrument",
+            "economic_indicator"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "registry": {
+          "title": "Registry",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "mention_id",
+        "entity_id",
+        "canonical_name",
+        "type",
+        "registry"
+      ],
+      "title": "Entity",
+      "type": "object"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "sentence_id": {
+          "minimum": 0,
+          "title": "Sentence Id",
+          "type": "integer"
+        },
+        "start_char": {
+          "minimum": 0,
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "exclusiveMinimum": 0,
+          "title": "End Char",
+          "type": "integer"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "sentence_id",
+        "start_char",
+        "end_char",
+        "text"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Extraction": {
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "enum": [
+            "registry",
+            "statistical_ner",
+            "rule_based",
+            "dependency_rule"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "extractor": {
+          "title": "Extractor",
+          "type": "string"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "extractor_version": {
+          "title": "Extractor Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "method",
+        "extractor",
+        "rule_id",
+        "extractor_version"
+      ],
+      "title": "Extraction",
+      "type": "object"
+    },
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "fact_id": {
+          "format": "uuid",
+          "title": "Fact Id",
+          "type": "string"
+        },
+        "fact_type": {
+          "enum": [
+            "monetary_policy.rate_decision",
+            "monetary_policy.guidance",
+            "economic_data.inflation",
+            "economic_data.employment",
+            "economic_data.gdp",
+            "economic_data.wages",
+            "regulation.rule_proposal",
+            "regulation.rule_adoption",
+            "regulation.enforcement",
+            "crypto.exchange_outage",
+            "crypto.withdrawal_suspension",
+            "crypto.security_incident",
+            "crypto.stablecoin_depeg",
+            "crypto.treasury_purchase",
+            "crypto.etf_action",
+            "crypto.exchange_listing",
+            "crypto.exchange_delisting",
+            "crypto.deposit_suspension",
+            "crypto.stablecoin_change",
+            "crypto.treasury_sale",
+            "crypto.treasury_holdings",
+            "crypto.institutional_product"
+          ],
+          "title": "Fact Type",
+          "type": "string"
+        },
+        "subject": {
+          "$ref": "#/$defs/Reference"
+        },
+        "action": {
+          "title": "Action",
+          "type": "string"
+        },
+        "relation_id": {
+          "format": "uuid",
+          "title": "Relation Id",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/Measurement"
+          },
+          "title": "Values",
+          "type": "array"
+        },
+        "asset": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "quantity": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "aggregate_value_usd": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "average_price_usd": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "fact_id",
+        "fact_type",
+        "subject",
+        "action",
+        "relation_id",
+        "values"
+      ],
+      "title": "Fact",
+      "type": "object"
+    },
+    "Measurement": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "measurement_id": {
+          "format": "uuid",
+          "title": "Measurement Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "percentage",
+            "percentage_points",
+            "basis_points",
+            "money",
+            "price",
+            "quantity",
+            "ratio",
+            "rate"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Min"
+        },
+        "max": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Max"
+        },
+        "unit": {
+          "title": "Unit",
+          "type": "string"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Currency"
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "measurement_id",
+        "kind",
+        "value",
+        "min",
+        "max",
+        "unit",
+        "currency"
+      ],
+      "title": "Measurement",
+      "type": "object"
+    },
+    "Models": {
+      "additionalProperties": false,
+      "properties": {
+        "en": {
+          "title": "En",
+          "type": "string"
+        },
+        "ru": {
+          "title": "Ru",
+          "type": "string"
+        }
+      },
+      "required": [
+        "en",
+        "ru"
+      ],
+      "title": "Models",
+      "type": "object"
+    },
+    "Processing": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "complete",
+            "partial",
+            "unsupported"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "warnings": {
+          "items": {
+            "$ref": "#/$defs/Warning"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "status",
+        "warnings"
+      ],
+      "title": "Processing",
+      "type": "object"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "mention_id": {
+          "format": "uuid",
+          "title": "Mention Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "entity_id",
+        "mention_id"
+      ],
+      "title": "Reference",
+      "type": "object"
+    },
+    "Relation": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "relation_id": {
+          "format": "uuid",
+          "title": "Relation Id",
+          "type": "string"
+        },
+        "subject": {
+          "$ref": "#/$defs/Reference"
+        },
+        "action": {
+          "title": "Action",
+          "type": "string"
+        },
+        "object": {
+          "$ref": "#/$defs/Argument"
+        },
+        "predicate": {
+          "$ref": "#/$defs/Span"
+        },
+        "modality": {
+          "enum": [
+            "asserted",
+            "forward_looking"
+          ],
+          "title": "Modality",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "relation_id",
+        "subject",
+        "action",
+        "object",
+        "predicate",
+        "modality"
+      ],
+      "title": "Relation",
+      "type": "object"
+    },
+    "Sentence": {
+      "additionalProperties": false,
+      "properties": {
+        "sentence_id": {
+          "title": "Sentence Id",
+          "type": "integer"
+        },
+        "start_char": {
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "title": "End Char",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sentence_id",
+        "start_char",
+        "end_char"
+      ],
+      "title": "Sentence",
+      "type": "object"
+    },
+    "Span": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "start_char": {
+          "title": "Start Char",
+          "type": "integer"
+        },
+        "end_char": {
+          "title": "End Char",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "text",
+        "start_char",
+        "end_char"
+      ],
+      "title": "Span",
+      "type": "object"
+    },
+    "Topic": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "extraction": {
+          "$ref": "#/$defs/Extraction"
+        },
+        "topic": {
+          "enum": [
+            "monetary_policy",
+            "interest_rates",
+            "inflation",
+            "employment",
+            "wages",
+            "economic_growth",
+            "financial_stability",
+            "regulation",
+            "capital_markets",
+            "digital_assets",
+            "bitcoin",
+            "ethereum",
+            "crypto_exchange",
+            "stablecoin"
+          ],
+          "title": "Topic",
+          "type": "string"
+        },
+        "fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Fact Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "evidence",
+        "extraction",
+        "topic",
+        "fact_ids"
+      ],
+      "title": "Topic",
+      "type": "object"
+    },
+    "Versions": {
+      "additionalProperties": false,
+      "properties": {
+        "pipeline_version": {
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "entity_registry_version": {
+          "title": "Entity Registry Version",
+          "type": "string"
+        },
+        "fact_ruleset_version": {
+          "title": "Fact Ruleset Version",
+          "type": "string"
+        },
+        "configuration_hash": {
+          "title": "Configuration Hash",
+          "type": "string"
+        },
+        "nlp_models": {
+          "$ref": "#/$defs/Models"
+        }
+      },
+      "required": [
+        "pipeline_version",
+        "entity_registry_version",
+        "fact_ruleset_version",
+        "configuration_hash",
+        "nlp_models"
+      ],
+      "title": "Versions",
+      "type": "object"
+    },
+    "Warning": {
+      "additionalProperties": false,
+      "properties": {
+        "component": {
+          "title": "Component",
+          "type": "string"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        }
+      },
+      "required": [
+        "component",
+        "code"
+      ],
+      "title": "Warning",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "message_id": {
+      "format": "uuid",
+      "title": "Message Id",
+      "type": "string"
+    },
+    "intelligence_id": {
+      "format": "uuid",
+      "title": "Intelligence Id",
+      "type": "string"
+    },
+    "document": {
+      "$ref": "#/$defs/Document"
+    },
+    "language": {
+      "enum": [
+        "en",
+        "ru",
+        "unsupported"
+      ],
+      "title": "Language",
+      "type": "string"
+    },
+    "language_detector": {
+      "const": "langdetect_seed_0_rules_v1",
+      "title": "Language Detector",
+      "type": "string"
+    },
+    "sentences": {
+      "items": {
+        "$ref": "#/$defs/Sentence"
+      },
+      "title": "Sentences",
+      "type": "array"
+    },
+    "entities": {
+      "items": {
+        "$ref": "#/$defs/Entity"
+      },
+      "title": "Entities",
+      "type": "array"
+    },
+    "measurements": {
+      "items": {
+        "$ref": "#/$defs/Measurement"
+      },
+      "title": "Measurements",
+      "type": "array"
+    },
+    "dates": {
+      "items": {
+        "$ref": "#/$defs/Date"
+      },
+      "title": "Dates",
+      "type": "array"
+    },
+    "relations": {
+      "items": {
+        "$ref": "#/$defs/Relation"
+      },
+      "title": "Relations",
+      "type": "array"
+    },
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/Fact"
+      },
+      "title": "Facts",
+      "type": "array"
+    },
+    "topics": {
+      "items": {
+        "$ref": "#/$defs/Topic"
+      },
+      "title": "Topics",
+      "type": "array"
+    },
+    "extraction": {
+      "$ref": "#/$defs/Versions"
+    },
+    "processing": {
+      "$ref": "#/$defs/Processing"
+    }
+  },
+  "required": [
+    "schema_version",
+    "message_id",
+    "intelligence_id",
+    "document",
+    "language",
+    "language_detector",
+    "sentences",
+    "entities",
+    "measurements",
+    "dates",
+    "relations",
+    "facts",
+    "topics",
+    "extraction",
+    "processing"
+  ],
+  "title": "Output",
+  "type": "object"
+}

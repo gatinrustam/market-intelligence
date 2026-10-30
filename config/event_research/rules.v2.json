@@ -1,0 +1,400 @@
+{
+  "version": "2.0",
+  "legacy_ruleset_version": "1.0",
+  "legacy_rules": [
+    {
+      "id": "fed.fomc_statement",
+      "priority": 300,
+      "source_id": [
+        "fed_monetary_policy"
+      ],
+      "title_regex": [
+        "(?i)\\bFOMC statement\\b"
+      ],
+      "event_type": "central_bank.policy_statement",
+      "topics": [
+        "monetary_policy",
+        "interest_rates"
+      ],
+      "classification_basis": "exact_rule",
+      "identity_namespace": "fomc.meeting",
+      "identity_title_regex": "(?i)\\bFOMC statement\\b"
+    },
+    {
+      "id": "fed.projections",
+      "priority": 290,
+      "source_id": [
+        "fed_monetary_policy"
+      ],
+      "title_regex": [
+        "(?i)\\beconomic projections\\b"
+      ],
+      "event_type": "central_bank.projections",
+      "topics": [
+        "monetary_policy",
+        "economic_growth"
+      ],
+      "classification_basis": "exact_rule",
+      "identity_namespace": "fomc.meeting",
+      "identity_title_regex": "(?i)\\bFOMC meeting\\b"
+    },
+    {
+      "id": "fed.minutes",
+      "priority": 280,
+      "source_id": [
+        "fed_monetary_policy"
+      ],
+      "title_regex": [
+        "(?i)\\bMinutes\\b"
+      ],
+      "event_type": "central_bank.minutes",
+      "topics": [
+        "monetary_policy"
+      ],
+      "classification_basis": "exact_rule",
+      "identity_namespace": "fomc.meeting",
+      "identity_title_regex": "(?i)\\bFederal Open Market Committee\\b"
+    },
+    {
+      "id": "ecb.interview",
+      "priority": 400,
+      "source_id": [
+        "ecb_press"
+      ],
+      "title_regex": [
+        "(?i)\\bInterview\\b"
+      ],
+      "url_regex": [
+        "/press/inter/"
+      ],
+      "event_type": "central_bank.interview",
+      "topics": [],
+      "classification_basis": "exact_rule",
+      "speaker_title_regex": "^(?P<name>[^:]{3,100}):\\s"
+    },
+    {
+      "id": "ecb.policy_statement",
+      "priority": 350,
+      "source_id": [
+        "ecb_press"
+      ],
+      "title_regex": [
+        "(?i)\\bMonetary policy (?:decisions|statement)\\b"
+      ],
+      "event_type": "central_bank.policy_statement",
+      "topics": [
+        "monetary_policy",
+        "interest_rates"
+      ],
+      "classification_basis": "exact_rule"
+    },
+    {
+      "id": "ecb.wage_tracker",
+      "priority": 340,
+      "source_id": [
+        "ecb_press"
+      ],
+      "title_regex": [
+        "(?i)\\bwage tracker\\b"
+      ],
+      "event_type": "central_bank.data_release",
+      "topics": [
+        "wages"
+      ],
+      "classification_basis": "exact_rule"
+    },
+    {
+      "id": "ecb.speech",
+      "priority": 200,
+      "source_id": [
+        "ecb_press"
+      ],
+      "url_regex": [
+        "/press/key/"
+      ],
+      "event_type": "central_bank.speech",
+      "topics": [],
+      "classification_basis": "heuristic_rule",
+      "speaker_title_regex": "^(?P<name>[^:]{3,100}):\\s"
+    },
+    {
+      "id": "sec.rule_proposal",
+      "priority": 300,
+      "source_id": [
+        "sec_press_releases"
+      ],
+      "title_regex": [
+        "(?i)\\bProposes\\b"
+      ],
+      "event_type": "regulator.rule_proposal",
+      "topics": [
+        "regulation"
+      ],
+      "classification_basis": "exact_rule"
+    },
+    {
+      "id": "sec.rule_adoption",
+      "priority": 290,
+      "source_id": [
+        "sec_press_releases"
+      ],
+      "title_regex": [
+        "(?i)\\b(?:Adopts|Final Rule)\\b"
+      ],
+      "event_type": "regulator.rule_adoption",
+      "topics": [
+        "regulation"
+      ],
+      "classification_basis": "exact_rule"
+    },
+    {
+      "id": "sec.guidance",
+      "priority": 280,
+      "source_id": [
+        "sec_press_releases"
+      ],
+      "title_regex": [
+        "(?i)\\b(?:Updates FAQs|Guidance)\\b"
+      ],
+      "event_type": "regulator.guidance",
+      "topics": [
+        "regulation"
+      ],
+      "classification_basis": "exact_rule"
+    },
+    {
+      "id": "sec.enforcement",
+      "priority": 270,
+      "source_id": [
+        "sec_press_releases"
+      ],
+      "title_regex": [
+        "(?i)\\b(?:Charges|Enforcement|Settles)\\b"
+      ],
+      "event_type": "regulator.enforcement",
+      "topics": [
+        "enforcement"
+      ],
+      "classification_basis": "exact_rule"
+    },
+    {
+      "id": "sec.meeting",
+      "priority": 260,
+      "source_id": [
+        "sec_press_releases"
+      ],
+      "title_regex": [
+        "(?i)\\b(?:Meeting|Roundtable)\\b"
+      ],
+      "event_type": "regulator.meeting",
+      "topics": [
+        "capital_markets"
+      ],
+      "classification_basis": "exact_rule"
+    },
+    {
+      "id": "sec.report",
+      "priority": 250,
+      "source_id": [
+        "sec_press_releases"
+      ],
+      "title_regex": [
+        "(?i)\\bReport\\b"
+      ],
+      "event_type": "regulator.report",
+      "topics": [
+        "capital_markets"
+      ],
+      "classification_basis": "heuristic_rule"
+    },
+    {
+      "id": "sec.personnel",
+      "priority": 240,
+      "source_id": [
+        "sec_press_releases"
+      ],
+      "title_regex": [
+        "(?i)\\b(?:Departure|Appoints|Names)\\b"
+      ],
+      "event_type": "regulator.personnel",
+      "topics": [],
+      "classification_basis": "heuristic_rule"
+    }
+  ],
+  "sources": {
+    "fed_monetary_policy": {
+      "issuer": "organization:federal_reserve",
+      "jurisdictions": [
+        "US"
+      ],
+      "fallback_type": "central_bank.other"
+    },
+    "sec_press_releases": {
+      "issuer": "organization:sec",
+      "jurisdictions": [
+        "US"
+      ],
+      "fallback_type": "regulator.other"
+    },
+    "ecb_press": {
+      "issuer": "organization:ecb",
+      "jurisdictions": [
+        "EU"
+      ],
+      "fallback_type": "central_bank.other"
+    }
+  },
+  "metadata_overrides": [
+    {
+      "id": "v2.sec.personnel_context",
+      "source_id": [
+        "sec_press_releases"
+      ],
+      "title_regex": [
+        "(?i)^SEC Announces Departure of Principal Deputy Director of Enforcement\\b"
+      ],
+      "url_regex": [],
+      "event_type": "regulator.personnel",
+      "topics": [],
+      "priority": 1000,
+      "reason": "Explicit personnel departure; the word Enforcement names a department, not an enforcement action"
+    }
+  ],
+  "fact_mapping": [
+    {
+      "id": "fact.monetary_policy.rate_decision",
+      "fact_type": "monetary_policy.rate_decision",
+      "event_type": "central_bank.policy_statement",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.monetary_policy.guidance",
+      "fact_type": "monetary_policy.guidance",
+      "event_type": "central_bank.guidance",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.economic_data.inflation",
+      "fact_type": "economic_data.inflation",
+      "event_type": "central_bank.data_release",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.economic_data.employment",
+      "fact_type": "economic_data.employment",
+      "event_type": "central_bank.data_release",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.economic_data.gdp",
+      "fact_type": "economic_data.gdp",
+      "event_type": "central_bank.data_release",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.economic_data.wages",
+      "fact_type": "economic_data.wages",
+      "event_type": "central_bank.data_release",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.regulation.rule_proposal",
+      "fact_type": "regulation.rule_proposal",
+      "event_type": "regulator.rule_proposal",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.regulation.rule_adoption",
+      "fact_type": "regulation.rule_adoption",
+      "event_type": "regulator.rule_adoption",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.regulation.enforcement",
+      "fact_type": "regulation.enforcement",
+      "event_type": "regulator.enforcement",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.crypto.withdrawal_suspension",
+      "fact_type": "crypto.withdrawal_suspension",
+      "event_type": "market_infrastructure.withdrawal_suspension",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.crypto.exchange_outage",
+      "fact_type": "crypto.exchange_outage",
+      "event_type": "market_infrastructure.exchange_outage",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.crypto.security_incident",
+      "fact_type": "crypto.security_incident",
+      "event_type": "market_infrastructure.security_incident",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.crypto.stablecoin_depeg",
+      "fact_type": "crypto.stablecoin_depeg",
+      "event_type": "market_infrastructure.stablecoin_depeg",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.crypto.treasury_purchase",
+      "fact_type": "crypto.treasury_purchase",
+      "event_type": "corporate.treasury_purchase",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    },
+    {
+      "id": "fact.crypto.etf_action",
+      "fact_type": "crypto.etf_action",
+      "event_type": "regulator.etf_action",
+      "priority": 100,
+      "allowed_modalities": [
+        "asserted"
+      ]
+    }
+  ]
+}

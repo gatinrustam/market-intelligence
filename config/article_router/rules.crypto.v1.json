@@ -1,0 +1,325 @@
+{
+  "version": "crypto_v1",
+  "high_value_registry_file": "high_value_facts.crypto.v1.json",
+  "source_quality": {
+    "fed_monetary_policy": "official_primary",
+    "ecb_press": "official_primary",
+    "sec_press_releases": "official_primary",
+    "cbr_events_ru": "official_primary",
+    "cbr_press_ru": "official_primary",
+    "moex_news_ru": "official_primary",
+    "sec_strategy_8k": "official_primary",
+    "binance_delistings": "official_primary",
+    "coinbase_blog": "official_primary",
+    "kraken_status_incidents": "official_primary",
+    "circle_pressroom": "official_primary",
+    "tether_news": "official_primary",
+    "kraken_status_maintenance": "official_primary",
+    "binance_maintenance": "official_primary",
+    "binance_listings": "official_primary",
+    "binance_news": "official_primary"
+  },
+  "financial_prefixes": [
+    "monetary_policy.",
+    "economic_data.",
+    "regulation.",
+    "crypto."
+  ],
+  "macro_prefixes": [
+    "monetary_policy.",
+    "economic_data."
+  ],
+  "crypto_prefixes": [
+    "crypto."
+  ],
+  "density": {
+    "high_fact_count": 2,
+    "high_value_with_measurements": 1,
+    "medium_measurements": 2
+  },
+  "default_route": "review",
+  "empty_unknown_source_route": "low",
+  "rules": [
+    {
+      "id": "router.crypto.promotional",
+      "sources": [
+        "sec_strategy_8k",
+        "binance_delistings",
+        "coinbase_blog",
+        "kraken_status_incidents",
+        "circle_pressroom",
+        "tether_news",
+        "kraken_status_maintenance",
+        "binance_maintenance",
+        "binance_listings",
+        "binance_news"
+      ],
+      "title_patterns": [
+        "(?i)trading (?:competition|tournament)|earn rewards|marketing campaign|promotion|referral|voucher|giveaway"
+      ],
+      "route": "archive",
+      "priority": 200,
+      "reason": "Promotional campaign retained for audit; excluded from high-value queue"
+    },
+    {
+      "id": "router.crypto.promotional_hint",
+      "categories_any": [
+        "content_hint:promotional"
+      ],
+      "route": "archive",
+      "priority": 201,
+      "reason": "Official source category explicitly marks promotional content"
+    },
+    {
+      "id": "router.monetary_policy.rate_decision",
+      "fact_types": [
+        "monetary_policy.rate_decision"
+      ],
+      "route": "important",
+      "priority": 80,
+      "macro_relevance": "high",
+      "reason": "Explicit monetary-policy rate decision"
+    },
+    {
+      "id": "router.crypto.critical",
+      "fact_types": [
+        "crypto.withdrawal_suspension",
+        "crypto.security_incident",
+        "crypto.stablecoin_depeg"
+      ],
+      "route": "critical",
+      "priority": 100,
+      "crypto_relevance": "high",
+      "reason": "Explicit crypto operational/security fact requiring urgent review"
+    },
+    {
+      "id": "router.crypto.action",
+      "fact_types": [
+        "crypto.etf_action",
+        "crypto.treasury_purchase"
+      ],
+      "route": "important",
+      "priority": 80,
+      "crypto_relevance": "high",
+      "reason": "Explicit crypto investment or ETF action"
+    },
+    {
+      "id": "router.digital_regulation",
+      "fact_types": [
+        "regulation.rule_proposal",
+        "regulation.rule_adoption",
+        "regulation.enforcement"
+      ],
+      "topics_any": [
+        "digital_assets",
+        "bitcoin",
+        "ethereum"
+      ],
+      "route": "important",
+      "priority": 80,
+      "crypto_relevance": "high",
+      "reason": "Regulatory fact with evidenced digital-asset context"
+    },
+    {
+      "id": "router.economic_release",
+      "fact_types": [
+        "economic_data.inflation",
+        "economic_data.employment",
+        "economic_data.gdp",
+        "economic_data.wages"
+      ],
+      "route": "important",
+      "priority": 70,
+      "macro_relevance": "high",
+      "reason": "Explicit numerical economic-data claim"
+    },
+    {
+      "id": "router.sec.crypto_proposal",
+      "sources": [
+        "sec_press_releases"
+      ],
+      "event_types": [
+        "regulator.rule_proposal"
+      ],
+      "title_patterns": [
+        "^SEC Proposes New Regulation Crypto Assets$"
+      ],
+      "route": "important",
+      "priority": 70,
+      "crypto_relevance": "high",
+      "reason": "Named official SEC crypto rule proposal; contextual title plus canonical proposal metadata, not an inferred DI fact"
+    },
+    {
+      "id": "router.sec.tokenized_market",
+      "sources": [
+        "sec_press_releases"
+      ],
+      "metadata_rule_ids": [
+        "sec.tokenized_nms_exemption"
+      ],
+      "route": "important",
+      "priority": 70,
+      "crypto_relevance": "high",
+      "reason": "Pinned Event Intelligence identifies the specific SEC tokenized-market exemption"
+    },
+    {
+      "id": "router.personnel",
+      "event_types": [
+        "regulator.personnel",
+        "regulation.personnel"
+      ],
+      "no_high_value": true,
+      "route": "low",
+      "priority": 40,
+      "reason": "Personnel item without other high-value financial facts"
+    },
+    {
+      "id": "router.sec.personnel_exception",
+      "sources": [
+        "sec_press_releases"
+      ],
+      "metadata_rule_ids": [
+        "sec.personnel_announcement"
+      ],
+      "no_high_value": true,
+      "route": "low",
+      "priority": 40,
+      "reason": "Exact personnel announcement identified upstream; not an enforcement action"
+    },
+    {
+      "id": "router.central_bank.commentary",
+      "event_types": [
+        "central_bank.speech",
+        "central_bank.interview"
+      ],
+      "no_high_value": true,
+      "route": "review",
+      "priority": 20,
+      "macro_relevance": "low",
+      "reason": "Central-bank commentary without high-value extracted facts"
+    },
+    {
+      "id": "router.service_notice",
+      "sources": [
+        "fed_monetary_policy",
+        "ecb_press",
+        "sec_press_releases"
+      ],
+      "title_patterns": [
+        "(?i)^(?:Notice of website maintenance|RSS feed maintenance notice)$"
+      ],
+      "no_facts": true,
+      "route": "archive",
+      "priority": 10,
+      "reason": "Explicit source-scoped service notice without financial facts"
+    },
+    {
+      "id": "router.crypto.explicit_fact",
+      "fact_types": [
+        "crypto.exchange_listing",
+        "crypto.exchange_delisting",
+        "crypto.deposit_suspension",
+        "crypto.stablecoin_change",
+        "crypto.treasury_sale",
+        "crypto.treasury_holdings",
+        "crypto.institutional_product"
+      ],
+      "route": "important",
+      "priority": 75,
+      "crypto_relevance": "high",
+      "reason": "Explicit evidenced crypto product, exchange or corporate treasury fact"
+    }
+  ],
+  "source_metadata": {
+    "sec_strategy_8k": {
+      "domain": "crypto",
+      "source_class": "corporate_filing",
+      "source_role": "corporate_filing",
+      "expected_content_types": [
+        "corporate_btc_purchase",
+        "corporate_btc_sale",
+        "corporate_btc_holdings"
+      ]
+    },
+    "binance_delistings": {
+      "domain": "crypto",
+      "source_class": "exchange_announcements",
+      "source_role": "exchange",
+      "expected_content_types": [
+        "delistings"
+      ]
+    },
+    "coinbase_blog": {
+      "domain": "crypto",
+      "source_class": "official_blog",
+      "source_role": "exchange",
+      "expected_content_types": [
+        "institutional_crypto",
+        "crypto_derivatives",
+        "custody"
+      ]
+    },
+    "kraken_status_incidents": {
+      "domain": "crypto",
+      "source_class": "exchange_status",
+      "source_role": "exchange",
+      "expected_content_types": [
+        "exchange_outage",
+        "funding_degradation",
+        "network_maintenance"
+      ]
+    },
+    "circle_pressroom": {
+      "domain": "crypto",
+      "source_class": "pressroom",
+      "source_role": "stablecoin_issuer",
+      "expected_content_types": [
+        "stablecoin_infrastructure",
+        "institutional_crypto"
+      ]
+    },
+    "tether_news": {
+      "domain": "crypto",
+      "source_class": "official_news",
+      "source_role": "stablecoin_issuer",
+      "expected_content_types": [
+        "stablecoin_product_change",
+        "stablecoin_infrastructure"
+      ]
+    },
+    "kraken_status_maintenance": {
+      "domain": "crypto",
+      "source_class": "exchange_status",
+      "source_role": "exchange",
+      "expected_content_types": [
+        "exchange_outage",
+        "funding_degradation",
+        "network_maintenance"
+      ]
+    },
+    "binance_maintenance": {
+      "domain": "crypto",
+      "source_class": "exchange_announcements",
+      "source_role": "exchange",
+      "expected_content_types": [
+        "maintenance"
+      ]
+    },
+    "binance_listings": {
+      "domain": "crypto",
+      "source_class": "exchange_announcements",
+      "source_role": "exchange",
+      "expected_content_types": [
+        "listings"
+      ]
+    },
+    "binance_news": {
+      "domain": "crypto",
+      "source_class": "exchange_announcements",
+      "source_role": "exchange",
+      "expected_content_types": [
+        "news"
+      ]
+    }
+  }
+}

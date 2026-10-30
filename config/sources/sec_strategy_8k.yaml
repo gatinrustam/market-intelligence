@@ -1,0 +1,37 @@
+{
+  "id": "sec_strategy_8k",
+  "name": "Strategy / SEC",
+  "enabled": true,
+  "max_items_per_poll": 10,
+  "domain": "crypto",
+  "source_class": "corporate_filing",
+  "source_quality": "official_primary",
+  "poll_priority": "normal",
+  "source_role": "corporate_filing",
+  "language": "en",
+  "expected_content_types": [
+    "corporate_btc_purchase",
+    "corporate_btc_sale",
+    "corporate_btc_holdings"
+  ],
+  "connector": {
+    "type": "sec_filing",
+    "url": "https://data.sec.gov/submissions/CIK0001050446.json",
+    "corporate": {
+      "cik": "1050446",
+      "issuer": "Strategy",
+      "forms": [
+        "8-K"
+      ]
+    }
+  },
+  "poll": {
+    "interval_seconds": 300
+  },
+  "classification": {
+    "categories": [
+      "crypto",
+      "corporate_treasury"
+    ]
+  }
+}

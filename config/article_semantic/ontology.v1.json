@@ -1,0 +1,365 @@
+{
+  "version": "semantic_ontology_v1",
+  "concepts": [
+    {
+      "id": "monetary_policy",
+      "domains": [
+        "monetary_policy"
+      ],
+      "article_type": "primary_announcement",
+      "descriptions": {
+        "en": [
+          "A central bank announces a monetary policy decision or explains its policy stance."
+        ],
+        "ru": [
+          "Центральный банк объявляет решение по денежно-кредитной политике и объясняет свою позицию."
+        ]
+      }
+    },
+    {
+      "id": "interest_rates",
+      "domains": [
+        "monetary_policy"
+      ],
+      "article_type": "primary_announcement",
+      "descriptions": {
+        "en": [
+          "The central bank raises, cuts or holds its policy interest rate or target range."
+        ],
+        "ru": [
+          "Центральный банк повышает, снижает или сохраняет ключевую ставку либо целевой диапазон процентных ставок."
+        ]
+      }
+    },
+    {
+      "id": "inflation",
+      "domains": [
+        "macroeconomics"
+      ],
+      "article_type": "data_release",
+      "descriptions": {
+        "en": [
+          "Consumer prices and inflation have changed; the report gives inflation figures, forecasts or price pressures."
+        ],
+        "ru": [
+          "В статье приводятся данные или прогнозы инфляции, изменения потребительских цен и ценовое давление."
+        ]
+      }
+    },
+    {
+      "id": "employment",
+      "domains": [
+        "macroeconomics"
+      ],
+      "article_type": "data_release",
+      "descriptions": {
+        "en": [
+          "Employment, payrolls, wages or unemployment statistics describe changes in the labor market."
+        ],
+        "ru": [
+          "Данные о занятости, заработной плате, новых рабочих местах и безработице показывают состояние рынка труда."
+        ]
+      }
+    },
+    {
+      "id": "economic_growth",
+      "domains": [
+        "macroeconomics"
+      ],
+      "article_type": "data_release",
+      "descriptions": {
+        "en": [
+          "Economic output, GDP and growth projections indicate expansion or contraction of the economy."
+        ],
+        "ru": [
+          "Данные ВВП и прогнозы роста указывают на расширение или сокращение экономики."
+        ]
+      }
+    },
+    {
+      "id": "financial_regulation",
+      "domains": [
+        "regulation"
+      ],
+      "article_type": "regulatory_action",
+      "descriptions": {
+        "en": [
+          "A regulator proposes or adopts rules governing securities, markets, disclosures or financial intermediaries."
+        ],
+        "ru": [
+          "Регулятор предлагает или принимает правила для ценных бумаг, раскрытия информации, рынков и финансовых посредников."
+        ]
+      }
+    },
+    {
+      "id": "crypto_regulation",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "regulatory_action",
+      "descriptions": {
+        "en": [
+          "New legal rules or regulatory interpretations govern cryptocurrency, digital assets and crypto businesses."
+        ],
+        "ru": [
+          "Новые правила или разъяснения регулятора касаются криптовалют, цифровых активов и криптовалютных компаний."
+        ]
+      }
+    },
+    {
+      "id": "enforcement",
+      "domains": [
+        "regulation"
+      ],
+      "article_type": "regulatory_action",
+      "descriptions": {
+        "en": [
+          "An authority charges, sues, sanctions or settles with defendants over alleged financial misconduct or fraud."
+        ],
+        "ru": [
+          "Надзорный орган предъявляет обвинения, подаёт иск, штрафует или заключает соглашение по делу о финансовых нарушениях и мошенничестве."
+        ]
+      }
+    },
+    {
+      "id": "crypto_exchange",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "analysis",
+      "descriptions": {
+        "en": [
+          "A cryptocurrency exchange or digital asset trading platform changes its services or business operations."
+        ],
+        "ru": [
+          "Криптовалютная биржа или платформа торговли цифровыми активами меняет свои услуги или работу."
+        ]
+      }
+    },
+    {
+      "id": "exchange_outage",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "incident",
+      "descriptions": {
+        "en": [
+          "A trading exchange experiences an outage or technical failure that interrupts trading."
+        ],
+        "ru": [
+          "На бирже произошёл технический сбой, из-за которого остановилась торговля."
+        ]
+      }
+    },
+    {
+      "id": "withdrawal_suspension",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "incident",
+      "descriptions": {
+        "en": [
+          "A cryptocurrency exchange has suspended withdrawals; users cannot withdraw cryptocurrency or funds."
+        ],
+        "ru": [
+          "Криптовалютная биржа приостановила вывод средств; пользователи не могут вывести криптовалюту или деньги."
+        ]
+      }
+    },
+    {
+      "id": "security_incident",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "incident",
+      "descriptions": {
+        "en": [
+          "A security breach compromises a cryptocurrency service, user accounts or digital assets."
+        ],
+        "ru": [
+          "Нарушение безопасности скомпрометировало криптовалютный сервис, учётные записи пользователей или цифровые активы."
+        ]
+      }
+    },
+    {
+      "id": "hack",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "incident",
+      "descriptions": {
+        "en": [
+          "Attackers exploit a vulnerability and steal cryptocurrency from an exchange, protocol or wallet."
+        ],
+        "ru": [
+          "Злоумышленники воспользовались уязвимостью и похитили криптовалюту с биржи, протокола или кошелька."
+        ]
+      }
+    },
+    {
+      "id": "stablecoin",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "analysis",
+      "descriptions": {
+        "en": [
+          "A stablecoin issuer discusses reserves, redemption, issuance or backing of its price-stable token."
+        ],
+        "ru": [
+          "Эмитент стейблкоина сообщает о резервах, погашении, выпуске или обеспечении токена со стабильной ценой."
+        ]
+      }
+    },
+    {
+      "id": "depeg",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "incident",
+      "descriptions": {
+        "en": [
+          "A stablecoin loses its price peg and trades materially below or above its intended reference value."
+        ],
+        "ru": [
+          "Стейблкоин утратил привязку и торгуется существенно ниже или выше целевой цены."
+        ]
+      }
+    },
+    {
+      "id": "etf",
+      "domains": [
+        "capital_markets"
+      ],
+      "article_type": "primary_announcement",
+      "descriptions": {
+        "en": [
+          "An exchange-traded fund launches, receives approval or reports investment flows."
+        ],
+        "ru": [
+          "Биржевой инвестиционный фонд запускается, получает одобрение или сообщает о притоке и оттоке средств."
+        ]
+      }
+    },
+    {
+      "id": "institutional_crypto",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "primary_announcement",
+      "descriptions": {
+        "en": [
+          "Institutional investors, banks or asset managers adopt cryptocurrency investments, custody or financial products."
+        ],
+        "ru": [
+          "Институциональные инвесторы, банки или управляющие внедряют инвестиции в криптовалюты, хранение или финансовые продукты."
+        ]
+      }
+    },
+    {
+      "id": "treasury_purchase",
+      "domains": [
+        "digital_assets"
+      ],
+      "article_type": "primary_announcement",
+      "descriptions": {
+        "en": [
+          "A company buys Bitcoin or other cryptocurrency for its corporate treasury or balance sheet."
+        ],
+        "ru": [
+          "Компания покупает биткоин или другую криптовалюту для корпоративных резервов и своего баланса."
+        ]
+      }
+    },
+    {
+      "id": "equities",
+      "domains": [
+        "equities"
+      ],
+      "article_type": "analysis",
+      "descriptions": {
+        "en": [
+          "The article concerns listed companies, stock prices, shareholders or equity markets."
+        ],
+        "ru": [
+          "Статья касается публичных компаний, цен акций, акционеров или фондового рынка."
+        ]
+      }
+    },
+    {
+      "id": "earnings",
+      "domains": [
+        "equities"
+      ],
+      "article_type": "data_release",
+      "descriptions": {
+        "en": [
+          "A company reports quarterly earnings, revenue, profit, losses or financial guidance."
+        ],
+        "ru": [
+          "Компания публикует квартальные результаты, выручку, прибыль, убыток или финансовый прогноз."
+        ]
+      }
+    },
+    {
+      "id": "merger_acquisition",
+      "domains": [
+        "equities"
+      ],
+      "article_type": "primary_announcement",
+      "descriptions": {
+        "en": [
+          "A company announces an acquisition, merger, takeover bid or sale of a business."
+        ],
+        "ru": [
+          "Компания объявляет о приобретении, слиянии, предложении о поглощении или продаже бизнеса."
+        ]
+      }
+    },
+    {
+      "id": "general_commentary",
+      "domains": [
+        "commentary"
+      ],
+      "article_type": "commentary",
+      "descriptions": {
+        "en": [
+          "A speaker offers broad opinions or background discussion without announcing a new concrete decision."
+        ],
+        "ru": [
+          "Выступающий делится общими мнениями или обсуждает фон без объявления нового конкретного решения."
+        ]
+      }
+    },
+    {
+      "id": "personnel",
+      "domains": [
+        "organization"
+      ],
+      "article_type": "personnel",
+      "descriptions": {
+        "en": [
+          "An organization announces the appointment, departure or retirement of an employee or executive."
+        ],
+        "ru": [
+          "Организация сообщает о назначении, уходе или выходе на пенсию сотрудника либо руководителя."
+        ]
+      }
+    },
+    {
+      "id": "administrative",
+      "domains": [
+        "organization"
+      ],
+      "article_type": "administrative",
+      "descriptions": {
+        "en": [
+          "A routine notice provides administrative schedules, registration instructions, opening hours or organizational logistics."
+        ],
+        "ru": [
+          "Обычное уведомление сообщает расписание, порядок регистрации, часы работы или организационные детали."
+        ]
+      }
+    }
+  ]
+}

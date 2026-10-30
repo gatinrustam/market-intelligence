@@ -1,0 +1,33 @@
+{
+  "id": "kraken_status_incidents",
+  "name": "Kraken \u2014 incidents",
+  "enabled": true,
+  "max_items_per_poll": 40,
+  "domain": "crypto",
+  "source_class": "exchange_status",
+  "source_quality": "official_primary",
+  "poll_priority": "fast",
+  "source_role": "exchange",
+  "language": "en",
+  "expected_content_types": [
+    "exchange_outage",
+    "funding_degradation",
+    "network_maintenance"
+  ],
+  "connector": {
+    "type": "statuspage",
+    "url": "https://status.kraken.com/api/v2/incidents.json",
+    "format": "incidents"
+  },
+  "poll": {
+    "interval_seconds": 30
+  },
+  "classification": {
+    "categories": [
+      "crypto",
+      "exchange",
+      "infrastructure",
+      "incidents"
+    ]
+  }
+}

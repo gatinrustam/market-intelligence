@@ -1,0 +1,16 @@
+{
+  "ruleset_version": "correlation_v2.1",
+  "fingerprint_version": "fact_identity_v1",
+  "input_ruleset_version": "2.0",
+  "exact_rules": {
+    "central_bank.policy_statement": {
+      "fact_types": ["monetary_policy.rate_decision"],
+      "required": ["event_type", "primary_actor", "action", "measurements", "explicit_event_time"],
+      "measurement_kinds": ["rate"],
+      "allowed_actions": ["hold", "raise", "cut"]
+    }
+  },
+  "suggestion_required": ["event_type", "primary_actor", "action", "measurements"],
+  "title_similarity_threshold": 0.75,
+  "publication_proximity_seconds": 86400
+}

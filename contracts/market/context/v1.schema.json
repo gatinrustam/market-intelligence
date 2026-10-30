@@ -1,0 +1,754 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "message_id",
+    "context_id",
+    "revision",
+    "event",
+    "market",
+    "anchor",
+    "points",
+    "status",
+    "generated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "message_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "context_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "event_revision"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "event_revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "market": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "symbol"
+      ],
+      "properties": {
+        "provider": {
+          "const": "binance_spot"
+        },
+        "symbol": {
+          "const": "BTCUSDT"
+        }
+      }
+    },
+    "anchor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "at",
+        "type",
+        "precision",
+        "original_value",
+        "unavailable_reason"
+      ],
+      "properties": {
+        "at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "type": {
+          "enum": [
+            "event_time",
+            "source_published_at"
+          ]
+        },
+        "precision": {
+          "enum": [
+            "exact",
+            "minute",
+            "hour",
+            "date",
+            "date_range",
+            "unknown"
+          ]
+        },
+        "original_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unavailable_reason": {
+          "enum": [
+            null,
+            "missing_anchor_time",
+            "imprecise_event_time"
+          ]
+        }
+      }
+    },
+    "points": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": false,
+      "prefixItems": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/point"
+            },
+            {
+              "properties": {
+                "offset_seconds": {
+                  "const": -900
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/point"
+            },
+            {
+              "properties": {
+                "offset_seconds": {
+                  "const": -300
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/point"
+            },
+            {
+              "properties": {
+                "offset_seconds": {
+                  "const": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/point"
+            },
+            {
+              "properties": {
+                "offset_seconds": {
+                  "const": 60
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/point"
+            },
+            {
+              "properties": {
+                "offset_seconds": {
+                  "const": 300
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/point"
+            },
+            {
+              "properties": {
+                "offset_seconds": {
+                  "const": 900
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/point"
+            },
+            {
+              "properties": {
+                "offset_seconds": {
+                  "const": 3600
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "complete",
+        "pending_future_points",
+        "pending_data_points",
+        "available_points",
+        "unavailable_points"
+      ],
+      "properties": {
+        "complete": {
+          "type": "boolean"
+        },
+        "pending_future_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        },
+        "pending_data_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        },
+        "available_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        },
+        "unavailable_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 7
+        }
+      }
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:market-intelligence:market.context.v1",
+  "title": "market.context.v1",
+  "$defs": {
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "offset_seconds",
+        "target_at",
+        "status",
+        "available",
+        "resolution",
+        "reason",
+        "price",
+        "price_basis",
+        "price_at",
+        "snapshot_message_id",
+        "snapshot_distance_ms",
+        "bid",
+        "ask",
+        "spread_bps",
+        "candle",
+        "return_pct_from_anchor",
+        "absolute_return_pct"
+      ],
+      "properties": {
+        "offset_seconds": {
+          "enum": [
+            -900,
+            -300,
+            0,
+            60,
+            300,
+            900,
+            3600
+          ]
+        },
+        "target_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "available",
+            "unavailable"
+          ]
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "resolution": {
+          "enum": [
+            "realtime_1s",
+            "candle_1m",
+            null
+          ]
+        },
+        "reason": {
+          "enum": [
+            null,
+            "future_target",
+            "awaiting_market_data",
+            "not_collected",
+            "no_snapshot_within_tolerance",
+            "missing_anchor_time",
+            "imprecise_event_time"
+          ]
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "price_basis": {
+          "enum": [
+            "last_trade",
+            "candle_close",
+            null
+          ]
+        },
+        "price_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "Z$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_message_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_distance_ms": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "bid": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ask": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "spread_bps": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candle": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "open_time",
+                "close_time",
+                "open",
+                "high",
+                "low",
+                "close",
+                "base_volume",
+                "quote_volume",
+                "taker_buy_base_volume",
+                "taker_buy_quote_volume",
+                "trade_count"
+              ],
+              "properties": {
+                "open_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                },
+                "close_time": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                },
+                "open": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                },
+                "high": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                },
+                "low": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                },
+                "close": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                },
+                "base_volume": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                },
+                "quote_volume": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                },
+                "taker_buy_base_volume": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                },
+                "taker_buy_quote_volume": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                },
+                "trade_count": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "return_pct_from_anchor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "absolute_return_pct": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "available"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "available": {
+                "const": true
+              },
+              "target_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              },
+              "price": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+              },
+              "price_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              },
+              "reason": {
+                "type": "null"
+              },
+              "resolution": {
+                "enum": [
+                  "realtime_1s",
+                  "candle_1m"
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "available": {
+                "const": false
+              },
+              "resolution": {
+                "type": "null"
+              },
+              "price": {
+                "type": "null"
+              },
+              "price_basis": {
+                "type": "null"
+              },
+              "price_at": {
+                "type": "null"
+              },
+              "snapshot_message_id": {
+                "type": "null"
+              },
+              "snapshot_distance_ms": {
+                "type": "null"
+              },
+              "bid": {
+                "type": "null"
+              },
+              "ask": {
+                "type": "null"
+              },
+              "spread_bps": {
+                "type": "null"
+              },
+              "candle": {
+                "type": "null"
+              },
+              "return_pct_from_anchor": {
+                "type": "null"
+              },
+              "absolute_return_pct": {
+                "type": "null"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "resolution": {
+                "const": "candle_1m"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "price_basis": {
+                "const": "candle_close"
+              },
+              "candle": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "open_time",
+                  "close_time",
+                  "open",
+                  "high",
+                  "low",
+                  "close",
+                  "base_volume",
+                  "quote_volume",
+                  "taker_buy_base_volume",
+                  "taker_buy_quote_volume",
+                  "trade_count"
+                ],
+                "properties": {
+                  "open_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$"
+                  },
+                  "close_time": {
+                    "type": "string",
+                    "format": "date-time",
+                    "pattern": "Z$"
+                  },
+                  "open": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  "high": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  "low": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  "close": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  "base_volume": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  "quote_volume": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  "taker_buy_base_volume": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  "taker_buy_quote_volume": {
+                    "type": "string",
+                    "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+                  },
+                  "trade_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                }
+              },
+              "bid": {
+                "type": "null"
+              },
+              "ask": {
+                "type": "null"
+              },
+              "spread_bps": {
+                "type": "null"
+              },
+              "snapshot_message_id": {
+                "type": "null"
+              },
+              "snapshot_distance_ms": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "resolution": {
+                "const": "realtime_1s"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "price_basis": {
+                "const": "last_trade"
+              },
+              "snapshot_message_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "snapshot_distance_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "bid": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+              },
+              "ask": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+              },
+              "spread_bps": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]+)?$"
+              },
+              "candle": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

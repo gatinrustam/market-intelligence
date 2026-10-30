@@ -1,0 +1,158 @@
+{
+  "version": "1.1",
+  "asset": "BTCUSDT",
+  "default_relevance": "none",
+  "default_specificity": "unknown",
+  "rules": [
+    {
+      "id": "central_bank.policy",
+      "event_types": [
+        "central_bank.policy_statement",
+        "central_bank.minutes",
+        "central_bank.projections"
+      ],
+      "relevance": "medium",
+      "specificity": "specific"
+    },
+    {
+      "id": "fed.policy",
+      "event_types": [
+        "central_bank.policy_statement",
+        "central_bank.minutes",
+        "central_bank.projections"
+      ],
+      "relevance": "high",
+      "specificity": "specific",
+      "sources": [
+        "fed_monetary_policy"
+      ]
+    },
+    {
+      "id": "central_bank.speech",
+      "event_types": [
+        "central_bank.speech"
+      ],
+      "relevance": "medium",
+      "specificity": "commentary"
+    },
+    {
+      "id": "central_bank.interview",
+      "event_types": [
+        "central_bank.interview"
+      ],
+      "relevance": "low",
+      "specificity": "commentary"
+    },
+    {
+      "id": "central_bank.data",
+      "event_types": [
+        "central_bank.data_release"
+      ],
+      "relevance": "medium",
+      "specificity": "specific"
+    },
+    {
+      "id": "central_bank.other",
+      "event_types": [
+        "central_bank.other"
+      ],
+      "relevance": "low",
+      "specificity": "general"
+    },
+    {
+      "id": "regulator.enforcement",
+      "event_types": [
+        "regulator.enforcement"
+      ],
+      "relevance": "low",
+      "specificity": "specific"
+    },
+    {
+      "id": "regulator.rules",
+      "event_types": [
+        "regulator.rule_proposal",
+        "regulator.rule_adoption",
+        "regulator.guidance"
+      ],
+      "relevance": "low",
+      "specificity": "specific"
+    },
+    {
+      "id": "regulator.personnel",
+      "event_types": [
+        "regulator.personnel"
+      ],
+      "relevance": "low",
+      "specificity": "general"
+    },
+    {
+      "id": "regulator.other",
+      "event_types": [
+        "regulator.other",
+        "regulator.report",
+        "regulator.meeting"
+      ],
+      "relevance": "low",
+      "specificity": "general"
+    },
+    {
+      "id": "sec.tokenized_nms_exemption",
+      "event_types": [
+        "regulator.other"
+      ],
+      "sources": [
+        "sec_press_releases"
+      ],
+      "title_patterns": [
+        "(?i)^SEC Issues .Innovation Exemption. to Facilitate the Trading of Tokenized NMS Stock and Request for Comment$"
+      ],
+      "minimum_relevance": "medium",
+      "specificity": "specific"
+    },
+    {
+      "id": "sec.personnel_announcement",
+      "event_types": [
+        "regulator.enforcement",
+        "regulator.personnel",
+        "regulator.other"
+      ],
+      "sources": [
+        "sec_press_releases"
+      ],
+      "title_patterns": [
+        "(?i)^SEC Announces Departure of (?:Principal Deputy )?Director of Enforcement .+$"
+      ],
+      "relevance": "low",
+      "specificity": "general"
+    },
+    {
+      "id": "topic.digital_assets",
+      "topics_any": [
+        "digital_assets"
+      ],
+      "minimum_relevance": "high"
+    }
+  ],
+  "quality": {
+    "trusted_sources": [
+      "fed_monetary_policy",
+      "ecb_press",
+      "sec_press_releases"
+    ],
+    "trusted_source_types": [
+      "rss"
+    ],
+    "high_min_sources": 1,
+    "corroborated_min_sources": 2,
+    "partial_cap": "medium"
+  },
+  "novelty": {
+    "new_methods": [
+      "new_event"
+    ],
+    "update_methods": [
+      "exact_key"
+    ],
+    "scope": "canonical_revision_history_only"
+  }
+}

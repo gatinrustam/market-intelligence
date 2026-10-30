@@ -1,0 +1,133 @@
+{
+  "type": "object",
+  "properties": {
+    "relevance": {
+      "type": "string",
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "interpretation": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "market_mechanism": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        }
+      },
+      "required": [
+        "summary",
+        "market_mechanism"
+      ],
+      "additionalProperties": false
+    },
+    "forecast": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "horizon_seconds": {
+            "type": "integer",
+            "enum": [
+              60,
+              300,
+              900,
+              3600
+            ]
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "up",
+              "down",
+              "neutral",
+              "unclear"
+            ]
+          },
+          "impact": {
+            "type": "string",
+            "enum": [
+              "negligible",
+              "small",
+              "moderate",
+              "large"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        },
+        "required": [
+          "horizon_seconds",
+          "direction",
+          "impact",
+          "confidence"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4000
+      },
+      "minItems": 1,
+      "maxItems": 12
+    },
+    "unavailable_data": {
+      "type": "object",
+      "properties": {
+        "market_surprise": {
+          "type": "string",
+          "enum": [
+            "unavailable"
+          ]
+        },
+        "consensus_expectation": {
+          "type": "string",
+          "enum": [
+            "unavailable"
+          ]
+        },
+        "probability_of_fed_action": {
+          "type": "string",
+          "enum": [
+            "unavailable"
+          ]
+        }
+      },
+      "required": [
+        "market_surprise",
+        "consensus_expectation",
+        "probability_of_fed_action"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "relevance",
+    "interpretation",
+    "forecast",
+    "uncertainties",
+    "unavailable_data"
+  ],
+  "additionalProperties": false
+}

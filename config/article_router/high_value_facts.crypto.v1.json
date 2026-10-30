@@ -1,0 +1,22 @@
+{
+  "version": "crypto_v1",
+  "fact_types": [
+    "monetary_policy.rate_decision",
+    "economic_data.inflation",
+    "economic_data.employment",
+    "regulation.enforcement",
+    "regulation.rule_proposal",
+    "crypto.withdrawal_suspension",
+    "crypto.security_incident",
+    "crypto.stablecoin_depeg",
+    "crypto.etf_action",
+    "crypto.treasury_purchase",
+    "crypto.exchange_listing",
+    "crypto.exchange_delisting",
+    "crypto.deposit_suspension",
+    "crypto.stablecoin_change",
+    "crypto.treasury_sale",
+    "crypto.treasury_holdings",
+    "crypto.institutional_product"
+  ]
+}

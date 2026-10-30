@@ -1,0 +1,22 @@
+version: '1.0'
+sources:
+  fed_monetary_policy:
+    issuer: organization:federal_reserve
+    jurisdictions: [US]
+    fallback_type: central_bank.other
+  sec_press_releases:
+    issuer: organization:sec
+    jurisdictions: [US]
+    fallback_type: regulator.other
+  ecb_press:
+    issuer: organization:ecb
+    jurisdictions: [EU]
+    fallback_type: central_bank.other
+quality:
+  title_min_characters: 8
+  body_min_characters: 80
+  high_body_characters: 500
+correlation:
+  title_jaccard_threshold: 0.7
+  time_window_seconds: 604800
+  max_candidates: 500

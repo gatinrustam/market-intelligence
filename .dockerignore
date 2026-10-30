@@ -1,0 +1,14 @@
+.git
+.env
+.venv
+**/__pycache__
+**/.pytest_cache
+
+**/vendor
+**/node_modules
+**/.env
+**/database/*.sqlite*
+**/storage/logs/*
+**/storage/framework/*
+**/bootstrap/cache/*.php
+.models

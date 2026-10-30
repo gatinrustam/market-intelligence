@@ -1,0 +1,844 @@
+name: market-intelligence
+x-app: &app
+  build:
+    context: .
+    dockerfile: services/ingestion/Dockerfile
+    target: runtime
+  environment: &environment
+    INGESTION_DATABASE_URL: mysql+pymysql://ingestion:${MARIADB_PASSWORD:-local_ingestion}@db:3306/ingestion?charset=utf8mb4
+    INGESTION_NATS_URL: nats://nats:4222
+    INGESTION_MAX_FEED_BYTES: ${INGESTION_MAX_FEED_BYTES:-10000000}
+    INGESTION_USER_AGENT: ${INGESTION_USER_AGENT:-MarketIntelligencePrototype/0.1 (local research)}
+  volumes:
+    - ./config/sources:/workspace/config/sources:ro
+  init: true
+
+x-enrichment: &enrichment
+  build:
+    context: .
+    dockerfile: services/enrichment/Dockerfile
+    target: runtime
+  environment: &enrichment-environment
+    ENRICHMENT_DATABASE_URL: mysql+pymysql://enrichment:${ENRICHMENT_DB_PASSWORD:-local_enrichment}@db:3306/enrichment?charset=utf8mb4
+    ENRICHMENT_NATS_URL: nats://nats:4222
+    ENRICHMENT_USER_AGENT: ${ENRICHMENT_USER_AGENT:-MarketIntelligenceEnrichment/0.1}
+  volumes:
+    - ./config/enrichment:/workspace/config/enrichment:ro
+  init: true
+
+x-events: &events
+  build:
+    context: .
+    dockerfile: services/events/Dockerfile
+    target: runtime
+  environment: &events-environment
+    EVENTS_DATABASE_URL: mysql+pymysql://events:${EVENTS_DB_PASSWORD:-local_events}@db:3306/events?charset=utf8mb4
+    EVENTS_NATS_URL: nats://nats:4222
+  volumes:
+    - ./config/events:/workspace/config/events:ro
+  init: true
+
+x-market-data: &market-data
+  build:
+    context: .
+    dockerfile: services/market_data/Dockerfile
+    target: runtime
+  environment: &market-data-environment
+    MARKET_DATA_DATABASE_URL: mysql+pymysql://market_data:${MARKET_DATA_DB_PASSWORD:-local_market_data}@db:3306/market_data?charset=utf8mb4
+    MARKET_DATA_NATS_URL: nats://nats:4222
+    MARKET_DATA_SNAPSHOT_INTERVAL_SECONDS: ${MARKET_DATA_SNAPSHOT_INTERVAL_SECONDS:-1}
+    MARKET_DATA_MAX_SNAPSHOT_DISTANCE_SECONDS: ${MARKET_DATA_MAX_SNAPSHOT_DISTANCE_SECONDS:-3}
+  init: true
+
+x-market-context: &market-context
+  build:
+    context: .
+    dockerfile: services/market_context/Dockerfile
+    target: runtime
+  environment: &market-context-environment
+    MARKET_CONTEXT_DATABASE_URL: mysql+pymysql://market_context:${MARKET_CONTEXT_DB_PASSWORD:-local_market_context}@db:3306/market_context?charset=utf8mb4
+    MARKET_CONTEXT_NATS_URL: nats://nats:4222
+    MARKET_CONTEXT_MARKET_DATA_URL: http://market-data:8003
+    MARKET_CONTEXT_REALTIME_MAX_AGE_SECONDS: ${MARKET_CONTEXT_REALTIME_MAX_AGE_SECONDS:-3}
+    MARKET_CONTEXT_CANDLE_MAX_AGE_SECONDS: ${MARKET_CONTEXT_CANDLE_MAX_AGE_SECONDS:-60}
+  init: true
+
+x-llm-analysis: &llm-analysis
+  build:
+    context: .
+    dockerfile: services/llm_analysis/Dockerfile
+    target: runtime
+  environment: &llm-analysis-environment
+    LLM_ANALYSIS_DATABASE_URL: mysql+pymysql://llm_analysis:${LLM_ANALYSIS_DB_PASSWORD:-local_llm_analysis}@db:3306/llm_analysis?charset=utf8mb4
+    LLM_ANALYSIS_NATS_URL: nats://nats:4222
+    LLM_ANALYSIS_CONTEXT_URL: http://market-context:8004
+    LLM_ANALYSIS_INTELLIGENCE_URL: http://event-intelligence:8008
+    LLM_ANALYSIS_MODEL: ${LLM_ANALYSIS_MODEL:-gpt-6-astra}
+    LLM_ANALYSIS_REASONING_EFFORT: ${LLM_ANALYSIS_REASONING_EFFORT:-medium}
+    LLM_ANALYSIS_AUTO_LIVE_ENABLED: ${LLM_ANALYSIS_AUTO_LIVE_ENABLED:-false}
+    OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  init: true
+
+x-evaluation: &evaluation
+  build:
+    context: .
+    dockerfile: services/evaluation/Dockerfile
+    target: runtime
+  environment: &evaluation-environment
+    EVALUATION_DATABASE_URL: mysql+pymysql://evaluation:${EVALUATION_DB_PASSWORD:-local_evaluation}@db:3306/evaluation?charset=utf8mb4
+    EVALUATION_NATS_URL: nats://nats:4222
+    EVALUATION_CONTEXT_URL: http://market-context:8004
+    EVALUATION_ANALYSIS_URL: http://llm-analysis:8005
+    EVALUATION_FIXTURES_ENABLED: ${EVALUATION_FIXTURES_ENABLED:-false}
+    EVALUATION_NEUTRAL_THRESHOLD_PCT: ${EVALUATION_NEUTRAL_THRESHOLD_PCT:-0.05}
+    EVALUATION_NEGLIGIBLE_THRESHOLD_PCT: ${EVALUATION_NEGLIGIBLE_THRESHOLD_PCT:-0.10}
+    EVALUATION_SMALL_THRESHOLD_PCT: ${EVALUATION_SMALL_THRESHOLD_PCT:-0.50}
+    EVALUATION_MODERATE_THRESHOLD_PCT: ${EVALUATION_MODERATE_THRESHOLD_PCT:-1.50}
+  init: true
+
+x-event-intelligence: &event-intelligence
+  build:
+    context: .
+    dockerfile: services/event_intelligence/Dockerfile
+    target: runtime
+  environment: &event-intelligence-environment
+    EVENT_INTELLIGENCE_DATABASE_URL: mysql+pymysql://event_intelligence:${EVENT_INTELLIGENCE_DB_PASSWORD:-local_event_intelligence}@db:3306/event_intelligence?charset=utf8mb4
+    EVENT_INTELLIGENCE_NATS_URL: nats://nats:4222
+    EVENT_INTELLIGENCE_EVENTS_URL: http://events:8002
+    EVENT_INTELLIGENCE_RULES_PATH: ${EVENT_INTELLIGENCE_RULES_PATH:-/workspace/config/event_intelligence/rules.v1.1.json}
+  volumes:
+    - ./config/event_intelligence:/workspace/config/event_intelligence:ro
+  init: true
+
+x-document-intelligence: &document-intelligence
+  build:
+    context: .
+    dockerfile: services/document_intelligence/Dockerfile
+    target: runtime
+  environment: &document-intelligence-environment
+    DOCUMENT_INTELLIGENCE_DATABASE_URL: mysql+pymysql://document_intelligence:${DOCUMENT_INTELLIGENCE_DB_PASSWORD:-local_document_intelligence}@db:3306/document_intelligence?charset=utf8mb4
+    DOCUMENT_INTELLIGENCE_NATS_URL: nats://nats:4222
+    DOCUMENT_INTELLIGENCE_EVENTS_URL: http://events:8002
+    DOCUMENT_INTELLIGENCE_RULES_PATH: ${DOCUMENT_INTELLIGENCE_RULES_PATH:-/workspace/config/document_intelligence/rules.crypto.v1.1.json}
+  volumes:
+    - ./config/document_intelligence:/workspace/config/document_intelligence:ro
+  init: true
+
+x-article-router: &article-router
+  build:
+    context: .
+    dockerfile: services/article_router/Dockerfile
+    target: runtime
+  environment: &article-router-environment
+    ARTICLE_ROUTER_DATABASE_URL: mysql+pymysql://article_routing:${ARTICLE_ROUTER_DB_PASSWORD:-local_article_router}@db:3306/article_routing?charset=utf8mb4
+    ARTICLE_ROUTER_NATS_URL: nats://nats:4222
+    ARTICLE_ROUTER_REVIEW_TOKEN: ${ARTICLE_ROUTER_REVIEW_TOKEN:-}
+    ARTICLE_ROUTER_EVENTS_URL: http://events:8002
+    ARTICLE_ROUTER_RULES_PATH: ${ARTICLE_ROUTER_RULES_PATH:-/workspace/config/article_router/rules.crypto.v1.json}
+  volumes:
+    - ./config/article_router:/workspace/config/article_router:ro
+  init: true
+
+x-event-research: &event-research
+  build:
+    context: .
+    dockerfile: services/event_research/Dockerfile
+    target: runtime
+  environment: &event-research-environment
+    EVENT_RESEARCH_DATABASE_URL: mysql+pymysql://event_research:${EVENT_RESEARCH_DB_PASSWORD:-local_event_research}@db:3306/event_research?charset=utf8mb4
+    EVENT_RESEARCH_NATS_URL: nats://nats:4222
+    EVENT_RESEARCH_EVENTS_URL: http://events:8002
+    EVENT_RESEARCH_RULES_PATH: ${EVENT_RESEARCH_RULES_PATH:-/workspace/config/event_research/rules.v2.json}
+    EVENT_RESEARCH_CORRELATION_RULES_PATH: ${EVENT_RESEARCH_CORRELATION_RULES_PATH:-/workspace/config/event_research/correlation.v1.json}
+  volumes:
+    - ./config/event_research:/workspace/config/event_research:ro
+  init: true
+
+
+x-article-semantic: &article-semantic
+  build:
+    context: .
+    dockerfile: services/article_semantic/Dockerfile
+    target: runtime
+  environment:
+    ARTICLE_SEMANTIC_DATABASE_URL: mysql+pymysql://article_semantic:${ARTICLE_SEMANTIC_DB_PASSWORD:-local_article_semantic}@db:3306/article_semantic?charset=utf8mb4
+    ARTICLE_SEMANTIC_NATS_URL: nats://nats:4222
+    ARTICLE_SEMANTIC_REVIEW_TOKEN: ${ARTICLE_SEMANTIC_REVIEW_TOKEN:-}
+    ARTICLE_SEMANTIC_WORKERS_ENABLED: ${ARTICLE_SEMANTIC_WORKERS_ENABLED:-true}
+  volumes:
+    - ./config/article_semantic:/workspace/config/article_semantic:ro
+    - ./.models/article_semantic:/models:ro
+  init: true
+
+services:
+  db:
+    image: mariadb:11.8.6
+    command: ["--max-allowed-packet=64M"]
+    environment:
+      MARIADB_DATABASE: ingestion
+      MARIADB_USER: ingestion
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:-local_ingestion}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+  nats-init:
+    image: nats:2.12.5-alpine
+    user: "0:0"
+    entrypoint: ["sh", "-c", "chown 1000:1000 /data"]
+    volumes:
+      - nats_data:/data
+    restart: "no"
+  nats:
+    depends_on:
+      nats-init:
+        condition: service_completed_successfully
+    image: nats:2.12.5-alpine
+    command: ["-js", "-sd", "/data", "-m", "8222"]
+    user: "1000:1000"
+    volumes:
+      - nats_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8222/healthz?js-enabled-only=true"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    restart: unless-stopped
+  migrate:
+    <<: *app
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  ingestion:
+    <<: *app
+    ports:
+      - "127.0.0.1:${INGESTION_PORT:-8000}:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  nats-test:
+    profiles: [test]
+    image: nats:2.12.5-alpine
+    user: "1000:1000"
+    command: ["-js", "-sd", "/tmp/jetstream-test", "-m", "8222"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8222/healthz?js-enabled-only=true"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+  tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/ingestion/Dockerfile
+      target: test
+    environment:
+      <<: *environment
+      TEST_DATABASE_URL: mysql+pymysql://ingestion:${MARIADB_PASSWORD:-local_ingestion}@db:3306/ingestion_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  enrichment-bootstrap:
+    <<: *enrichment
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      ENRICHMENT_DB_PASSWORD: ${ENRICHMENT_DB_PASSWORD:-local_enrichment}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  enrichment-migrate:
+    <<: *enrichment
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      enrichment-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  enrichment:
+    <<: *enrichment
+    ports:
+      - "127.0.0.1:${ENRICHMENT_PORT:-8001}:8001"
+    depends_on:
+      enrichment-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  enrichment-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/enrichment/Dockerfile
+      target: test
+    environment:
+      <<: *enrichment-environment
+      TEST_DATABASE_URL: mysql+pymysql://enrichment:${ENRICHMENT_DB_PASSWORD:-local_enrichment}@db:3306/enrichment_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      enrichment-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  events-bootstrap:
+    <<: *events
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      EVENTS_DB_PASSWORD: ${EVENTS_DB_PASSWORD:-local_events}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  events-migrate:
+    <<: *events
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      events-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  events:
+    <<: *events
+    ports:
+      - "127.0.0.1:${EVENTS_PORT:-8002}:8002"
+    depends_on:
+      events-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  events-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/events/Dockerfile
+      target: test
+    environment:
+      <<: *events-environment
+      TEST_DATABASE_URL: mysql+pymysql://events:${EVENTS_DB_PASSWORD:-local_events}@db:3306/events_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      events-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  market-data-bootstrap:
+    <<: *market-data
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      MARKET_DATA_DB_PASSWORD: ${MARKET_DATA_DB_PASSWORD:-local_market_data}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  market-data-migrate:
+    <<: *market-data
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      market-data-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  market-data:
+    <<: *market-data
+    ports:
+      - "127.0.0.1:${MARKET_DATA_PORT:-8003}:8003"
+    depends_on:
+      market-data-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8003/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  market-data-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/market_data/Dockerfile
+      target: test
+    environment:
+      <<: *market-data-environment
+      TEST_DATABASE_URL: mysql+pymysql://market_data:${MARKET_DATA_DB_PASSWORD:-local_market_data}@db:3306/market_data_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      market-data-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  market-context-bootstrap:
+    <<: *market-context
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      MARKET_CONTEXT_DB_PASSWORD: ${MARKET_CONTEXT_DB_PASSWORD:-local_market_context}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  market-context-migrate:
+    <<: *market-context
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      market-context-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  market-context:
+    <<: *market-context
+    ports:
+      - "127.0.0.1:${MARKET_CONTEXT_PORT:-8004}:8004"
+    depends_on:
+      market-context-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8004/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  market-context-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/market_context/Dockerfile
+      target: test
+    environment:
+      <<: *market-context-environment
+      TEST_DATABASE_URL: mysql+pymysql://market_context:${MARKET_CONTEXT_DB_PASSWORD:-local_market_context}@db:3306/market_context_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      market-context-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  llm-analysis-bootstrap:
+    <<: *llm-analysis
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      LLM_ANALYSIS_DB_PASSWORD: ${LLM_ANALYSIS_DB_PASSWORD:-local_llm_analysis}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  llm-analysis-migrate:
+    <<: *llm-analysis
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      llm-analysis-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  llm-analysis:
+    <<: *llm-analysis
+    ports:
+      - "127.0.0.1:${LLM_ANALYSIS_PORT:-8005}:8005"
+    depends_on:
+      llm-analysis-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8005/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  llm-analysis-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/llm_analysis/Dockerfile
+      target: test
+    environment:
+      LLM_ANALYSIS_DATABASE_URL: mysql+pymysql://llm_analysis:${LLM_ANALYSIS_DB_PASSWORD:-local_llm_analysis}@db:3306/llm_analysis_test?charset=utf8mb4
+      TEST_DATABASE_URL: mysql+pymysql://llm_analysis:${LLM_ANALYSIS_DB_PASSWORD:-local_llm_analysis}@db:3306/llm_analysis_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+      OPENAI_API_KEY: ""
+    depends_on:
+      llm-analysis-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  evaluation-bootstrap:
+    <<: *evaluation
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      EVALUATION_DB_PASSWORD: ${EVALUATION_DB_PASSWORD:-local_evaluation}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  evaluation-migrate:
+    <<: *evaluation
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      evaluation-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  evaluation:
+    <<: *evaluation
+    ports:
+      - "127.0.0.1:${EVALUATION_PORT:-8007}:8007"
+    depends_on:
+      evaluation-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8007/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  evaluation-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/evaluation/Dockerfile
+      target: test
+    environment:
+      EVALUATION_DATABASE_URL: mysql+pymysql://evaluation:${EVALUATION_DB_PASSWORD:-local_evaluation}@db:3306/evaluation_test?charset=utf8mb4
+      TEST_DATABASE_URL: mysql+pymysql://evaluation:${EVALUATION_DB_PASSWORD:-local_evaluation}@db:3306/evaluation_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      evaluation-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  event-intelligence-bootstrap:
+    <<: *event-intelligence
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      EVENT_INTELLIGENCE_DB_PASSWORD: ${EVENT_INTELLIGENCE_DB_PASSWORD:-local_event_intelligence}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  event-intelligence-migrate:
+    <<: *event-intelligence
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      event-intelligence-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  event-intelligence:
+    <<: *event-intelligence
+    ports:
+      - "127.0.0.1:${EVENT_INTELLIGENCE_PORT:-8008}:8008"
+    depends_on:
+      event-intelligence-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8008/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  event-intelligence-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/event_intelligence/Dockerfile
+      target: test
+    environment:
+      EVENT_INTELLIGENCE_DATABASE_URL: mysql+pymysql://event_intelligence:${EVENT_INTELLIGENCE_DB_PASSWORD:-local_event_intelligence}@db:3306/event_intelligence_test?charset=utf8mb4
+      TEST_DATABASE_URL: mysql+pymysql://event_intelligence:${EVENT_INTELLIGENCE_DB_PASSWORD:-local_event_intelligence}@db:3306/event_intelligence_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      event-intelligence-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  document-intelligence-bootstrap:
+    <<: *document-intelligence
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      DOCUMENT_INTELLIGENCE_DB_PASSWORD: ${DOCUMENT_INTELLIGENCE_DB_PASSWORD:-local_document_intelligence}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  document-intelligence-migrate:
+    <<: *document-intelligence
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      document-intelligence-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  document-intelligence:
+    <<: *document-intelligence
+    ports:
+      - "127.0.0.1:${DOCUMENT_INTELLIGENCE_PORT:-8009}:8009"
+    depends_on:
+      document-intelligence-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8009/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  document-intelligence-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/document_intelligence/Dockerfile
+      target: test
+    environment:
+      DOCUMENT_INTELLIGENCE_DATABASE_URL: mysql+pymysql://document_intelligence:${DOCUMENT_INTELLIGENCE_DB_PASSWORD:-local_document_intelligence}@db:3306/document_intelligence_test?charset=utf8mb4
+      TEST_DATABASE_URL: mysql+pymysql://document_intelligence:${DOCUMENT_INTELLIGENCE_DB_PASSWORD:-local_document_intelligence}@db:3306/document_intelligence_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      document-intelligence-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  article-router-bootstrap:
+    <<: *article-router
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      ARTICLE_ROUTER_DB_PASSWORD: ${ARTICLE_ROUTER_DB_PASSWORD:-local_article_router}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  article-router-migrate:
+    <<: *article-router
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      article-router-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  article-router:
+    <<: *article-router
+    ports:
+      - "127.0.0.1:${ARTICLE_ROUTER_PORT:-8010}:8010"
+    depends_on:
+      article-router-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  article-router-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/article_router/Dockerfile
+      target: test
+    environment:
+      ARTICLE_ROUTER_DATABASE_URL: mysql+pymysql://article_routing:${ARTICLE_ROUTER_DB_PASSWORD:-local_article_router}@db:3306/article_routing_test?charset=utf8mb4
+      TEST_DATABASE_URL: mysql+pymysql://article_routing:${ARTICLE_ROUTER_DB_PASSWORD:-local_article_router}@db:3306/article_routing_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      article-router-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  event-research-bootstrap:
+    <<: *event-research
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      EVENT_RESEARCH_DB_PASSWORD: ${EVENT_RESEARCH_DB_PASSWORD:-local_event_research}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  event-research-migrate:
+    <<: *event-research
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      event-research-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  event-research:
+    <<: *event-research
+    ports:
+      - "127.0.0.1:${EVENT_RESEARCH_PORT:-8011}:8011"
+    depends_on:
+      event-research-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8011/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  event-research-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/event_research/Dockerfile
+      target: test
+    environment:
+      EVENT_RESEARCH_DATABASE_URL: mysql+pymysql://event_research:${EVENT_RESEARCH_DB_PASSWORD:-local_event_research}@db:3306/event_research_test?charset=utf8mb4
+      TEST_DATABASE_URL: mysql+pymysql://event_research:${EVENT_RESEARCH_DB_PASSWORD:-local_event_research}@db:3306/event_research_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      event-research-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+
+  article-semantic-bootstrap:
+    <<: *article-semantic
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-local_root_only}
+      ARTICLE_SEMANTIC_DB_PASSWORD: ${ARTICLE_SEMANTIC_DB_PASSWORD:-local_article_semantic}
+    command: ["python", "-m", "app.storage.bootstrap"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+  article-semantic-migrate:
+    <<: *article-semantic
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      article-semantic-bootstrap:
+        condition: service_completed_successfully
+    restart: "no"
+  article-semantic:
+    <<: *article-semantic
+    ports:
+      - "127.0.0.1:${ARTICLE_SEMANTIC_PORT:-8012}:8012"
+    depends_on:
+      article-semantic-migrate:
+        condition: service_completed_successfully
+      nats:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8012/health', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  article-semantic-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/article_semantic/Dockerfile
+      target: test
+    environment:
+      ARTICLE_SEMANTIC_DATABASE_URL: mysql+pymysql://article_semantic:${ARTICLE_SEMANTIC_DB_PASSWORD:-local_article_semantic}@db:3306/article_semantic_test?charset=utf8mb4
+      TEST_DATABASE_URL: mysql+pymysql://article_semantic:${ARTICLE_SEMANTIC_DB_PASSWORD:-local_article_semantic}@db:3306/article_semantic_test?charset=utf8mb4
+      TEST_NATS_URL: nats://nats-test:4222
+    depends_on:
+      article-semantic-migrate:
+        condition: service_completed_successfully
+      nats-test:
+        condition: service_healthy
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: services/dashboard/Dockerfile
+      target: runtime
+    ports:
+      - "127.0.0.1:${DASHBOARD_PORT:-8006}:8006"
+    environment:
+      APP_NAME: Market Intelligence Research
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_URL: http://localhost:${DASHBOARD_PORT:-8006}
+      APP_KEY: ${DASHBOARD_APP_KEY:-}
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/html/storage/app/dashboard.sqlite
+      SESSION_DRIVER: file
+      CACHE_STORE: file
+      DASHBOARD_ADMIN_EMAIL: ${DASHBOARD_ADMIN_EMAIL:-research@local.test}
+      DASHBOARD_ADMIN_PASSWORD: ${DASHBOARD_ADMIN_PASSWORD:-}
+      INGESTION_URL: http://ingestion:8000
+      ENRICHMENT_URL: http://enrichment:8001
+      EVENTS_URL: http://events:8002
+      MARKET_DATA_URL: http://market-data:8003
+      MARKET_CONTEXT_URL: http://market-context:8004
+      LLM_ANALYSIS_URL: http://llm-analysis:8005
+      EVALUATION_URL: http://evaluation:8007
+      EVENT_INTELLIGENCE_URL: http://event-intelligence:8008
+      DOCUMENT_INTELLIGENCE_URL: http://document-intelligence:8009
+      ARTICLE_ROUTER_URL: http://article-router:8010
+      EVENT_RESEARCH_URL: http://event-research:8011
+      ARTICLE_SEMANTIC_URL: http://article-semantic:8012
+      ARTICLE_SEMANTIC_REVIEW_TOKEN: ${ARTICLE_SEMANTIC_REVIEW_TOKEN:-}
+      ARTICLE_ROUTER_REVIEW_TOKEN: ${ARTICLE_ROUTER_REVIEW_TOKEN:-}
+    volumes:
+      - dashboard_data:/var/www/html/storage
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1:8006/up') === false ? 1 : 0);"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  dashboard-tests:
+    profiles: [test]
+    build:
+      context: .
+      dockerfile: services/dashboard/Dockerfile
+      target: test
+    environment:
+      APP_KEY: base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+
+
+volumes:
+  dashboard_data:
+  mariadb_data:
+  nats_data:

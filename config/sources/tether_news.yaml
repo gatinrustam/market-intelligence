@@ -1,0 +1,29 @@
+{
+  "id": "tether_news",
+  "name": "Tether",
+  "enabled": true,
+  "max_items_per_poll": 20,
+  "domain": "crypto",
+  "source_class": "official_news",
+  "source_quality": "official_primary",
+  "poll_priority": "normal",
+  "source_role": "stablecoin_issuer",
+  "language": "en",
+  "expected_content_types": [
+    "stablecoin_product_change",
+    "stablecoin_infrastructure"
+  ],
+  "connector": {
+    "type": "rss",
+    "url": "https://tether.io/feed/"
+  },
+  "poll": {
+    "interval_seconds": 300
+  },
+  "classification": {
+    "categories": [
+      "crypto",
+      "stablecoin"
+    ]
+  }
+}

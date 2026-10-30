@@ -1,0 +1,32 @@
+{
+  "id": "coinbase_blog",
+  "name": "Coinbase",
+  "enabled": true,
+  "max_items_per_poll": 20,
+  "domain": "crypto",
+  "source_class": "official_blog",
+  "source_quality": "official_primary",
+  "poll_priority": "normal",
+  "source_role": "exchange",
+  "language": "en",
+  "expected_content_types": [
+    "institutional_crypto",
+    "crypto_derivatives",
+    "custody"
+  ],
+  "connector": {
+    "type": "announcement_page",
+    "url": "https://www.coinbase.com/blog",
+    "format": "coinbase"
+  },
+  "poll": {
+    "interval_seconds": 300
+  },
+  "classification": {
+    "categories": [
+      "crypto",
+      "exchange",
+      "institutional"
+    ]
+  }
+}

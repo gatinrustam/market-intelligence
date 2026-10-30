@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "message_id": "07348aad-9c18-4719-91b8-2e24361e2195",
+  "event": {
+    "id": "d9b482b8-af7e-4fc9-970a-52b30196142e",
+    "revision": 1,
+    "change_type": "created"
+  },
+  "taxonomy": {
+    "version": "1.0",
+    "event_type": "central_bank.policy_statement",
+    "topics": [
+      "monetary_policy",
+      "interest_rates"
+    ],
+    "classification_basis": "exact_rule"
+  },
+  "content": {
+    "canonical_title": "Federal Reserve issues FOMC statement"
+  },
+  "actors": [
+    {
+      "entity_id": "organization:federal_reserve",
+      "entity_type": "organization",
+      "name": "Federal Reserve",
+      "role": "issuer",
+      "resolution": "canonical"
+    }
+  ],
+  "jurisdictions": [
+    "US"
+  ],
+  "time": {
+    "event_time": null,
+    "event_time_precision": "unknown",
+    "event_time_source": "not_extracted",
+    "earliest_source_published_at": "2026-04-29T18:00:00+00:00",
+    "latest_source_published_at": "2026-04-29T18:00:00+00:00",
+    "first_detected_at": "2026-09-19T19:50:19.274982+00:00",
+    "last_updated_at": "2026-09-19T19:50:19.274982+00:00"
+  },
+  "lifecycle": {
+    "status": "detected"
+  },
+  "evidence": {
+    "quality": "high",
+    "document_count": 1,
+    "independent_source_count": 1,
+    "documents": [
+      {
+        "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+        "input_message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+        "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56",
+        "source_id": "fed_monetary_policy",
+        "relation": "primary",
+        "document_status": "ready",
+        "content_chars": 2309,
+        "quality": "high",
+        "extraction_run_id": "fd28abc8-1ae1-4add-872b-737bcfa22611"
+      }
+    ]
+  },
+  "extraction": {
+    "extractor": "rule_based",
+    "extractor_version": "1.0",
+    "ruleset_version": "1.0",
+    "entity_registry_version": "1.0",
+    "matched_rule_ids": [
+      "fed.fomc_statement"
+    ],
+    "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+    "core_version": "1.0"
+  },
+  "correlation": {
+    "method": "new_event",
+    "exact_event_key": null
+  }
+}

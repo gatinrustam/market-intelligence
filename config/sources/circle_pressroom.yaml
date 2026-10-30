@@ -1,0 +1,31 @@
+{
+  "id": "circle_pressroom",
+  "name": "Circle",
+  "enabled": true,
+  "max_items_per_poll": 20,
+  "domain": "crypto",
+  "source_class": "pressroom",
+  "source_quality": "official_primary",
+  "poll_priority": "normal",
+  "source_role": "stablecoin_issuer",
+  "language": "en",
+  "expected_content_types": [
+    "stablecoin_infrastructure",
+    "institutional_crypto"
+  ],
+  "connector": {
+    "type": "announcement_page",
+    "url": "https://www.circle.com/pressroom",
+    "format": "circle"
+  },
+  "poll": {
+    "interval_seconds": 300
+  },
+  "classification": {
+    "categories": [
+      "crypto",
+      "stablecoin",
+      "infrastructure"
+    ]
+  }
+}

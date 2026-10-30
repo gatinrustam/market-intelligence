@@ -1,0 +1,65 @@
+sources:
+  fed_monetary_policy:
+    mode: when_needed
+    minimum_body_characters: 240
+    allowed_hosts: [federalreserve.gov, www.federalreserve.gov]
+  sec_press_releases:
+    mode: when_needed
+    minimum_body_characters: 240
+    allowed_hosts: [sec.gov, www.sec.gov]
+  ecb_press:
+    mode: when_needed
+    minimum_body_characters: 240
+    allowed_hosts: [ecb.europa.eu, www.ecb.europa.eu]
+  cbr_events_ru:
+    mode: when_needed
+    minimum_body_characters: 240
+    allowed_hosts: [cbr.ru, www.cbr.ru]
+  cbr_press_ru:
+    mode: when_needed
+    minimum_body_characters: 240
+    allowed_hosts: [cbr.ru, www.cbr.ru]
+  moex_news_ru:
+    mode: when_needed
+    minimum_body_characters: 240
+    allowed_hosts: [moex.com, www.moex.com]
+  binance_listings:
+    mode: always
+    minimum_body_characters: 240
+    allowed_hosts: [www.binance.com]
+  binance_delistings:
+    mode: always
+    minimum_body_characters: 240
+    allowed_hosts: [www.binance.com]
+  binance_maintenance:
+    mode: always
+    minimum_body_characters: 240
+    allowed_hosts: [www.binance.com]
+  binance_news:
+    mode: always
+    minimum_body_characters: 240
+    allowed_hosts: [www.binance.com]
+  kraken_status_incidents:
+    mode: never
+    minimum_body_characters: 240
+    allowed_hosts: [status.kraken.com]
+  kraken_status_maintenance:
+    mode: never
+    minimum_body_characters: 240
+    allowed_hosts: [status.kraken.com]
+  coinbase_blog:
+    mode: always
+    minimum_body_characters: 240
+    allowed_hosts: [www.coinbase.com]
+  tether_news:
+    mode: when_needed
+    minimum_body_characters: 240
+    allowed_hosts: [tether.io]
+  circle_pressroom:
+    mode: always
+    minimum_body_characters: 240
+    allowed_hosts: [www.circle.com]
+  sec_strategy_8k:
+    mode: always
+    minimum_body_characters: 240
+    allowed_hosts: [www.sec.gov]

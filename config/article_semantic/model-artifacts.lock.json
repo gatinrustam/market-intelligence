@@ -1,0 +1,70 @@
+{
+  "bge/config.json": {
+    "sha256": "26159e7ad065073448460117eb24b7a4572f6f4e78eadff65dc0a11c052449fa",
+    "bytes": 687
+  },
+  "bge/config_sentence_transformers.json": {
+    "sha256": "1eef72430e7194a1e59680e635aed81ffa083f05668dbc5bb1c56c04c0999c38",
+    "bytes": 123
+  },
+  "bge/modules.json": {
+    "sha256": "84e40c8e006c9b1d6c122e02cba9b02458120b5fb0c87b746c41e0207cf642cf",
+    "bytes": 349
+  },
+  "bge/sentence_bert_config.json": {
+    "sha256": "eb9b44b13c0f52a3b3685c3b1cbdea1ba8b04bea123b98f61610048940776eb1",
+    "bytes": 54
+  },
+  "bge/sentencepiece.bpe.model": {
+    "sha256": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+    "bytes": 5069051
+  },
+  "bge/special_tokens_map.json": {
+    "sha256": "8c785abebea9ae3257b61681b4e6fd8365ceafde980c21970d001e834cf10835",
+    "bytes": 964
+  },
+  "bge/tokenizer.json": {
+    "sha256": "21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+    "bytes": 17098108
+  },
+  "bge/tokenizer_config.json": {
+    "sha256": "a62b2b6784f990259fddef5f16388693a8043be4f69179e6a5257eeb3f9abac4",
+    "bytes": 444
+  },
+  "bge/1_Pooling/config.json": {
+    "sha256": "e54c164a07274f2eb45bb724f54a79d1efcc90c41573887cd9a29aeee0597352",
+    "bytes": 191
+  },
+  "bge/pytorch_model.bin": {
+    "sha256": "b5e0ce3470abf5ef3831aa1bd5553b486803e83251590ab7ff35a117cf6aad38",
+    "bytes": 2271145830
+  },
+  "gliner/gliner_config.json": {
+    "sha256": "e25f61d91620df84aae8076811ee592e926e94d341b82e7bc1be359718f83017",
+    "bytes": 477
+  },
+  "gliner/model.safetensors": {
+    "sha256": "2100142f31627531497850659dcb3821c99d5e71c08a8e01a98e4b11ef32a199",
+    "bytes": 1155830112
+  },
+  "gliner_backbone/config.json": {
+    "sha256": "bcffcd343dc5efa5ef2d5a58d2b405eed108f01cc45b48d0a907b333ec41801f",
+    "bytes": 579
+  },
+  "gliner_backbone/tokenizer_config.json": {
+    "sha256": "3f3978e0c036f2c2588cac34a6047cbb0af0b0dc1814254e291028529805496d",
+    "bytes": 52
+  },
+  "gliner_backbone/spm.model": {
+    "sha256": "13c8d666d62a7bc4ac8f040aab68e942c861f93303156cc28f5c7e885d86d6e3",
+    "bytes": 4305025
+  },
+  "bge/model.safetensors": {
+    "bytes": 1135554440,
+    "sha256": "8bad2f6550466388b436d642c382ef54fd2052f79841c3b149700bba422d4fe8"
+  },
+  "bge/cpu_int8_per_channel.pt": {
+    "bytes": 848207270,
+    "sha256": "30ba401e590463584607ed3fae0786ffd5b811e11d186ca20b85ca176283066c"
+  }
+}

@@ -1,0 +1,12 @@
+id: sec_press_releases
+name: SEC Press Releases
+enabled: true
+connector:
+  type: rss
+  url: https://www.sec.gov/news/pressreleases.rss
+poll:
+  interval_seconds: 120
+classification:
+  categories: [regulation]
+priority: high
+language: en

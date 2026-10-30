@@ -1,0 +1,439 @@
+{
+  "Fed": {
+    "event": {
+      "actors": [
+        {
+          "entity_id": "organization:federal_reserve",
+          "entity_type": "organization",
+          "name": "Federal Reserve",
+          "resolution": "canonical",
+          "role": "issuer"
+        }
+      ],
+      "content": {
+        "canonical_title": "Federal Reserve issues FOMC statement"
+      },
+      "correlation": {
+        "exact_event_key": null,
+        "method": "new_event"
+      },
+      "event": {
+        "change_type": "created",
+        "id": "d9b482b8-af7e-4fc9-970a-52b30196142e",
+        "revision": 1
+      },
+      "evidence": {
+        "document_count": 1,
+        "documents": [
+          {
+            "content_chars": 2309,
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "document_status": "ready",
+            "extraction_run_id": "fd28abc8-1ae1-4add-872b-737bcfa22611",
+            "input_message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+            "quality": "high",
+            "relation": "primary",
+            "source_id": "fed_monetary_policy",
+            "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56"
+          }
+        ],
+        "independent_source_count": 1,
+        "quality": "high"
+      },
+      "extraction": {
+        "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+        "core_version": "1.0",
+        "entity_registry_version": "1.0",
+        "extractor": "rule_based",
+        "extractor_version": "1.0",
+        "matched_rule_ids": [
+          "fed.fomc_statement"
+        ],
+        "ruleset_version": "1.0"
+      },
+      "jurisdictions": [
+        "US"
+      ],
+      "lifecycle": {
+        "status": "detected"
+      },
+      "message_id": "07348aad-9c18-4719-91b8-2e24361e2195",
+      "schema_version": "1.0",
+      "taxonomy": {
+        "classification_basis": "exact_rule",
+        "event_type": "central_bank.policy_statement",
+        "topics": [
+          "monetary_policy",
+          "interest_rates"
+        ],
+        "version": "1.0"
+      },
+      "time": {
+        "earliest_source_published_at": "2026-04-29T18:00:00+00:00",
+        "event_time": null,
+        "event_time_precision": "unknown",
+        "event_time_source": "not_extracted",
+        "first_detected_at": "2026-09-19T19:50:19.274982+00:00",
+        "last_updated_at": "2026-09-19T19:50:19.274982+00:00",
+        "latest_source_published_at": "2026-04-29T18:00:00+00:00"
+      }
+    },
+    "documents": [
+      {
+        "classification": {
+          "categories": [
+            "macro",
+            "monetary_policy"
+          ]
+        },
+        "content": {
+          "body": "April 29, 2026\nFederal Reserve issues FOMC statement\nFor release at 2:00 p.m. EDT\nRecent indicators suggest that economic activity has been expanding at a solid pace. Job gains have remained low, on average, and the unemployment rate has been little changed in recent months. Inflation is elevated, in part reflecting the recent increase in global energy prices.\nThe Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run. Developments in the Middle East are contributing to a high level of uncertainty about the economic outlook. The Committee is attentive to the risks to both sides of its dual mandate.\nIn support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3‑1/2 to 3‑3/4 percent. In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective.\nIn assessing the appropriate stance of monetary policy, the Committee will continue to monitor the implications of incoming information for the economic outlook. The Committee would be prepared to adjust the stance of monetary policy as appropriate if risks emerge that could impede the attainment of the Committee's goals. The Committee's assessments will take into account a wide range of information, including readings on labor market conditions, inflation pressures and inflation expectations, and financial and international developments.\nVoting for the monetary policy action were Jerome H. Powell, Chair; John C. Williams, Vice Chair; Michael S. Barr; Michelle W. Bowman; Lisa D. Cook; Philip N. Jefferson; Anna Paulson; and Christopher J. Waller. Voting against this action were Stephen I. Miran, who preferred to lower the target range for the federal funds rate by 1/4 percentage point at this meeting; and Beth M. Hammack, Neel Kashkari, and Lorie K. Logan, who supported maintaining the target range for the federal funds rate but did not support inclusion of an easing bias in the statement at this time.\nFor media inquiries, please email [email protected] or call 202-452-2955.",
+          "body_length": 2309,
+          "content_source": "html",
+          "extracted_title": "Federal Reserve issues FOMC statement",
+          "language": "en",
+          "title": "Federal Reserve issues FOMC statement"
+        },
+        "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+        "enrichment": {
+          "failure_reason": null,
+          "reason": "rss_body_equals_title",
+          "required": true,
+          "status": "ready"
+        },
+        "extraction": {
+          "error_reason": null,
+          "library_version": "2.2.0",
+          "method": "trafilatura",
+          "processor_version": "1.0",
+          "status": "success",
+          "warnings": []
+        },
+        "fetch": {
+          "attempt_count": 1,
+          "content_type": "text/html",
+          "error_reason": null,
+          "fetched_at": "2026-09-19T19:26:10.136887+00:00",
+          "final_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "http_status": 200,
+          "redirect_count": 0,
+          "requested_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "snapshot_id": "e9f1843f-fe41-444b-8fec-72685cf3dbfe",
+          "status": "success"
+        },
+        "integrity": {
+          "content_hash": "ab2747f2bcd1ce0ce1c920a1bd430b2cc35e1b152ba86818a0360476d2875cf8"
+        },
+        "lineage": {
+          "input_content_hash": "da96cfa5123b53bb100c4c7b46d7ee58017390c8cb048727a47244ffa91f28ee",
+          "input_subject": "news.raw.v1",
+          "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56"
+        },
+        "message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+        "schema_version": "1.0",
+        "source": {
+          "external_id": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "id": "fed_monetary_policy",
+          "type": "rss",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm"
+        },
+        "timestamps": {
+          "enriched_at": "2026-09-19T19:26:10.680215+00:00",
+          "ingestion_delay_seconds": 12357637.062893,
+          "published_at": "2026-04-29T18:00:00+00:00",
+          "received_at": "2026-09-19T18:40:37.062893+00:00"
+        }
+      }
+    ],
+    "previous": null
+  },
+  "ECB": {
+    "event": {
+      "actors": [
+        {
+          "entity_id": "organization:ecb",
+          "entity_type": "organization",
+          "name": "European Central Bank",
+          "resolution": "canonical",
+          "role": "issuer"
+        }
+      ],
+      "content": {
+        "canonical_title": "ECB Consumer Expectations Survey results – August 2026"
+      },
+      "correlation": {
+        "exact_event_key": null,
+        "method": "new_event"
+      },
+      "event": {
+        "change_type": "created",
+        "id": "bf6fd01f-7923-4c63-a8ca-5d8a20601d74",
+        "revision": 1
+      },
+      "evidence": {
+        "document_count": 1,
+        "documents": [
+          {
+            "content_chars": 5270,
+            "document_id": "d77f4477-848e-431c-990b-1e31ddba00d6",
+            "document_status": "ready",
+            "extraction_run_id": "849b78e2-01a3-4854-a3cb-c1c3124dab28",
+            "input_message_id": "fa944b7c-70aa-40f7-b2b0-54b04178eee6",
+            "quality": "high",
+            "relation": "primary",
+            "source_id": "ecb_press",
+            "source_message_id": "e56f07ab-e2ff-46a5-8d3c-b80f9162ccc9"
+          }
+        ],
+        "independent_source_count": 1,
+        "quality": "high"
+      },
+      "extraction": {
+        "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+        "core_version": "1.0",
+        "entity_registry_version": "1.0",
+        "extractor": "rule_based",
+        "extractor_version": "1.0",
+        "matched_rule_ids": [
+          "fallback.ecb_press"
+        ],
+        "ruleset_version": "1.0"
+      },
+      "jurisdictions": [
+        "EU"
+      ],
+      "lifecycle": {
+        "status": "detected"
+      },
+      "message_id": "6777afe9-dfa8-4937-a2ed-512e3ab2917c",
+      "schema_version": "1.0",
+      "taxonomy": {
+        "classification_basis": "fallback",
+        "event_type": "central_bank.other",
+        "topics": [],
+        "version": "1.0"
+      },
+      "time": {
+        "earliest_source_published_at": "2026-09-18T08:00:00+00:00",
+        "event_time": null,
+        "event_time_precision": "unknown",
+        "event_time_source": "not_extracted",
+        "first_detected_at": "2026-09-19T19:50:19.063150+00:00",
+        "last_updated_at": "2026-09-19T19:50:19.063150+00:00",
+        "latest_source_published_at": "2026-09-18T08:00:00+00:00"
+      }
+    },
+    "documents": [
+      {
+        "classification": {
+          "categories": [
+            "macro",
+            "monetary_policy"
+          ]
+        },
+        "content": {
+          "body": "- PRESS RELEASE\nECB Consumer Expectations Survey results – August 2026\n18 September 2026\n- median consumer perceptions of inflation over the past 12 months were unchanged, while median expectations for inflation increased across all horizons;\n- expectations for nominal income growth over the next 12 months were unchanged, as were expectations for spending growth over the next 12 months;\n- expectations for economic growth over the next 12 months were unchanged, while the expected unemployment rate in 12 months’ time decreased;\n- expectations for growth in the price of homes over the next 12 months were unchanged, as were expectations for mortgage interest rates in 12 months’ time.\nInflation\nIn August the median rate of perceived inflation over the previous 12 months was 3.5%, the same as in July. Median expectations for inflation over the next 12 months increased to 3.0% from 2.9% in July, while median expectations for inflation three years ahead increased to 2.9% from 2.7% in July and median expectations for inflation five years ahead increased to 2.5% from 2.4% in July. Uncertainty about expectations for inflation over the next 12 months decreased, but remained higher than the level prevailing before the start of the conflict in the Middle East. Respondents in the bottom income quintile continued to report higher inflation perceptions and expectations, on average, than those in the top quintile. Younger respondents (aged 18-34) continued to report lower inflation perceptions and expectations than older respondents (aged 35-54 and 55-70).\nIncome and consumption\nConsumers’ expectations for nominal income growth over the next 12 months were unchanged at 1.0%. As in previous months, expectations were on average higher in the bottom income quintile (1.7%) than in the top quintile (0.7%). Perceived nominal spending growth over the previous 12 months increased in August to 5.2% from 5.1% in July, while expected nominal spending growth over the next 12 months remained unchanged at 3.6%.\nEconomic growth and labour market\nExpectations for economic growth over the next 12 months were unchanged at -1.2% in August. Expectations for the unemployment rate 12 months ahead decreased to 11.0% from 11.2% in July. As observed in previous months, households in the bottom income quintile expected the highest unemployment rate 12 months ahead (13.4%), while households in the top income quintile expected the lowest rate (9.4%). Consumers continued to expect the future unemployment rate to be only slightly higher than the perceived current unemployment rate (10.5%), suggesting a broadly stable labour market outlook.\nEconomic growth and labour market results\nHousing and credit access\nConsumers expected the price of their home to increase by 3.4% over the next 12 months, unchanged from June. As in previous months, expectations for home price growth over the next 12 months remained on average higher in the lowest income quintile (4.0%) than in the highest income quintile (3.2%). Expectations for mortgage interest rates in 12 months’ time were also unchanged from July, at 4.9%. As in previous months, households in the top income quintile expected the lowest mortgage interest rates 12 months ahead (4.4%), while those in the bottom quintile expected the highest rates (5.7%). The net percentage of households reporting a tightening (relative to those reporting an easing) of access to credit over the previous 12 months declined compared with July, as did the net percentage of households expecting tighter credit conditions over the next 12 months (relative to those expecting an easing).\nHousing and credit access results\nThe release of the Consumer Expectations Survey (CES) results for September is scheduled for 23 October 2026.\nFor media queries, please contact: Benoit Deeg, tel.: +49 172 1683704.\nNotes\n- The fieldwork for the latest CES wave was carried out between 6 and 24 August 2026.\n- The main aggregate results for individual countries and the euro area are published on the ECB Data Portal and on the ECB’s website every month.\n- Unless otherwise indicated, the statistics presented in this press release refer to the 2% winsorised mean. For further details, see ECB Consumer Expectations Survey – guide to the computation of aggregate statistics.\n- The CES is a monthly online survey of, currently, around 19,000 adult consumers (i.e. aged 18 or over) from 11 euro area countries: Belgium, Germany, Ireland, Greece, Spain, France, Italy, the Netherlands, Austria, Portugal and Finland. The results are used for policy analysis and complement other data sources used by the ECB.\n- Further information about the survey and the data collected is available on the CES web page. Detailed information can also be found in the following two publications: Bańkowska, K. et al., “ECB Consumer Expectations Survey: an overview and first evaluation”, Occasional Paper Series, No 287, ECB, Frankfurt am Main, December 2021; and Georgarakos, D. and Kenny, G., “Household spending and fiscal support during the COVID-19 pandemic: Insights from a new consumer survey”, Journal of Monetary Economics, Vol. 129, Supplement, July 2022, pp. S1-S14.\n- The survey results do not represent the views of the ECB’s decision-making bodies or staff.",
+          "body_length": 5270,
+          "content_source": "html",
+          "extracted_title": "ECB Consumer Expectations Survey results – August 2026",
+          "language": "en",
+          "title": "ECB Consumer Expectations Survey results – August 2026"
+        },
+        "document_id": "d77f4477-848e-431c-990b-1e31ddba00d6",
+        "enrichment": {
+          "failure_reason": null,
+          "reason": "rss_body_empty",
+          "required": true,
+          "status": "ready"
+        },
+        "extraction": {
+          "error_reason": null,
+          "library_version": "2.2.0",
+          "method": "trafilatura",
+          "processor_version": "1.0",
+          "status": "success",
+          "warnings": []
+        },
+        "fetch": {
+          "attempt_count": 1,
+          "content_type": "text/html",
+          "error_reason": null,
+          "fetched_at": "2026-09-19T19:25:33.067422+00:00",
+          "final_url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260918~295b3ab978.en.html",
+          "http_status": 200,
+          "redirect_count": 0,
+          "requested_url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260918~295b3ab978.en.html",
+          "snapshot_id": "9d581d0a-5313-4e0a-af20-e2211063bcf5",
+          "status": "success"
+        },
+        "integrity": {
+          "content_hash": "3043cd68c558e0fe8865777d0b29d4f586822519a64a282b0d5265f9ccf329ef"
+        },
+        "lineage": {
+          "input_content_hash": "9edb67ba37bcc7e80287063c1daefa4e52ed554cc9786c9a00db0b9b49163506",
+          "input_subject": "news.raw.v1",
+          "source_message_id": "e56f07ab-e2ff-46a5-8d3c-b80f9162ccc9"
+        },
+        "message_id": "fa944b7c-70aa-40f7-b2b0-54b04178eee6",
+        "schema_version": "1.0",
+        "source": {
+          "external_id": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260918~295b3ab978.en.html",
+          "id": "ecb_press",
+          "type": "rss",
+          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260918~295b3ab978.en.html"
+        },
+        "timestamps": {
+          "enriched_at": "2026-09-19T19:25:33.985204+00:00",
+          "ingestion_delay_seconds": 124837.142907,
+          "published_at": "2026-09-18T08:00:00+00:00",
+          "received_at": "2026-09-19T18:40:37.142907+00:00"
+        }
+      }
+    ],
+    "previous": null
+  },
+  "SEC": {
+    "event": {
+      "actors": [
+        {
+          "entity_id": "organization:sec",
+          "entity_type": "organization",
+          "name": "Securities and Exchange Commission",
+          "resolution": "canonical",
+          "role": "issuer"
+        }
+      ],
+      "content": {
+        "canonical_title": "SEC Issues “Innovation Exemption” to Facilitate the Trading of Tokenized NMS Stock and Request for Comment"
+      },
+      "correlation": {
+        "exact_event_key": null,
+        "method": "new_event"
+      },
+      "event": {
+        "change_type": "created",
+        "id": "006e85e2-6047-46f8-8d24-59fc133bd458",
+        "revision": 1
+      },
+      "evidence": {
+        "document_count": 1,
+        "documents": [
+          {
+            "content_chars": 194,
+            "document_id": "64a32d7e-c3ae-4eb1-a1d4-5f37541e83e9",
+            "document_status": "partial",
+            "extraction_run_id": "abfd0aac-44b5-4219-9aa4-93fb4727657e",
+            "input_message_id": "e7c0c7db-6698-454a-968f-01182e30d250",
+            "quality": "medium",
+            "relation": "primary",
+            "source_id": "sec_press_releases",
+            "source_message_id": "20a1835b-456f-4405-b1fe-4f8fe73c73ab"
+          }
+        ],
+        "independent_source_count": 1,
+        "quality": "medium"
+      },
+      "extraction": {
+        "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+        "core_version": "1.0",
+        "entity_registry_version": "1.0",
+        "extractor": "rule_based",
+        "extractor_version": "1.0",
+        "matched_rule_ids": [
+          "fallback.sec_press_releases"
+        ],
+        "ruleset_version": "1.0"
+      },
+      "jurisdictions": [
+        "US"
+      ],
+      "lifecycle": {
+        "status": "detected"
+      },
+      "message_id": "0adcb199-2230-4f7e-9516-b4e0ba665778",
+      "schema_version": "1.0",
+      "taxonomy": {
+        "classification_basis": "fallback",
+        "event_type": "regulator.other",
+        "topics": [],
+        "version": "1.0"
+      },
+      "time": {
+        "earliest_source_published_at": "2026-09-17T12:55:00+00:00",
+        "event_time": null,
+        "event_time_precision": "unknown",
+        "event_time_source": "not_extracted",
+        "first_detected_at": "2026-09-19T19:50:19.178836+00:00",
+        "last_updated_at": "2026-09-19T19:50:19.178836+00:00",
+        "latest_source_published_at": "2026-09-17T12:55:00+00:00"
+      }
+    },
+    "documents": [
+      {
+        "classification": {
+          "categories": [
+            "regulation"
+          ]
+        },
+        "content": {
+          "body": "The SEC is taking a significant step forward, within its statutory authority, to bring America’s capital markets into the digital age by facilitating onchain trading of certain tokenized stocks.",
+          "body_length": 194,
+          "content_source": "rss",
+          "extracted_title": null,
+          "language": "en",
+          "title": "SEC Issues “Innovation Exemption” to Facilitate the Trading of Tokenized NMS Stock and Request for Comment"
+        },
+        "document_id": "64a32d7e-c3ae-4eb1-a1d4-5f37541e83e9",
+        "enrichment": {
+          "failure_reason": "http_403",
+          "reason": "rss_body_short",
+          "required": true,
+          "status": "partial"
+        },
+        "extraction": {
+          "error_reason": null,
+          "library_version": "1.0",
+          "method": "rss",
+          "processor_version": "1.0",
+          "status": "not_requested",
+          "warnings": []
+        },
+        "fetch": {
+          "attempt_count": 1,
+          "content_type": "text/html",
+          "error_reason": "http_403",
+          "fetched_at": null,
+          "final_url": "https://www.sec.gov/newsroom/press-releases/2026-90-sec-issues-innovation-exemption-facilitate-trading-tokenized-nms-stock-request-comment",
+          "http_status": 403,
+          "redirect_count": 0,
+          "requested_url": "https://www.sec.gov/newsroom/press-releases/2026-90-sec-issues-innovation-exemption-facilitate-trading-tokenized-nms-stock-request-comment",
+          "snapshot_id": null,
+          "status": "failed"
+        },
+        "integrity": {
+          "content_hash": "b01d493e0a350bccea8620c12149eb7e1e81322bbc62c55d9a9a677ba1850149"
+        },
+        "lineage": {
+          "input_content_hash": "fd9ac82b66acd6c9e0052d28f3b634b549cbf62a8e914afbf9633395c27e7371",
+          "input_subject": "news.raw.v1",
+          "source_message_id": "20a1835b-456f-4405-b1fe-4f8fe73c73ab"
+        },
+        "message_id": "e7c0c7db-6698-454a-968f-01182e30d250",
+        "schema_version": "1.0",
+        "source": {
+          "external_id": "29d9b3fa-0eed-432e-850c-0978c0f4c49b",
+          "id": "sec_press_releases",
+          "type": "rss",
+          "url": "https://www.sec.gov/newsroom/press-releases/2026-90-sec-issues-innovation-exemption-facilitate-trading-tokenized-nms-stock-request-comment"
+        },
+        "timestamps": {
+          "enriched_at": "2026-09-19T19:25:55.363300+00:00",
+          "ingestion_delay_seconds": 193537.085739,
+          "published_at": "2026-09-17T12:55:00+00:00",
+          "received_at": "2026-09-19T18:40:37.085739+00:00"
+        }
+      }
+    ],
+    "previous": null
+  }
+}

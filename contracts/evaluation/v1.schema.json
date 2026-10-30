@@ -1,0 +1,1733 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "message_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "evaluation_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "analysis_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "event_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "event_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "model": {
+          "type": "string"
+        },
+        "prompt_version": {
+          "type": "string"
+        },
+        "input_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "analysis_id",
+        "event_id",
+        "event_revision",
+        "model",
+        "prompt_version",
+        "input_hash"
+      ],
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "const": "BTCUSDT"
+        }
+      },
+      "required": [
+        "symbol"
+      ],
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "decision_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "decision_basis": {
+          "enum": [
+            "live_observed",
+            "source_published_at"
+          ]
+        },
+        "historical_simulation": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "decision_at",
+        "decision_basis",
+        "historical_simulation"
+      ],
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "origin": {
+          "enum": [
+            "model",
+            "fixture"
+          ]
+        },
+        "fixture_label": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "context_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "event_type": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "outcome_policy": {
+          "const": "causal_asof_fresh_v1"
+        }
+      },
+      "required": [
+        "origin",
+        "fixture_label",
+        "context_id",
+        "event_type",
+        "sources",
+        "outcome_policy"
+      ],
+      "additionalProperties": false
+    },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": "movement_buckets_v1"
+        },
+        "neutral_threshold_pct": {
+          "type": "string",
+          "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+          "maxLength": 100
+        },
+        "impact_thresholds_pct": {
+          "type": "object",
+          "properties": {
+            "negligible": {
+              "type": "string",
+              "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+              "maxLength": 100
+            },
+            "small": {
+              "type": "string",
+              "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+              "maxLength": 100
+            },
+            "moderate": {
+              "type": "string",
+              "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+              "maxLength": 100
+            }
+          },
+          "required": [
+            "negligible",
+            "small",
+            "moderate"
+          ],
+          "additionalProperties": false
+        },
+        "return_decimal_places": {
+          "const": 12
+        },
+        "rounding": {
+          "const": "ROUND_HALF_EVEN"
+        }
+      },
+      "required": [
+        "version",
+        "neutral_threshold_pct",
+        "impact_thresholds_pct",
+        "return_decimal_places",
+        "rounding"
+      ],
+      "additionalProperties": false
+    },
+    "policy_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "results": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "object",
+          "properties": {
+            "horizon_seconds": {
+              "const": 60
+            },
+            "forecast": {
+              "type": "object",
+              "properties": {
+                "direction": {
+                  "enum": [
+                    "up",
+                    "down",
+                    "neutral",
+                    "unclear"
+                  ]
+                },
+                "impact": {
+                  "enum": [
+                    "negligible",
+                    "small",
+                    "moderate",
+                    "large"
+                  ]
+                },
+                "confidence": {
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                }
+              },
+              "required": [
+                "direction",
+                "impact",
+                "confidence"
+              ],
+              "additionalProperties": false
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "evaluated",
+                "unavailable",
+                "not_scored"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "actual": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "anchor_price": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "anchor_price_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "outcome_price": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "outcome_price_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "target_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "resolution": {
+                      "enum": [
+                        "realtime_1s",
+                        "candle_1m"
+                      ]
+                    },
+                    "return_pct": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "absolute_return_pct": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "direction": {
+                      "enum": [
+                        "up",
+                        "down",
+                        "neutral"
+                      ]
+                    },
+                    "impact": {
+                      "enum": [
+                        "negligible",
+                        "small",
+                        "moderate",
+                        "large"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "anchor_price",
+                    "anchor_price_at",
+                    "outcome_price",
+                    "outcome_price_at",
+                    "target_at",
+                    "resolution",
+                    "return_pct",
+                    "absolute_return_pct",
+                    "direction",
+                    "impact"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation": {
+              "type": "object",
+              "properties": {
+                "direction_result": {
+                  "enum": [
+                    "hit",
+                    "miss",
+                    "not_scored"
+                  ]
+                },
+                "impact_match": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "impact_distance": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 3
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "direction_result",
+                "impact_match",
+                "impact_distance"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "horizon_seconds",
+            "forecast",
+            "status",
+            "reason",
+            "actual",
+            "evaluation"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "pending",
+                      "unavailable"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "actual": {
+                    "type": "null"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "const": "not_scored"
+                      },
+                      "impact_match": {
+                        "type": "null"
+                      },
+                      "impact_distance": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "actual": {
+                    "type": "object",
+                    "properties": {
+                      "anchor_price": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "anchor_price_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "outcome_price": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "outcome_price_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "target_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "resolution": {
+                        "enum": [
+                          "realtime_1s",
+                          "candle_1m"
+                        ]
+                      },
+                      "return_pct": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "absolute_return_pct": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "direction": {
+                        "enum": [
+                          "up",
+                          "down",
+                          "neutral"
+                        ]
+                      },
+                      "impact": {
+                        "enum": [
+                          "negligible",
+                          "small",
+                          "moderate",
+                          "large"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "anchor_price",
+                      "anchor_price_at",
+                      "outcome_price",
+                      "outcome_price_at",
+                      "target_at",
+                      "resolution",
+                      "return_pct",
+                      "absolute_return_pct",
+                      "direction",
+                      "impact"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "reason": {
+                    "type": "null"
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "impact_match": {
+                        "type": "boolean"
+                      },
+                      "impact_distance": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 3
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "not_scored"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "forecast": {
+                    "properties": {
+                      "direction": {
+                        "const": "unclear"
+                      }
+                    }
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "const": "not_scored"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "evaluated"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "enum": [
+                          "hit",
+                          "miss"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "horizon_seconds": {
+              "const": 300
+            },
+            "forecast": {
+              "type": "object",
+              "properties": {
+                "direction": {
+                  "enum": [
+                    "up",
+                    "down",
+                    "neutral",
+                    "unclear"
+                  ]
+                },
+                "impact": {
+                  "enum": [
+                    "negligible",
+                    "small",
+                    "moderate",
+                    "large"
+                  ]
+                },
+                "confidence": {
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                }
+              },
+              "required": [
+                "direction",
+                "impact",
+                "confidence"
+              ],
+              "additionalProperties": false
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "evaluated",
+                "unavailable",
+                "not_scored"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "actual": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "anchor_price": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "anchor_price_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "outcome_price": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "outcome_price_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "target_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "resolution": {
+                      "enum": [
+                        "realtime_1s",
+                        "candle_1m"
+                      ]
+                    },
+                    "return_pct": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "absolute_return_pct": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "direction": {
+                      "enum": [
+                        "up",
+                        "down",
+                        "neutral"
+                      ]
+                    },
+                    "impact": {
+                      "enum": [
+                        "negligible",
+                        "small",
+                        "moderate",
+                        "large"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "anchor_price",
+                    "anchor_price_at",
+                    "outcome_price",
+                    "outcome_price_at",
+                    "target_at",
+                    "resolution",
+                    "return_pct",
+                    "absolute_return_pct",
+                    "direction",
+                    "impact"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation": {
+              "type": "object",
+              "properties": {
+                "direction_result": {
+                  "enum": [
+                    "hit",
+                    "miss",
+                    "not_scored"
+                  ]
+                },
+                "impact_match": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "impact_distance": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 3
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "direction_result",
+                "impact_match",
+                "impact_distance"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "horizon_seconds",
+            "forecast",
+            "status",
+            "reason",
+            "actual",
+            "evaluation"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "pending",
+                      "unavailable"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "actual": {
+                    "type": "null"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "const": "not_scored"
+                      },
+                      "impact_match": {
+                        "type": "null"
+                      },
+                      "impact_distance": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "actual": {
+                    "type": "object",
+                    "properties": {
+                      "anchor_price": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "anchor_price_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "outcome_price": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "outcome_price_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "target_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "resolution": {
+                        "enum": [
+                          "realtime_1s",
+                          "candle_1m"
+                        ]
+                      },
+                      "return_pct": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "absolute_return_pct": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "direction": {
+                        "enum": [
+                          "up",
+                          "down",
+                          "neutral"
+                        ]
+                      },
+                      "impact": {
+                        "enum": [
+                          "negligible",
+                          "small",
+                          "moderate",
+                          "large"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "anchor_price",
+                      "anchor_price_at",
+                      "outcome_price",
+                      "outcome_price_at",
+                      "target_at",
+                      "resolution",
+                      "return_pct",
+                      "absolute_return_pct",
+                      "direction",
+                      "impact"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "reason": {
+                    "type": "null"
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "impact_match": {
+                        "type": "boolean"
+                      },
+                      "impact_distance": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 3
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "not_scored"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "forecast": {
+                    "properties": {
+                      "direction": {
+                        "const": "unclear"
+                      }
+                    }
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "const": "not_scored"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "evaluated"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "enum": [
+                          "hit",
+                          "miss"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "horizon_seconds": {
+              "const": 900
+            },
+            "forecast": {
+              "type": "object",
+              "properties": {
+                "direction": {
+                  "enum": [
+                    "up",
+                    "down",
+                    "neutral",
+                    "unclear"
+                  ]
+                },
+                "impact": {
+                  "enum": [
+                    "negligible",
+                    "small",
+                    "moderate",
+                    "large"
+                  ]
+                },
+                "confidence": {
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                }
+              },
+              "required": [
+                "direction",
+                "impact",
+                "confidence"
+              ],
+              "additionalProperties": false
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "evaluated",
+                "unavailable",
+                "not_scored"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "actual": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "anchor_price": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "anchor_price_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "outcome_price": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "outcome_price_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "target_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "resolution": {
+                      "enum": [
+                        "realtime_1s",
+                        "candle_1m"
+                      ]
+                    },
+                    "return_pct": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "absolute_return_pct": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "direction": {
+                      "enum": [
+                        "up",
+                        "down",
+                        "neutral"
+                      ]
+                    },
+                    "impact": {
+                      "enum": [
+                        "negligible",
+                        "small",
+                        "moderate",
+                        "large"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "anchor_price",
+                    "anchor_price_at",
+                    "outcome_price",
+                    "outcome_price_at",
+                    "target_at",
+                    "resolution",
+                    "return_pct",
+                    "absolute_return_pct",
+                    "direction",
+                    "impact"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation": {
+              "type": "object",
+              "properties": {
+                "direction_result": {
+                  "enum": [
+                    "hit",
+                    "miss",
+                    "not_scored"
+                  ]
+                },
+                "impact_match": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "impact_distance": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 3
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "direction_result",
+                "impact_match",
+                "impact_distance"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "horizon_seconds",
+            "forecast",
+            "status",
+            "reason",
+            "actual",
+            "evaluation"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "pending",
+                      "unavailable"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "actual": {
+                    "type": "null"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "const": "not_scored"
+                      },
+                      "impact_match": {
+                        "type": "null"
+                      },
+                      "impact_distance": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "actual": {
+                    "type": "object",
+                    "properties": {
+                      "anchor_price": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "anchor_price_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "outcome_price": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "outcome_price_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "target_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "resolution": {
+                        "enum": [
+                          "realtime_1s",
+                          "candle_1m"
+                        ]
+                      },
+                      "return_pct": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "absolute_return_pct": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "direction": {
+                        "enum": [
+                          "up",
+                          "down",
+                          "neutral"
+                        ]
+                      },
+                      "impact": {
+                        "enum": [
+                          "negligible",
+                          "small",
+                          "moderate",
+                          "large"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "anchor_price",
+                      "anchor_price_at",
+                      "outcome_price",
+                      "outcome_price_at",
+                      "target_at",
+                      "resolution",
+                      "return_pct",
+                      "absolute_return_pct",
+                      "direction",
+                      "impact"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "reason": {
+                    "type": "null"
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "impact_match": {
+                        "type": "boolean"
+                      },
+                      "impact_distance": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 3
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "not_scored"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "forecast": {
+                    "properties": {
+                      "direction": {
+                        "const": "unclear"
+                      }
+                    }
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "const": "not_scored"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "evaluated"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "enum": [
+                          "hit",
+                          "miss"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "horizon_seconds": {
+              "const": 3600
+            },
+            "forecast": {
+              "type": "object",
+              "properties": {
+                "direction": {
+                  "enum": [
+                    "up",
+                    "down",
+                    "neutral",
+                    "unclear"
+                  ]
+                },
+                "impact": {
+                  "enum": [
+                    "negligible",
+                    "small",
+                    "moderate",
+                    "large"
+                  ]
+                },
+                "confidence": {
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                }
+              },
+              "required": [
+                "direction",
+                "impact",
+                "confidence"
+              ],
+              "additionalProperties": false
+            },
+            "status": {
+              "enum": [
+                "pending",
+                "evaluated",
+                "unavailable",
+                "not_scored"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "actual": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "anchor_price": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "anchor_price_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "outcome_price": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "outcome_price_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "target_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "resolution": {
+                      "enum": [
+                        "realtime_1s",
+                        "candle_1m"
+                      ]
+                    },
+                    "return_pct": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "absolute_return_pct": {
+                      "type": "string",
+                      "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                      "maxLength": 100
+                    },
+                    "direction": {
+                      "enum": [
+                        "up",
+                        "down",
+                        "neutral"
+                      ]
+                    },
+                    "impact": {
+                      "enum": [
+                        "negligible",
+                        "small",
+                        "moderate",
+                        "large"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "anchor_price",
+                    "anchor_price_at",
+                    "outcome_price",
+                    "outcome_price_at",
+                    "target_at",
+                    "resolution",
+                    "return_pct",
+                    "absolute_return_pct",
+                    "direction",
+                    "impact"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation": {
+              "type": "object",
+              "properties": {
+                "direction_result": {
+                  "enum": [
+                    "hit",
+                    "miss",
+                    "not_scored"
+                  ]
+                },
+                "impact_match": {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "impact_distance": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 3
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "direction_result",
+                "impact_match",
+                "impact_distance"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "horizon_seconds",
+            "forecast",
+            "status",
+            "reason",
+            "actual",
+            "evaluation"
+          ],
+          "additionalProperties": false,
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "pending",
+                      "unavailable"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "actual": {
+                    "type": "null"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "const": "not_scored"
+                      },
+                      "impact_match": {
+                        "type": "null"
+                      },
+                      "impact_distance": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "actual": {
+                    "type": "object",
+                    "properties": {
+                      "anchor_price": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "anchor_price_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "outcome_price": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "outcome_price_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "target_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "resolution": {
+                        "enum": [
+                          "realtime_1s",
+                          "candle_1m"
+                        ]
+                      },
+                      "return_pct": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "absolute_return_pct": {
+                        "type": "string",
+                        "pattern": "^-?[0-9]+(?:\\.[0-9]+)?$",
+                        "maxLength": 100
+                      },
+                      "direction": {
+                        "enum": [
+                          "up",
+                          "down",
+                          "neutral"
+                        ]
+                      },
+                      "impact": {
+                        "enum": [
+                          "negligible",
+                          "small",
+                          "moderate",
+                          "large"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "anchor_price",
+                      "anchor_price_at",
+                      "outcome_price",
+                      "outcome_price_at",
+                      "target_at",
+                      "resolution",
+                      "return_pct",
+                      "absolute_return_pct",
+                      "direction",
+                      "impact"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "reason": {
+                    "type": "null"
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "impact_match": {
+                        "type": "boolean"
+                      },
+                      "impact_distance": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 3
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "not_scored"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "forecast": {
+                    "properties": {
+                      "direction": {
+                        "const": "unclear"
+                      }
+                    }
+                  },
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "const": "not_scored"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "evaluated"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "evaluation": {
+                    "properties": {
+                      "direction_result": {
+                        "enum": [
+                          "hit",
+                          "miss"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "status": {
+      "type": "object",
+      "properties": {
+        "complete": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "complete"
+      ],
+      "additionalProperties": false
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "schema_version",
+    "message_id",
+    "evaluation_id",
+    "revision",
+    "analysis",
+    "asset",
+    "decision",
+    "provenance",
+    "policy",
+    "policy_hash",
+    "results",
+    "status",
+    "evaluated_at"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "provenance": {
+            "properties": {
+              "origin": {
+                "const": "fixture"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "provenance": {
+            "properties": {
+              "fixture_label": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "provenance": {
+            "properties": {
+              "fixture_label": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

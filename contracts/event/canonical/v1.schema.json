@@ -1,0 +1,653 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "message_id",
+    "event",
+    "taxonomy",
+    "content",
+    "actors",
+    "jurisdictions",
+    "time",
+    "lifecycle",
+    "evidence",
+    "extraction",
+    "correlation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "message_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "revision",
+        "change_type"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "change_type": {
+          "type": "string",
+          "enum": [
+            "created",
+            "updated"
+          ]
+        }
+      }
+    },
+    "taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "event_type",
+        "topics",
+        "classification_basis"
+      ],
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "central_bank.policy_statement",
+            "central_bank.minutes",
+            "central_bank.projections",
+            "central_bank.speech",
+            "central_bank.interview",
+            "central_bank.data_release",
+            "central_bank.other",
+            "regulator.rule_proposal",
+            "regulator.rule_adoption",
+            "regulator.guidance",
+            "regulator.enforcement",
+            "regulator.meeting",
+            "regulator.report",
+            "regulator.personnel",
+            "regulator.other",
+            "unknown"
+          ]
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "monetary_policy",
+              "interest_rates",
+              "inflation",
+              "wages",
+              "employment",
+              "economic_growth",
+              "financial_stability",
+              "capital_markets",
+              "market_structure",
+              "regulation",
+              "enforcement",
+              "banking",
+              "payments",
+              "digital_assets"
+            ]
+          },
+          "maxItems": 14,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "classification_basis": {
+          "type": "string",
+          "enum": [
+            "exact_rule",
+            "heuristic_rule",
+            "fallback"
+          ]
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_title"
+      ],
+      "properties": {
+        "canonical_title": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 4096
+        }
+      }
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entity_id",
+          "entity_type",
+          "name",
+          "role",
+          "resolution"
+        ],
+        "properties": {
+          "entity_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(organization|person|company|government|exchange|protocol):[a-z][a-z0-9_]*$",
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entity_type": {
+            "type": "string",
+            "enum": [
+              "person",
+              "company",
+              "organization",
+              "government",
+              "exchange",
+              "protocol"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "issuer",
+              "speaker",
+              "subject"
+            ]
+          },
+          "resolution": {
+            "type": "string",
+            "enum": [
+              "canonical",
+              "unresolved"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "resolution": {
+                  "const": "canonical"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "entity_id": {
+                  "type": "string"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "entity_id": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "maxItems": 32,
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "jurisdictions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z]{2}$"
+      },
+      "maxItems": 32,
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_time",
+        "event_time_precision",
+        "event_time_source",
+        "earliest_source_published_at",
+        "latest_source_published_at",
+        "first_detected_at",
+        "last_updated_at"
+      ],
+      "properties": {
+        "event_time": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 100
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "event_time_precision": {
+          "type": "string",
+          "enum": [
+            "exact",
+            "minute",
+            "hour",
+            "date",
+            "date_range",
+            "unknown"
+          ]
+        },
+        "event_time_source": {
+          "type": "string",
+          "enum": [
+            "title",
+            "body",
+            "not_extracted"
+          ]
+        },
+        "earliest_source_published_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "latest_source_published_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "first_detected_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "last_updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "event_time_precision": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "event_time": {
+                "type": "null"
+              },
+              "event_time_source": {
+                "const": "not_extracted"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "event_time": {
+                "type": "string"
+              },
+              "event_time_source": {
+                "type": "string",
+                "enum": [
+                  "title",
+                  "body"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_time_precision": {
+                "const": "date"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "event_time": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_time_precision": {
+                "const": "date_range"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "event_time": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}/\\d{4}-\\d{2}-\\d{2}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_time_precision": {
+                "enum": [
+                  "exact",
+                  "minute",
+                  "hour"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "event_time": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "detected",
+            "corroborated"
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quality",
+        "document_count",
+        "independent_source_count",
+        "documents"
+      ],
+      "properties": {
+        "quality": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "document_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "independent_source_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "document_id",
+              "input_message_id",
+              "source_message_id",
+              "source_id",
+              "relation",
+              "document_status",
+              "content_chars",
+              "quality",
+              "extraction_run_id"
+            ],
+            "properties": {
+              "document_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "input_message_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "source_message_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "source_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,63}$"
+              },
+              "relation": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "supporting",
+                  "update",
+                  "duplicate"
+                ]
+              },
+              "document_status": {
+                "type": "string",
+                "enum": [
+                  "ready",
+                  "partial",
+                  "failed",
+                  "rejected"
+                ]
+              },
+              "content_chars": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 200000
+              },
+              "quality": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "extraction_run_id": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          "maxItems": 1000,
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "extraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "extractor",
+        "extractor_version",
+        "ruleset_version",
+        "entity_registry_version",
+        "matched_rule_ids",
+        "configuration_hash",
+        "core_version"
+      ],
+      "properties": {
+        "extractor": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "extractor_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "ruleset_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "entity_registry_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "matched_rule_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "maxItems": 100,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "configuration_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "core_version": {
+          "const": "1.0"
+        }
+      }
+    },
+    "correlation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "exact_event_key"
+      ],
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "new_event",
+            "exact_key"
+          ]
+        },
+        "exact_event_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:market-intelligence:event.canonical.v1",
+  "title": "event.canonical.v1",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "event": {
+            "properties": {
+              "change_type": {
+                "const": "created"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "event": {
+            "properties": {
+              "revision": {
+                "const": 1
+              }
+            }
+          },
+          "correlation": {
+            "properties": {
+              "method": {
+                "const": "new_event"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "event": {
+            "properties": {
+              "revision": {
+                "minimum": 2
+              }
+            }
+          },
+          "correlation": {
+            "properties": {
+              "method": {
+                "const": "exact_key"
+              },
+              "exact_event_key": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

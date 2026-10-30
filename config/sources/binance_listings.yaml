@@ -1,0 +1,29 @@
+{
+  "id": "binance_listings",
+  "name": "Binance \u2014 listings",
+  "enabled": true,
+  "max_items_per_poll": 20,
+  "domain": "crypto",
+  "source_class": "exchange_announcements",
+  "source_quality": "official_primary",
+  "poll_priority": "fast",
+  "source_role": "exchange",
+  "language": "en",
+  "expected_content_types": [
+    "listings"
+  ],
+  "connector": {
+    "type": "announcement_page",
+    "url": "https://www.binance.com/bapi/composite/v1/public/cms/article/list/query?type=1&catalogId=48&pageNo=1&pageSize=20",
+    "format": "binance"
+  },
+  "poll": {
+    "interval_seconds": 30
+  },
+  "classification": {
+    "categories": [
+      "crypto",
+      "exchange"
+    ]
+  }
+}

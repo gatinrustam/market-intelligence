@@ -1,0 +1,71 @@
+{
+  "version": "semantic_precision_v4",
+  "threshold_version": "semantic_contrastive_v1",
+  "chunking_version": "lossless_sentences_v1",
+  "max_chunk_tokens": 192,
+  "batch_size": 2,
+  "concept_threshold": 0.48,
+  "high_threshold": 0.62,
+  "top_k": 4,
+  "gliner_threshold": 0.5,
+  "max_claims": 12,
+  "torch_threads": 2,
+  "dtype": "bge_int8_per_channel_gliner_float32",
+  "gliner_labels": [
+    "organization",
+    "person",
+    "company",
+    "cryptocurrency",
+    "currency",
+    "financial instrument",
+    "economic indicator",
+    "country"
+  ],
+  "official_sources": [
+    "fed_monetary_policy",
+    "sec_press_releases",
+    "ecb_press",
+    "cbr_events_ru",
+    "cbr_press_ru",
+    "moex_news_ru"
+  ],
+  "bge_runtime_weights": "float16_safetensors_v1",
+  "load_dtype": "float16",
+  "cpu_transform": "int8_linear_fp16_embedding_v1",
+  "quantization_engine": "qnnpack",
+  "claim_excerpt_limit": null,
+  "require_named_asset_relation": true,
+  "asset_aliases": {
+    "BTC": [
+      "bitcoin",
+      "btc",
+      "биткоин",
+      "биткоина",
+      "биткоины",
+      "биткоинов",
+      "биткоином",
+      "биткоине"
+    ],
+    "ETH": [
+      "ethereum",
+      "eth",
+      "эфир",
+      "эфира",
+      "эфириум",
+      "эфириума",
+      "эфириуме"
+    ],
+    "gold": [
+      "gold",
+      "золото"
+    ]
+  },
+  "structure_type_signals": true,
+  "gliner_dtype": "float32",
+  "encoder_artifact": "bge/cpu_int8_per_channel.pt",
+  "cpu_restore_policy": "fp32_non_embedding_v1",
+  "embedding_healthcheck": "distinct_en_ru_v1",
+  "ontology_file": "ontology.v2.json",
+  "reranking_policy_file": "reranking.v4.json",
+  "baseline_policy_file": "policy.di5.json"
+}

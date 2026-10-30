@@ -1,0 +1,11 @@
+id: ecb_press
+name: European Central Bank Press
+connector:
+  type: rss
+  url: https://www.ecb.europa.eu/rss/press.html
+poll:
+  interval_seconds: 120
+classification:
+  categories: [macro, monetary_policy]
+priority: high
+language: en

@@ -1,0 +1,838 @@
+{
+  "ingestion/sources": [
+    {
+      "id": "ecb_press",
+      "name": "European Central Bank Press",
+      "enabled": true,
+      "status": "healthy",
+      "last_success_at": "2026-09-20T02:19:48.405195+00:00",
+      "last_error_type": null,
+      "counts": {
+        "created": 0,
+        "duplicates": 15,
+        "failed": 0
+      }
+    },
+    {
+      "id": "fed_monetary_policy",
+      "name": "Federal Reserve Monetary Policy",
+      "enabled": true,
+      "status": "healthy",
+      "last_success_at": "2026-09-20T02:21:32.006658+00:00",
+      "last_error_type": null,
+      "counts": {
+        "created": 0,
+        "duplicates": 15,
+        "failed": 0
+      }
+    },
+    {
+      "id": "sec_press_releases",
+      "name": "SEC Press Releases",
+      "enabled": true,
+      "status": "healthy",
+      "last_success_at": "2026-09-20T02:19:53.242195+00:00",
+      "last_error_type": null,
+      "counts": {
+        "created": 0,
+        "duplicates": 25,
+        "failed": 0
+      }
+    }
+  ],
+  "ingestion/ready": {
+    "database": true,
+    "jetstream": true,
+    "workers": true
+  },
+  "enrichment/stats": {
+    "inputs": 55,
+    "invalid_inputs": 0,
+    "snapshots": 30,
+    "jobs": {
+      "completed": 55
+    },
+    "documents": {
+      "partial": 25,
+      "ready": 30
+    },
+    "outbox": {
+      "published": 55
+    },
+    "retry_count": 0
+  },
+  "events/stats": {
+    "documents_received": 55,
+    "documents_processed": 55,
+    "outcomes": {
+      "event_created": 55
+    },
+    "events_total": 55,
+    "events_created": 55,
+    "events_by_type": {
+      "central_bank.data_release": 1,
+      "central_bank.interview": 2,
+      "central_bank.minutes": 8,
+      "central_bank.other": 2,
+      "central_bank.policy_statement": 6,
+      "central_bank.projections": 2,
+      "central_bank.speech": 9,
+      "regulator.enforcement": 8,
+      "regulator.guidance": 1,
+      "regulator.meeting": 5,
+      "regulator.other": 4,
+      "regulator.report": 1,
+      "regulator.rule_proposal": 6
+    },
+    "unknown_events": 0,
+    "correlated_documents": 0,
+    "correlation_suggestions": 0,
+    "jobs": {
+      "completed": 55
+    },
+    "jobs_pending": 0,
+    "jobs_failed": 0,
+    "outbox_pending": 0,
+    "outbox_dead": 0,
+    "dead_inputs": 0
+  },
+  "events/events/d9b482b8-af7e-4fc9-970a-52b30196142e": {
+    "schema_version": "1.0",
+    "message_id": "07348aad-9c18-4719-91b8-2e24361e2195",
+    "event": {
+      "id": "d9b482b8-af7e-4fc9-970a-52b30196142e",
+      "revision": 1,
+      "change_type": "created"
+    },
+    "taxonomy": {
+      "version": "1.0",
+      "event_type": "central_bank.policy_statement",
+      "topics": [
+        "monetary_policy",
+        "interest_rates"
+      ],
+      "classification_basis": "exact_rule"
+    },
+    "content": {
+      "canonical_title": "Federal Reserve issues FOMC statement"
+    },
+    "actors": [
+      {
+        "entity_id": "organization:federal_reserve",
+        "entity_type": "organization",
+        "name": "Federal Reserve",
+        "role": "issuer",
+        "resolution": "canonical"
+      }
+    ],
+    "jurisdictions": [
+      "US"
+    ],
+    "time": {
+      "event_time": null,
+      "event_time_precision": "unknown",
+      "event_time_source": "not_extracted",
+      "earliest_source_published_at": "2026-04-29T18:00:00+00:00",
+      "latest_source_published_at": "2026-04-29T18:00:00+00:00",
+      "first_detected_at": "2026-09-19T19:50:19.274982+00:00",
+      "last_updated_at": "2026-09-19T19:50:19.274982+00:00"
+    },
+    "lifecycle": {
+      "status": "detected"
+    },
+    "evidence": {
+      "quality": "high",
+      "document_count": 1,
+      "independent_source_count": 1,
+      "documents": [
+        {
+          "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+          "input_message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+          "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56",
+          "source_id": "fed_monetary_policy",
+          "relation": "primary",
+          "document_status": "ready",
+          "content_chars": 2309,
+          "quality": "high",
+          "extraction_run_id": "fd28abc8-1ae1-4add-872b-737bcfa22611"
+        }
+      ]
+    },
+    "extraction": {
+      "extractor": "rule_based",
+      "extractor_version": "1.0",
+      "ruleset_version": "1.0",
+      "entity_registry_version": "1.0",
+      "matched_rule_ids": [
+        "fed.fomc_statement"
+      ],
+      "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+      "core_version": "1.0"
+    },
+    "correlation": {
+      "method": "new_event",
+      "exact_event_key": null
+    }
+  },
+  "market-data/stats": {
+    "last_snapshot_at": "2026-09-20T02:21:37.424551Z",
+    "last_candle_at": "2026-09-20T02:20:59.999000Z",
+    "snapshots_total": 10148,
+    "candles_total": 416,
+    "outbox_pending": 0,
+    "outbox_dead": 0,
+    "backfill_status": [
+      {
+        "id": "5b3cbb3e1b192465b26c679ccbb1e61e48d8cadb285063ffdeae2d587d5056c2",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:21:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "3c036e4abd52961b8704074d3c02abbb7c9aec3973b6890ef15a1f29d712012a",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:20:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "290a4cb1e3d2359339f077253328111b3de77db3e14718ec2f2c0d36d9068618",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:19:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "31b67d955170bf948a28074642525114936725fb3d51743a1ae89bff4bb0c0b7",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:18:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "5039c839d8ad595813e8990ccc8c848b81957516a159c81aca93dd2f97b45961",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:17:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "7a76455aca1feb94274aac056a21781a870d6ff7bceaff49e48a27212d27e0a0",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:16:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "1fc28a02483928a09ba584496a5fe8fb1279040cc51416a0a7110fef9db0d08f",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:15:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "9a5b577fcca60b4fc08df1fabcd5625752f46875532d2bb63ecbf180c078a63a",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:14:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "2505a44e18a8e09fe18e619284fa7da64c920d5837a5b12f3a6319d299f34f3c",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:13:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      },
+      {
+        "id": "69fd65f4b06ab8742ccd9bd1529a3f509b0b95bcbb9f60dcf6e364f9d19f5d9d",
+        "status": "completed",
+        "cursor_at": "2026-09-20T02:12:00Z",
+        "pages": 1,
+        "candles_seen": 1,
+        "last_error": null
+      }
+    ],
+    "provider_connected": true,
+    "last_market_event_at": "2026-09-20T02:21:37.744603Z",
+    "reconnect_count": 0,
+    "current_ingestion_latency_ms": "-74.12",
+    "average_ingestion_latency_ms": "-47.72632088355254113010402823",
+    "trade_updates": 21821,
+    "book_updates": 247884
+  },
+  "market-context/stats": {
+    "inputs_total": 56,
+    "contexts_total": 56,
+    "points_total": 392,
+    "revisions_total": 118,
+    "jobs": {
+      "completed": 55,
+      "pending": 1
+    },
+    "jobs_with_error": 0,
+    "outbox_pending": 0,
+    "outbox_dead": 0,
+    "dead_inputs": 0
+  },
+  "market-context/events/d9b482b8-af7e-4fc9-970a-52b30196142e/contexts": [
+    {
+      "schema_version": "1.0",
+      "message_id": "c276a269-9b81-4264-b909-7018d8a38777",
+      "context_id": "c8e6b183-983a-5509-b7a5-7da8962fbe95",
+      "revision": 3,
+      "event": {
+        "event_id": "d9b482b8-af7e-4fc9-970a-52b30196142e",
+        "event_revision": 1
+      },
+      "market": {
+        "provider": "binance_spot",
+        "symbol": "BTCUSDT"
+      },
+      "anchor": {
+        "at": "2026-04-29T18:00:00Z",
+        "type": "source_published_at",
+        "precision": "exact",
+        "original_value": "2026-04-29T18:00:00+00:00",
+        "unavailable_reason": null
+      },
+      "points": [
+        {
+          "offset_seconds": -900,
+          "target_at": "2026-04-29T17:45:00Z",
+          "status": "available",
+          "available": true,
+          "resolution": "candle_1m",
+          "reason": null,
+          "price": "76018.330000000000000000",
+          "price_basis": "candle_close",
+          "price_at": "2026-04-29T17:44:59.999000Z",
+          "snapshot_message_id": null,
+          "snapshot_distance_ms": null,
+          "bid": null,
+          "ask": null,
+          "spread_bps": null,
+          "candle": {
+            "open_time": "2026-04-29T17:44:00Z",
+            "close_time": "2026-04-29T17:44:59.999000Z",
+            "open": "75982.470000000000000000",
+            "high": "76018.340000000000000000",
+            "low": "75982.470000000000000000",
+            "close": "76018.330000000000000000",
+            "base_volume": "2.356800000000000000",
+            "quote_volume": "179117.766859100000000000",
+            "trade_count": 1129,
+            "taker_buy_base_volume": "1.789470000000000000",
+            "taker_buy_quote_volume": "135999.238747800000000000"
+          },
+          "return_pct_from_anchor": "-0.217473456700",
+          "absolute_return_pct": "0.217473456700"
+        },
+        {
+          "offset_seconds": -300,
+          "target_at": "2026-04-29T17:55:00Z",
+          "status": "available",
+          "available": true,
+          "resolution": "candle_1m",
+          "reason": null,
+          "price": "75981.770000000000000000",
+          "price_basis": "candle_close",
+          "price_at": "2026-04-29T17:54:59.999000Z",
+          "snapshot_message_id": null,
+          "snapshot_distance_ms": null,
+          "bid": null,
+          "ask": null,
+          "spread_bps": null,
+          "candle": {
+            "open_time": "2026-04-29T17:54:00Z",
+            "close_time": "2026-04-29T17:54:59.999000Z",
+            "open": "75972.960000000000000000",
+            "high": "75981.780000000000000000",
+            "low": "75965.790000000000000000",
+            "close": "75981.770000000000000000",
+            "base_volume": "5.767170000000000000",
+            "quote_volume": "438160.855871500000000000",
+            "trade_count": 1317,
+            "taker_buy_base_volume": "3.753390000000000000",
+            "taker_buy_quote_volume": "285160.141518300000000000"
+          },
+          "return_pct_from_anchor": "-0.265462529473",
+          "absolute_return_pct": "0.265462529473"
+        },
+        {
+          "offset_seconds": 0,
+          "target_at": "2026-04-29T18:00:00Z",
+          "status": "available",
+          "available": true,
+          "resolution": "candle_1m",
+          "reason": null,
+          "price": "76184.010000000000000000",
+          "price_basis": "candle_close",
+          "price_at": "2026-04-29T17:59:59.999000Z",
+          "snapshot_message_id": null,
+          "snapshot_distance_ms": null,
+          "bid": null,
+          "ask": null,
+          "spread_bps": null,
+          "candle": {
+            "open_time": "2026-04-29T17:59:00Z",
+            "close_time": "2026-04-29T17:59:59.999000Z",
+            "open": "76073.490000000000000000",
+            "high": "76184.010000000000000000",
+            "low": "76073.490000000000000000",
+            "close": "76184.010000000000000000",
+            "base_volume": "13.334280000000000000",
+            "quote_volume": "1015162.636709100000000000",
+            "trade_count": 4083,
+            "taker_buy_base_volume": "9.259790000000000000",
+            "taker_buy_quote_volume": "704927.386409700000000000"
+          },
+          "return_pct_from_anchor": "0.000000000000",
+          "absolute_return_pct": "0.000000000000"
+        },
+        {
+          "offset_seconds": 60,
+          "target_at": "2026-04-29T18:01:00Z",
+          "status": "available",
+          "available": true,
+          "resolution": "candle_1m",
+          "reason": null,
+          "price": "76103.730000000000000000",
+          "price_basis": "candle_close",
+          "price_at": "2026-04-29T18:00:59.999000Z",
+          "snapshot_message_id": null,
+          "snapshot_distance_ms": null,
+          "bid": null,
+          "ask": null,
+          "spread_bps": null,
+          "candle": {
+            "open_time": "2026-04-29T18:00:00Z",
+            "close_time": "2026-04-29T18:00:59.999000Z",
+            "open": "76184.000000000000000000",
+            "high": "76274.800000000000000000",
+            "low": "76088.010000000000000000",
+            "close": "76103.730000000000000000",
+            "base_volume": "35.856110000000000000",
+            "quote_volume": "2731251.264360600000000000",
+            "trade_count": 8380,
+            "taker_buy_base_volume": "21.710480000000000000",
+            "taker_buy_quote_volume": "1654114.043873100000000000"
+          },
+          "return_pct_from_anchor": "-0.105376443167",
+          "absolute_return_pct": "0.105376443167"
+        },
+        {
+          "offset_seconds": 300,
+          "target_at": "2026-04-29T18:05:00Z",
+          "status": "available",
+          "available": true,
+          "resolution": "candle_1m",
+          "reason": null,
+          "price": "75920.190000000000000000",
+          "price_basis": "candle_close",
+          "price_at": "2026-04-29T18:04:59.999000Z",
+          "snapshot_message_id": null,
+          "snapshot_distance_ms": null,
+          "bid": null,
+          "ask": null,
+          "spread_bps": null,
+          "candle": {
+            "open_time": "2026-04-29T18:04:00Z",
+            "close_time": "2026-04-29T18:04:59.999000Z",
+            "open": "75962.930000000000000000",
+            "high": "75972.890000000000000000",
+            "low": "75920.180000000000000000",
+            "close": "75920.190000000000000000",
+            "base_volume": "19.850420000000000000",
+            "quote_volume": "1507566.986009200000000000",
+            "trade_count": 2619,
+            "taker_buy_base_volume": "4.976340000000000000",
+            "taker_buy_quote_volume": "377883.022706800000000000"
+          },
+          "return_pct_from_anchor": "-0.346293139466",
+          "absolute_return_pct": "0.346293139466"
+        },
+        {
+          "offset_seconds": 900,
+          "target_at": "2026-04-29T18:15:00Z",
+          "status": "available",
+          "available": true,
+          "resolution": "candle_1m",
+          "reason": null,
+          "price": "75192.520000000000000000",
+          "price_basis": "candle_close",
+          "price_at": "2026-04-29T18:14:59.999000Z",
+          "snapshot_message_id": null,
+          "snapshot_distance_ms": null,
+          "bid": null,
+          "ask": null,
+          "spread_bps": null,
+          "candle": {
+            "open_time": "2026-04-29T18:14:00Z",
+            "close_time": "2026-04-29T18:14:59.999000Z",
+            "open": "75222.690000000000000000",
+            "high": "75239.850000000000000000",
+            "low": "75137.820000000000000000",
+            "close": "75192.520000000000000000",
+            "base_volume": "38.933570000000000000",
+            "quote_volume": "2927352.338083300000000000",
+            "trade_count": 4782,
+            "taker_buy_base_volume": "16.404530000000000000",
+            "taker_buy_quote_volume": "1233393.306267800000000000"
+          },
+          "return_pct_from_anchor": "-1.301441076677",
+          "absolute_return_pct": "1.301441076677"
+        },
+        {
+          "offset_seconds": 3600,
+          "target_at": "2026-04-29T19:00:00Z",
+          "status": "available",
+          "available": true,
+          "resolution": "candle_1m",
+          "reason": null,
+          "price": "75513.910000000000000000",
+          "price_basis": "candle_close",
+          "price_at": "2026-04-29T18:59:59.999000Z",
+          "snapshot_message_id": null,
+          "snapshot_distance_ms": null,
+          "bid": null,
+          "ask": null,
+          "spread_bps": null,
+          "candle": {
+            "open_time": "2026-04-29T18:59:00Z",
+            "close_time": "2026-04-29T18:59:59.999000Z",
+            "open": "75458.400000000000000000",
+            "high": "75517.330000000000000000",
+            "low": "75458.400000000000000000",
+            "close": "75513.910000000000000000",
+            "base_volume": "13.715900000000000000",
+            "quote_volume": "1035396.655256200000000000",
+            "trade_count": 2014,
+            "taker_buy_base_volume": "12.136470000000000000",
+            "taker_buy_quote_volume": "916144.021910000000000000"
+          },
+          "return_pct_from_anchor": "-0.879580898931",
+          "absolute_return_pct": "0.879580898931"
+        }
+      ],
+      "status": {
+        "complete": true,
+        "pending_future_points": 0,
+        "pending_data_points": 0,
+        "available_points": 7,
+        "unavailable_points": 0
+      },
+      "generated_at": "2026-09-20T00:33:50.746360Z"
+    }
+  ],
+  "market-context/contexts/c8e6b183-983a-5509-b7a5-7da8962fbe95/decision?basis=research_hypothetical": {
+    "context_id": "c8e6b183-983a-5509-b7a5-7da8962fbe95",
+    "event": {
+      "event_id": "d9b482b8-af7e-4fc9-970a-52b30196142e",
+      "event_revision": 1
+    },
+    "event_time": null,
+    "event_time_precision": "unknown",
+    "decision_at": "2026-04-29T18:00:00Z",
+    "as_of": "2026-04-29T18:00:00Z",
+    "decision_mode": "research_hypothetical",
+    "decision_basis": "source_published_at",
+    "historical_simulation": true,
+    "availability_scope": "durable_pipeline",
+    "canonical_available_at": "2026-09-19T19:50:19.777569Z",
+    "canonical_generated_at": "2026-09-19T19:50:19.274982Z",
+    "resolver_observed_at": "2026-09-20T00:17:00.102619Z",
+    "live_inputs_available_at": "2026-09-19T19:50:19.777569Z",
+    "evidence_available_at": "2026-09-19T19:50:18.704812Z",
+    "evidence_fetched_at": "2026-09-19T19:26:10.136887Z",
+    "historical_content_verified": false,
+    "content_assumption": "later_observed_content_hypothetically_available_at_publication",
+    "known_information": {
+      "canonical_event": {
+        "schema_version": "1.0",
+        "message_id": "07348aad-9c18-4719-91b8-2e24361e2195",
+        "event": {
+          "id": "d9b482b8-af7e-4fc9-970a-52b30196142e",
+          "revision": 1,
+          "change_type": "created"
+        },
+        "taxonomy": {
+          "version": "1.0",
+          "event_type": "central_bank.policy_statement",
+          "topics": [
+            "monetary_policy",
+            "interest_rates"
+          ],
+          "classification_basis": "exact_rule"
+        },
+        "content": {
+          "canonical_title": "Federal Reserve issues FOMC statement"
+        },
+        "actors": [
+          {
+            "entity_id": "organization:federal_reserve",
+            "entity_type": "organization",
+            "name": "Federal Reserve",
+            "role": "issuer",
+            "resolution": "canonical"
+          }
+        ],
+        "jurisdictions": [
+          "US"
+        ],
+        "time": {
+          "event_time": null,
+          "event_time_precision": "unknown",
+          "event_time_source": "not_extracted",
+          "earliest_source_published_at": "2026-04-29T18:00:00+00:00",
+          "latest_source_published_at": "2026-04-29T18:00:00+00:00",
+          "first_detected_at": "2026-09-19T19:50:19.274982+00:00",
+          "last_updated_at": "2026-09-19T19:50:19.274982+00:00"
+        },
+        "lifecycle": {
+          "status": "detected"
+        },
+        "evidence": {
+          "quality": "high",
+          "document_count": 1,
+          "independent_source_count": 1,
+          "documents": [
+            {
+              "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+              "input_message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+              "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56",
+              "source_id": "fed_monetary_policy",
+              "relation": "primary",
+              "document_status": "ready",
+              "content_chars": 2309,
+              "quality": "high",
+              "extraction_run_id": "fd28abc8-1ae1-4add-872b-737bcfa22611"
+            }
+          ]
+        },
+        "extraction": {
+          "extractor": "rule_based",
+          "extractor_version": "1.0",
+          "ruleset_version": "1.0",
+          "entity_registry_version": "1.0",
+          "matched_rule_ids": [
+            "fed.fomc_statement"
+          ],
+          "configuration_hash": "1a594e7b2aed716f67d98107ad6b9298da03ad6caa6c88dfb24e252f6084a518",
+          "core_version": "1.0"
+        },
+        "correlation": {
+          "method": "new_event",
+          "exact_event_key": null
+        }
+      },
+      "evidence": [
+        {
+          "document": {
+            "schema_version": "1.0",
+            "message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+            "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+            "lineage": {
+              "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56",
+              "input_subject": "news.raw.v1",
+              "input_content_hash": "da96cfa5123b53bb100c4c7b46d7ee58017390c8cb048727a47244ffa91f28ee"
+            },
+            "source": {
+              "id": "fed_monetary_policy",
+              "type": "rss",
+              "external_id": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+              "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm"
+            },
+            "timestamps": {
+              "published_at": "2026-04-29T18:00:00+00:00",
+              "received_at": "2026-09-19T18:40:37.062893+00:00",
+              "enriched_at": "2026-09-19T19:26:10.680215+00:00",
+              "ingestion_delay_seconds": 12357637.062893
+            },
+            "content": {
+              "title": "Federal Reserve issues FOMC statement",
+              "extracted_title": "Federal Reserve issues FOMC statement",
+              "body": "April 29, 2026\nFederal Reserve issues FOMC statement\nFor release at 2:00 p.m. EDT\nRecent indicators suggest that economic activity has been expanding at a solid pace. Job gains have remained low, on average, and the unemployment rate has been little changed in recent months. Inflation is elevated, in part reflecting the recent increase in global energy prices.\nThe Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run. Developments in the Middle East are contributing to a high level of uncertainty about the economic outlook. The Committee is attentive to the risks to both sides of its dual mandate.\nIn support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3‑1/2 to 3‑3/4 percent. In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective.\nIn assessing the appropriate stance of monetary policy, the Committee will continue to monitor the implications of incoming information for the economic outlook. The Committee would be prepared to adjust the stance of monetary policy as appropriate if risks emerge that could impede the attainment of the Committee's goals. The Committee's assessments will take into account a wide range of information, including readings on labor market conditions, inflation pressures and inflation expectations, and financial and international developments.\nVoting for the monetary policy action were Jerome H. Powell, Chair; John C. Williams, Vice Chair; Michael S. Barr; Michelle W. Bowman; Lisa D. Cook; Philip N. Jefferson; Anna Paulson; and Christopher J. Waller. Voting against this action were Stephen I. Miran, who preferred to lower the target range for the federal funds rate by 1/4 percentage point at this meeting; and Beth M. Hammack, Neel Kashkari, and Lorie K. Logan, who supported maintaining the target range for the federal funds rate but did not support inclusion of an easing bias in the statement at this time.\nFor media inquiries, please email [email protected] or call 202-452-2955.",
+              "body_length": 2309,
+              "language": "en",
+              "content_source": "html"
+            },
+            "classification": {
+              "categories": [
+                "macro",
+                "monetary_policy"
+              ]
+            },
+            "enrichment": {
+              "status": "ready",
+              "required": true,
+              "reason": "rss_body_equals_title",
+              "failure_reason": null
+            },
+            "fetch": {
+              "status": "success",
+              "requested_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+              "final_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+              "http_status": 200,
+              "content_type": "text/html",
+              "snapshot_id": "e9f1843f-fe41-444b-8fec-72685cf3dbfe",
+              "fetched_at": "2026-09-19T19:26:10.136887+00:00",
+              "redirect_count": 0,
+              "attempt_count": 1,
+              "error_reason": null
+            },
+            "extraction": {
+              "status": "success",
+              "method": "trafilatura",
+              "library_version": "2.2.0",
+              "processor_version": "1.0",
+              "warnings": [],
+              "error_reason": null
+            },
+            "integrity": {
+              "content_hash": "ab2747f2bcd1ce0ce1c920a1bd430b2cc35e1b152ba86818a0360476d2875cf8"
+            }
+          },
+          "evidence_available_at": "2026-09-19T19:50:18.704812Z",
+          "availability_basis": "event_engine_input_received_and_document_provenance",
+          "event_engine_input_received_at": "2026-09-19T19:50:18.704812Z",
+          "evidence_enriched_at": "2026-09-19T19:26:10.680215Z",
+          "evidence_fetched_at": "2026-09-19T19:26:10.136887Z",
+          "late_enrichment": true,
+          "historical_content_verified": false,
+          "historical_content_verification": "no_archival_publication_time_content_proof"
+        }
+      ]
+    },
+    "market": {
+      "provider": "binance_spot",
+      "symbol": "BTCUSDT"
+    },
+    "lookup_policy": "causal_asof_fresh_v1",
+    "freshness_policy": {
+      "version": "causal_asof_fresh_v1",
+      "max_age_seconds": {
+        "realtime_1s": 3.0,
+        "candle_1m": 60.0
+      }
+    },
+    "market_availability_basis": "historical_observation_time_only",
+    "points": [
+      {
+        "offset_seconds": -900,
+        "target_at": "2026-04-29T17:45:00Z",
+        "status": "available",
+        "available": true,
+        "resolution": "candle_1m",
+        "reason": null,
+        "price": "76018.330000000000000000",
+        "price_basis": "candle_close",
+        "price_at": "2026-04-29T17:44:59.999000Z",
+        "snapshot_message_id": null,
+        "snapshot_distance_ms": null,
+        "bid": null,
+        "ask": null,
+        "spread_bps": null,
+        "candle": {
+          "open_time": "2026-04-29T17:44:00Z",
+          "close_time": "2026-04-29T17:44:59.999000Z",
+          "open": "75982.470000000000000000",
+          "high": "76018.340000000000000000",
+          "low": "75982.470000000000000000",
+          "close": "76018.330000000000000000",
+          "base_volume": "2.356800000000000000",
+          "quote_volume": "179117.766859100000000000",
+          "trade_count": 1129,
+          "taker_buy_base_volume": "1.789470000000000000",
+          "taker_buy_quote_volume": "135999.238747800000000000"
+        },
+        "return_pct_from_anchor": "-0.217473456700",
+        "absolute_return_pct": "0.217473456700",
+        "age_seconds": 0.001,
+        "max_age_seconds": 60.0,
+        "role": "causal"
+      },
+      {
+        "offset_seconds": -300,
+        "target_at": "2026-04-29T17:55:00Z",
+        "status": "available",
+        "available": true,
+        "resolution": "candle_1m",
+        "reason": null,
+        "price": "75981.770000000000000000",
+        "price_basis": "candle_close",
+        "price_at": "2026-04-29T17:54:59.999000Z",
+        "snapshot_message_id": null,
+        "snapshot_distance_ms": null,
+        "bid": null,
+        "ask": null,
+        "spread_bps": null,
+        "candle": {
+          "open_time": "2026-04-29T17:54:00Z",
+          "close_time": "2026-04-29T17:54:59.999000Z",
+          "open": "75972.960000000000000000",
+          "high": "75981.780000000000000000",
+          "low": "75965.790000000000000000",
+          "close": "75981.770000000000000000",
+          "base_volume": "5.767170000000000000",
+          "quote_volume": "438160.855871500000000000",
+          "trade_count": 1317,
+          "taker_buy_base_volume": "3.753390000000000000",
+          "taker_buy_quote_volume": "285160.141518300000000000"
+        },
+        "return_pct_from_anchor": "-0.265462529473",
+        "absolute_return_pct": "0.265462529473",
+        "age_seconds": 0.001,
+        "max_age_seconds": 60.0,
+        "role": "causal"
+      },
+      {
+        "offset_seconds": 0,
+        "target_at": "2026-04-29T18:00:00Z",
+        "status": "available",
+        "available": true,
+        "resolution": "candle_1m",
+        "reason": null,
+        "price": "76184.010000000000000000",
+        "price_basis": "candle_close",
+        "price_at": "2026-04-29T17:59:59.999000Z",
+        "snapshot_message_id": null,
+        "snapshot_distance_ms": null,
+        "bid": null,
+        "ask": null,
+        "spread_bps": null,
+        "candle": {
+          "open_time": "2026-04-29T17:59:00Z",
+          "close_time": "2026-04-29T17:59:59.999000Z",
+          "open": "76073.490000000000000000",
+          "high": "76184.010000000000000000",
+          "low": "76073.490000000000000000",
+          "close": "76184.010000000000000000",
+          "base_volume": "13.334280000000000000",
+          "quote_volume": "1015162.636709100000000000",
+          "trade_count": 4083,
+          "taker_buy_base_volume": "9.259790000000000000",
+          "taker_buy_quote_volume": "704927.386409700000000000"
+        },
+        "return_pct_from_anchor": "0.000000000000",
+        "absolute_return_pct": "0.000000000000",
+        "age_seconds": 0.001,
+        "max_age_seconds": 60.0,
+        "role": "causal"
+      }
+    ],
+    "complete": true,
+    "decision_ready": true,
+    "market_data_status": "available"
+  }
+}

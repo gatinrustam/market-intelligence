@@ -1,0 +1,174 @@
+{
+  "version": "1.0",
+  "high_value_registry_file": "high_value_facts.v1.json",
+  "source_quality": {
+    "fed_monetary_policy": "official_primary",
+    "ecb_press": "official_primary",
+    "sec_press_releases": "official_primary"
+  },
+  "financial_prefixes": [
+    "monetary_policy.",
+    "economic_data.",
+    "regulation.",
+    "crypto."
+  ],
+  "macro_prefixes": [
+    "monetary_policy.",
+    "economic_data."
+  ],
+  "crypto_prefixes": [
+    "crypto."
+  ],
+  "density": {
+    "high_fact_count": 2,
+    "high_value_with_measurements": 1,
+    "medium_measurements": 2
+  },
+  "default_route": "review",
+  "empty_unknown_source_route": "low",
+  "rules": [
+    {
+      "id": "router.monetary_policy.rate_decision",
+      "fact_types": [
+        "monetary_policy.rate_decision"
+      ],
+      "route": "important",
+      "priority": 80,
+      "macro_relevance": "high",
+      "reason": "Explicit monetary-policy rate decision"
+    },
+    {
+      "id": "router.crypto.critical",
+      "fact_types": [
+        "crypto.withdrawal_suspension",
+        "crypto.security_incident",
+        "crypto.stablecoin_depeg"
+      ],
+      "route": "critical",
+      "priority": 100,
+      "crypto_relevance": "high",
+      "reason": "Explicit crypto operational/security fact requiring urgent review"
+    },
+    {
+      "id": "router.crypto.action",
+      "fact_types": [
+        "crypto.etf_action",
+        "crypto.treasury_purchase"
+      ],
+      "route": "important",
+      "priority": 80,
+      "crypto_relevance": "high",
+      "reason": "Explicit crypto investment or ETF action"
+    },
+    {
+      "id": "router.digital_regulation",
+      "fact_types": [
+        "regulation.rule_proposal",
+        "regulation.rule_adoption",
+        "regulation.enforcement"
+      ],
+      "topics_any": [
+        "digital_assets",
+        "bitcoin",
+        "ethereum"
+      ],
+      "route": "important",
+      "priority": 80,
+      "crypto_relevance": "high",
+      "reason": "Regulatory fact with evidenced digital-asset context"
+    },
+    {
+      "id": "router.economic_release",
+      "fact_types": [
+        "economic_data.inflation",
+        "economic_data.employment",
+        "economic_data.gdp",
+        "economic_data.wages"
+      ],
+      "route": "important",
+      "priority": 70,
+      "macro_relevance": "high",
+      "reason": "Explicit numerical economic-data claim"
+    },
+    {
+      "id": "router.sec.crypto_proposal",
+      "sources": [
+        "sec_press_releases"
+      ],
+      "event_types": [
+        "regulator.rule_proposal"
+      ],
+      "title_patterns": [
+        "^SEC Proposes New Regulation Crypto Assets$"
+      ],
+      "route": "important",
+      "priority": 70,
+      "crypto_relevance": "high",
+      "reason": "Named official SEC crypto rule proposal; contextual title plus canonical proposal metadata, not an inferred DI fact"
+    },
+    {
+      "id": "router.sec.tokenized_market",
+      "sources": [
+        "sec_press_releases"
+      ],
+      "metadata_rule_ids": [
+        "sec.tokenized_nms_exemption"
+      ],
+      "route": "important",
+      "priority": 70,
+      "crypto_relevance": "high",
+      "reason": "Pinned Event Intelligence identifies the specific SEC tokenized-market exemption"
+    },
+    {
+      "id": "router.personnel",
+      "event_types": [
+        "regulator.personnel",
+        "regulation.personnel"
+      ],
+      "no_high_value": true,
+      "route": "low",
+      "priority": 40,
+      "reason": "Personnel item without other high-value financial facts"
+    },
+    {
+      "id": "router.sec.personnel_exception",
+      "sources": [
+        "sec_press_releases"
+      ],
+      "metadata_rule_ids": [
+        "sec.personnel_announcement"
+      ],
+      "no_high_value": true,
+      "route": "low",
+      "priority": 40,
+      "reason": "Exact personnel announcement identified upstream; not an enforcement action"
+    },
+    {
+      "id": "router.central_bank.commentary",
+      "event_types": [
+        "central_bank.speech",
+        "central_bank.interview"
+      ],
+      "no_high_value": true,
+      "route": "review",
+      "priority": 20,
+      "macro_relevance": "low",
+      "reason": "Central-bank commentary without high-value extracted facts"
+    },
+    {
+      "id": "router.service_notice",
+      "sources": [
+        "fed_monetary_policy",
+        "ecb_press",
+        "sec_press_releases"
+      ],
+      "title_patterns": [
+        "(?i)^(?:Notice of website maintenance|RSS feed maintenance notice)$"
+      ],
+      "no_facts": true,
+      "route": "archive",
+      "priority": 10,
+      "reason": "Explicit source-scoped service notice without financial facts"
+    }
+  ]
+}

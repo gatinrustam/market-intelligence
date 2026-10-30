@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "message_id": "5107ff2d-f9f5-4fe5-a4c2-db572be08952",
+  "document_id": "73204fa7-69a9-4656-99d3-b9e9a88d553c",
+  "lineage": {
+    "source_message_id": "78fc6481-1aa3-4cc8-b95c-b1c0fc01a733",
+    "input_subject": "news.raw.v1",
+    "input_content_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "source": {
+    "id": "ecb_press",
+    "type": "rss",
+    "external_id": null,
+    "url": "https://www.ecb.europa.eu/press/key/date/2026/example.pdf"
+  },
+  "timestamps": {
+    "published_at": "2026-04-29T18:00:00Z",
+    "received_at": "2026-09-19T00:00:00Z",
+    "enriched_at": "2026-09-19T00:01:00Z",
+    "ingestion_delay_seconds": 12204000
+  },
+  "content": {
+    "title": "Philip R. Lane: Diversity at the European Central Bank",
+    "extracted_title": null,
+    "body": "A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. A fixture PDF speech about organizational diversity and the institution. ",
+    "language": "en",
+    "body_length": 1460,
+    "content_source": "pdf"
+  },
+  "classification": {
+    "categories": [
+      "macro",
+      "monetary_policy"
+    ]
+  },
+  "enrichment": {
+    "status": "ready",
+    "required": true,
+    "reason": "rss_body_empty",
+    "failure_reason": null
+  },
+  "fetch": {
+    "status": "success",
+    "requested_url": "https://www.federalreserve.gov/a",
+    "final_url": "https://www.federalreserve.gov/a",
+    "http_status": 200,
+    "content_type": "application/pdf",
+    "snapshot_id": "67b2c2bf-93ac-421a-aed9-9e62a397f864",
+    "fetched_at": "2026-09-19T00:00:30Z",
+    "redirect_count": 0,
+    "attempt_count": 1,
+    "error_reason": null
+  },
+  "extraction": {
+    "status": "success",
+    "method": "pypdf",
+    "processor_version": "1.0",
+    "library_version": "6.19.0",
+    "warnings": [],
+    "error_reason": null
+  },
+  "integrity": {
+    "content_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  }
+}

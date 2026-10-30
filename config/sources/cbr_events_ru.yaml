@@ -1,0 +1,13 @@
+id: cbr_events_ru
+name: Банк России — новости, интервью, выступления
+enabled: true
+connector:
+  type: rss
+  url: https://www.cbr.ru/rss/eventrss
+poll:
+  interval_seconds: 900
+classification:
+  categories: ["macro", "monetary_policy"]
+priority: high
+language: ru
+max_items_per_poll: 20

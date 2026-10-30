@@ -1,0 +1,109 @@
+version: '1.0'
+rules:
+  - id: fed.fomc_statement
+    priority: 300
+    source_id: [fed_monetary_policy]
+    title_regex: ['(?i)\bFOMC statement\b']
+    event_type: central_bank.policy_statement
+    topics: [monetary_policy, interest_rates]
+    classification_basis: exact_rule
+    identity_namespace: fomc.meeting
+    identity_title_regex: '(?i)\bFOMC statement\b'
+  - id: fed.projections
+    priority: 290
+    source_id: [fed_monetary_policy]
+    title_regex: ['(?i)\beconomic projections\b']
+    event_type: central_bank.projections
+    topics: [monetary_policy, economic_growth]
+    classification_basis: exact_rule
+    identity_namespace: fomc.meeting
+    identity_title_regex: '(?i)\bFOMC meeting\b'
+  - id: fed.minutes
+    priority: 280
+    source_id: [fed_monetary_policy]
+    title_regex: ['(?i)\bMinutes\b']
+    event_type: central_bank.minutes
+    topics: [monetary_policy]
+    classification_basis: exact_rule
+    identity_namespace: fomc.meeting
+    identity_title_regex: '(?i)\bFederal Open Market Committee\b'
+  - id: ecb.interview
+    priority: 400
+    source_id: [ecb_press]
+    title_regex: ['(?i)\bInterview\b']
+    url_regex: ['/press/inter/']
+    event_type: central_bank.interview
+    topics: []
+    classification_basis: exact_rule
+    speaker_title_regex: '^(?P<name>[^:]{3,100}):\s'
+  - id: ecb.policy_statement
+    priority: 350
+    source_id: [ecb_press]
+    title_regex: ['(?i)\bMonetary policy (?:decisions|statement)\b']
+    event_type: central_bank.policy_statement
+    topics: [monetary_policy, interest_rates]
+    classification_basis: exact_rule
+  - id: ecb.wage_tracker
+    priority: 340
+    source_id: [ecb_press]
+    title_regex: ['(?i)\bwage tracker\b']
+    event_type: central_bank.data_release
+    topics: [wages]
+    classification_basis: exact_rule
+  - id: ecb.speech
+    priority: 200
+    source_id: [ecb_press]
+    url_regex: ['/press/key/']
+    event_type: central_bank.speech
+    topics: []
+    classification_basis: heuristic_rule
+    speaker_title_regex: '^(?P<name>[^:]{3,100}):\s'
+  - id: sec.rule_proposal
+    priority: 300
+    source_id: [sec_press_releases]
+    title_regex: ['(?i)\bProposes\b']
+    event_type: regulator.rule_proposal
+    topics: [regulation]
+    classification_basis: exact_rule
+  - id: sec.rule_adoption
+    priority: 290
+    source_id: [sec_press_releases]
+    title_regex: ['(?i)\b(?:Adopts|Final Rule)\b']
+    event_type: regulator.rule_adoption
+    topics: [regulation]
+    classification_basis: exact_rule
+  - id: sec.guidance
+    priority: 280
+    source_id: [sec_press_releases]
+    title_regex: ['(?i)\b(?:Updates FAQs|Guidance)\b']
+    event_type: regulator.guidance
+    topics: [regulation]
+    classification_basis: exact_rule
+  - id: sec.enforcement
+    priority: 270
+    source_id: [sec_press_releases]
+    title_regex: ['(?i)\b(?:Charges|Enforcement|Settles)\b']
+    event_type: regulator.enforcement
+    topics: [enforcement]
+    classification_basis: exact_rule
+  - id: sec.meeting
+    priority: 260
+    source_id: [sec_press_releases]
+    title_regex: ['(?i)\b(?:Meeting|Roundtable)\b']
+    event_type: regulator.meeting
+    topics: [capital_markets]
+    classification_basis: exact_rule
+  - id: sec.report
+    priority: 250
+    source_id: [sec_press_releases]
+    title_regex: ['(?i)\bReport\b']
+    event_type: regulator.report
+    topics: [capital_markets]
+    classification_basis: heuristic_rule
+  - id: sec.personnel
+    priority: 240
+    source_id: [sec_press_releases]
+    title_regex: ['(?i)\b(?:Departure|Appoints|Names)\b']
+    event_type: regulator.personnel
+    topics: []
+    classification_basis: heuristic_rule

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "message_id": "b4d12ac1-3287-4611-868e-c16cce75730b",
+  "document_id": "9367fc8b-fb8a-405d-ad21-405f34d8a9ad",
+  "lineage": {
+    "source_message_id": "99110297-87ca-4046-9906-76f93bb92d56",
+    "input_subject": "news.raw.v1",
+    "input_content_hash": "da96cfa5123b53bb100c4c7b46d7ee58017390c8cb048727a47244ffa91f28ee"
+  },
+  "source": {
+    "id": "fed_monetary_policy",
+    "type": "rss",
+    "external_id": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm"
+  },
+  "timestamps": {
+    "published_at": "2026-04-29T18:00:00+00:00",
+    "received_at": "2026-09-19T18:40:37.062893+00:00",
+    "enriched_at": "2026-09-19T19:26:10.680215+00:00",
+    "ingestion_delay_seconds": 12357637.062893
+  },
+  "content": {
+    "title": "Federal Reserve issues FOMC statement",
+    "extracted_title": "Federal Reserve issues FOMC statement",
+    "body": "April 29, 2026\nFederal Reserve issues FOMC statement\nFor release at 2:00 p.m. EDT\nRecent indicators suggest that economic activity has been expanding at a solid pace. Job gains have remained low, on average, and the unemployment rate has been little changed in recent months. Inflation is elevated, in part reflecting the recent increase in global energy prices.\nThe Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run. Developments in the Middle East are contributing to a high level of uncertainty about the economic outlook. The Committee is attentive to the risks to both sides of its dual mandate.\nIn support of its goals, the Committee decided to maintain the target range for the federal funds rate at 3‑1/2 to 3‑3/4 percent. In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective.\nIn assessing the appropriate stance of monetary policy, the Committee will continue to monitor the implications of incoming information for the economic outlook. The Committee would be prepared to adjust the stance of monetary policy as appropriate if risks emerge that could impede the attainment of the Committee's goals. The Committee's assessments will take into account a wide range of information, including readings on labor market conditions, inflation pressures and inflation expectations, and financial and international developments.\nVoting for the monetary policy action were Jerome H. Powell, Chair; John C. Williams, Vice Chair; Michael S. Barr; Michelle W. Bowman; Lisa D. Cook; Philip N. Jefferson; Anna Paulson; and Christopher J. Waller. Voting against this action were Stephen I. Miran, who preferred to lower the target range for the federal funds rate by 1/4 percentage point at this meeting; and Beth M. Hammack, Neel Kashkari, and Lorie K. Logan, who supported maintaining the target range for the federal funds rate but did not support inclusion of an easing bias in the statement at this time.\nFor media inquiries, please email [email protected] or call 202-452-2955.",
+    "body_length": 2309,
+    "language": "en",
+    "content_source": "html"
+  },
+  "classification": {
+    "categories": [
+      "macro",
+      "monetary_policy"
+    ]
+  },
+  "enrichment": {
+    "status": "ready",
+    "required": true,
+    "reason": "rss_body_equals_title",
+    "failure_reason": null
+  },
+  "fetch": {
+    "status": "success",
+    "requested_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+    "final_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+    "http_status": 200,
+    "content_type": "text/html",
+    "snapshot_id": "e9f1843f-fe41-444b-8fec-72685cf3dbfe",
+    "fetched_at": "2026-09-19T19:26:10.136887+00:00",
+    "redirect_count": 0,
+    "attempt_count": 1,
+    "error_reason": null
+  },
+  "extraction": {
+    "status": "success",
+    "method": "trafilatura",
+    "library_version": "2.2.0",
+    "processor_version": "1.0",
+    "warnings": [],
+    "error_reason": null
+  },
+  "integrity": {
+    "content_hash": "ab2747f2bcd1ce0ce1c920a1bd430b2cc35e1b152ba86818a0360476d2875cf8"
+  }
+}

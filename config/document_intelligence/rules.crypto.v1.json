@@ -1,0 +1,583 @@
+{
+  "version": "crypto_v1",
+  "pipeline_version": "1.0",
+  "registry_file": "entities.crypto.v1.json",
+  "rules": [
+    {
+      "id": "monetary_policy.rate_decision.hold.v1",
+      "action": "hold",
+      "lemmas": {
+        "en": [
+          "keep",
+          "hold",
+          "maintain",
+          "leave"
+        ],
+        "ru": [
+          "сохранить",
+          "оставить",
+          "поддерживать"
+        ]
+      },
+      "fact_type": "monetary_policy.rate_decision",
+      "object_entities": [
+        "interest_rates"
+      ],
+      "topics": [
+        "monetary_policy",
+        "interest_rates"
+      ]
+    },
+    {
+      "id": "monetary_policy.rate_decision.raise.v1",
+      "action": "raise",
+      "lemmas": {
+        "en": [
+          "raise",
+          "increase",
+          "hike"
+        ],
+        "ru": [
+          "повысить",
+          "увеличить"
+        ]
+      },
+      "fact_type": "monetary_policy.rate_decision",
+      "object_entities": [
+        "interest_rates"
+      ],
+      "topics": [
+        "monetary_policy",
+        "interest_rates"
+      ]
+    },
+    {
+      "id": "monetary_policy.rate_decision.lower.v1",
+      "action": "lower",
+      "lemmas": {
+        "en": [
+          "lower",
+          "cut",
+          "reduce"
+        ],
+        "ru": [
+          "снизить",
+          "снижать"
+        ]
+      },
+      "fact_type": "monetary_policy.rate_decision",
+      "object_entities": [
+        "interest_rates"
+      ],
+      "topics": [
+        "monetary_policy",
+        "interest_rates"
+      ]
+    },
+    {
+      "id": "regulation.enforcement.charge.v1",
+      "action": "charge",
+      "lemmas": {
+        "en": [
+          "charge",
+          "sue"
+        ],
+        "ru": [
+          "предъявить",
+          "обвинить"
+        ]
+      },
+      "fact_type": "regulation.enforcement",
+      "object_entities": [],
+      "topics": [
+        "regulation"
+      ],
+      "object_patterns": {
+        "en": "\\b(?:fraud|securities|company|corp(?:oration)?|adviser|partners|LLC)\\b",
+        "ru": "обвинени|компани|мошеннич"
+      }
+    },
+    {
+      "id": "regulation.rule_proposal.propose.v1",
+      "action": "propose",
+      "lemmas": {
+        "en": [
+          "propose"
+        ],
+        "ru": [
+          "предложить"
+        ]
+      },
+      "fact_type": "regulation.rule_proposal",
+      "object_entities": [],
+      "topics": [
+        "regulation",
+        "capital_markets"
+      ],
+      "object_patterns": {
+        "en": "\\b(?:rules?|amendments?|proposal|requirements?|exemption)\\b",
+        "ru": "правил|поправ|требован|предложени"
+      }
+    },
+    {
+      "id": "regulation.rule_adoption.adopt.v1",
+      "action": "adopt",
+      "lemmas": {
+        "en": [
+          "adopt",
+          "approve"
+        ],
+        "ru": [
+          "принять",
+          "утвердить"
+        ]
+      },
+      "fact_type": "regulation.rule_adoption",
+      "object_entities": [],
+      "topics": [
+        "regulation",
+        "capital_markets"
+      ],
+      "object_patterns": {
+        "en": "\\b(?:rules?|amendments?|proposal|requirements?|exemption)\\b",
+        "ru": "правил|поправ|требован|предложени"
+      }
+    },
+    {
+      "id": "crypto.withdrawal_suspension.suspend.v1",
+      "action": "suspend",
+      "lemmas": {
+        "en": [
+          "suspend",
+          "halt",
+          "pause"
+        ],
+        "ru": [
+          "приостановить",
+          "приостанавливать"
+        ]
+      },
+      "fact_type": "crypto.withdrawal_suspension",
+      "object_entities": [],
+      "topics": [
+        "digital_assets",
+        "crypto_exchange"
+      ],
+      "object_patterns": {
+        "en": "\\bwithdrawals?\\b",
+        "ru": "\\bвывод\\w*"
+      }
+    },
+    {
+      "id": "crypto.treasury_purchase.purchase.v1",
+      "action": "purchase",
+      "lemmas": {
+        "en": [
+          "purchase",
+          "buy",
+          "acquire"
+        ],
+        "ru": [
+          "купить",
+          "приобрести"
+        ]
+      },
+      "fact_type": "crypto.treasury_purchase",
+      "object_entities": [
+        "bitcoin",
+        "ethereum"
+      ],
+      "topics": [
+        "digital_assets"
+      ]
+    },
+    {
+      "id": "economic_data.inflation.reported.v1",
+      "action": "report",
+      "lemmas": {
+        "en": [
+          "be",
+          "rise",
+          "fall",
+          "grow",
+          "increase",
+          "decrease",
+          "reach",
+          "stand",
+          "remain"
+        ],
+        "ru": [
+          "составить",
+          "вырасти",
+          "увеличиться",
+          "снизиться",
+          "достигнуть",
+          "равняться"
+        ]
+      },
+      "fact_type": "economic_data.inflation",
+      "subject_entity": "economic_indicator:inflation",
+      "object_entities": [],
+      "requires_measurement": true,
+      "topics": [
+        "inflation"
+      ]
+    },
+    {
+      "id": "economic_data.employment.reported.v1",
+      "action": "report",
+      "lemmas": {
+        "en": [
+          "be",
+          "rise",
+          "fall",
+          "grow",
+          "increase",
+          "decrease",
+          "reach",
+          "stand",
+          "remain"
+        ],
+        "ru": [
+          "составить",
+          "вырасти",
+          "увеличиться",
+          "снизиться",
+          "достигнуть",
+          "равняться"
+        ]
+      },
+      "fact_type": "economic_data.employment",
+      "subject_entity": "economic_indicator:employment",
+      "object_entities": [],
+      "requires_measurement": true,
+      "topics": [
+        "employment"
+      ]
+    },
+    {
+      "id": "economic_data.gdp.reported.v1",
+      "action": "report",
+      "lemmas": {
+        "en": [
+          "be",
+          "rise",
+          "fall",
+          "grow",
+          "increase",
+          "decrease",
+          "reach",
+          "stand",
+          "remain"
+        ],
+        "ru": [
+          "составить",
+          "вырасти",
+          "увеличиться",
+          "снизиться",
+          "достигнуть",
+          "равняться"
+        ]
+      },
+      "fact_type": "economic_data.gdp",
+      "subject_entity": "economic_indicator:gdp",
+      "object_entities": [],
+      "requires_measurement": true,
+      "topics": [
+        "economic_growth"
+      ]
+    },
+    {
+      "id": "economic_data.wages.reported.v1",
+      "action": "report",
+      "lemmas": {
+        "en": [
+          "be",
+          "rise",
+          "fall",
+          "grow",
+          "increase",
+          "decrease",
+          "reach",
+          "stand",
+          "remain"
+        ],
+        "ru": [
+          "составить",
+          "вырасти",
+          "увеличиться",
+          "снизиться",
+          "достигнуть",
+          "равняться"
+        ]
+      },
+      "fact_type": "economic_data.wages",
+      "subject_entity": "economic_indicator:wages",
+      "object_entities": [],
+      "requires_measurement": true,
+      "topics": [
+        "wages"
+      ]
+    },
+    {
+      "id": "crypto.etf_action.approve.v1",
+      "action": "approve",
+      "lemmas": {
+        "en": [
+          "approve"
+        ],
+        "ru": [
+          "одобрить"
+        ]
+      },
+      "fact_type": "crypto.etf_action",
+      "object_entities": [
+        "etf"
+      ],
+      "object_patterns": {
+        "en": "\\b(?:Bitcoin|Ethereum|BTC|ETH)\\b",
+        "ru": "биткоин|эфириум|BTC|ETH"
+      },
+      "topics": [
+        "digital_assets",
+        "capital_markets"
+      ]
+    },
+    {
+      "id": "crypto.exchange_listing.v1",
+      "action": "list",
+      "lemmas": {
+        "en": [
+          "list"
+        ],
+        "ru": [
+          "добавить"
+        ]
+      },
+      "fact_type": "crypto.exchange_listing",
+      "object_patterns": {
+        "en": "list\\w*.*(?:token|pair|trading|spot|cryptocurrenc)",
+        "ru": "листинг|торгов"
+      },
+      "topics": [
+        "digital_assets"
+      ],
+      "crypto_subject_required": true
+    },
+    {
+      "id": "crypto.exchange_delisting.v1",
+      "action": "delist",
+      "lemmas": {
+        "en": [
+          "delist",
+          "remove"
+        ],
+        "ru": [
+          "исключить"
+        ]
+      },
+      "fact_type": "crypto.exchange_delisting",
+      "object_patterns": {
+        "en": "delist|remove.*(?:token|pair|trading)",
+        "ru": "делистинг|торгов"
+      },
+      "topics": [
+        "digital_assets"
+      ],
+      "crypto_subject_required": true
+    },
+    {
+      "id": "crypto.deposit_suspension.v1",
+      "action": "suspend_deposits",
+      "lemmas": {
+        "en": [
+          "suspend",
+          "halt",
+          "pause"
+        ],
+        "ru": [
+          "приостановить"
+        ]
+      },
+      "fact_type": "crypto.deposit_suspension",
+      "object_patterns": {
+        "en": "deposits?",
+        "ru": "депозит|ввод"
+      },
+      "topics": [
+        "digital_assets"
+      ],
+      "crypto_subject_required": true
+    },
+    {
+      "id": "crypto.stablecoin_change.v1",
+      "action": "launch",
+      "lemmas": {
+        "en": [
+          "launch",
+          "introduce",
+          "expand"
+        ],
+        "ru": [
+          "запустить",
+          "расширить"
+        ]
+      },
+      "fact_type": "crypto.stablecoin_change",
+      "object_patterns": {
+        "en": "USDT|USDC|stablecoin|Arc|redemption",
+        "ru": "USDT|USDC|стейблкоин|Arc|погашен"
+      },
+      "topics": [
+        "digital_assets"
+      ],
+      "crypto_subject_required": true
+    },
+    {
+      "id": "crypto.treasury_sale.v1",
+      "action": "sell",
+      "lemmas": {
+        "en": [
+          "sell"
+        ],
+        "ru": [
+          "продать"
+        ]
+      },
+      "fact_type": "crypto.treasury_sale",
+      "object_patterns": {
+        "en": "\\bBTC\\b|bitcoin",
+        "ru": "BTC|биткоин"
+      },
+      "topics": [
+        "digital_assets"
+      ],
+      "crypto_subject_required": true
+    },
+    {
+      "id": "crypto.treasury_holdings.v1",
+      "action": "hold",
+      "lemmas": {
+        "en": [
+          "hold",
+          "own"
+        ],
+        "ru": [
+          "держать",
+          "владеть"
+        ]
+      },
+      "fact_type": "crypto.treasury_holdings",
+      "object_patterns": {
+        "en": "\\bBTC\\b|bitcoin",
+        "ru": "BTC|биткоин"
+      },
+      "topics": [
+        "digital_assets"
+      ],
+      "crypto_subject_required": true
+    },
+    {
+      "id": "crypto.institutional_product.v1",
+      "action": "launch",
+      "lemmas": {
+        "en": [
+          "launch",
+          "introduce",
+          "expand"
+        ],
+        "ru": [
+          "запустить",
+          "расширить"
+        ]
+      },
+      "fact_type": "crypto.institutional_product",
+      "object_patterns": {
+        "en": "institutional|derivative|custody|perpetual|futures",
+        "ru": "институциональ|дериватив|кастоди|фьючерс"
+      },
+      "topics": [
+        "digital_assets"
+      ],
+      "crypto_subject_required": true
+    },
+    {
+      "id": "crypto.treasury_purchase.labelled.v1",
+      "action": "purchase",
+      "lemmas": {
+        "en": [],
+        "ru": []
+      },
+      "fact_type": "crypto.treasury_purchase",
+      "topics": [
+        "digital_assets",
+        "bitcoin"
+      ]
+    },
+    {
+      "id": "crypto.exchange_outage.experience.v1",
+      "action": "experience",
+      "lemmas": {
+        "en": [
+          "experience",
+          "report"
+        ],
+        "ru": [
+          "испытывать",
+          "сообщить"
+        ]
+      },
+      "fact_type": "crypto.exchange_outage",
+      "object_patterns": {
+        "en": "outage|technical (?:issue|failure)|service disruption|degraded (?:funding|service)|funding delays",
+        "ru": "сбой|неполадк|недоступн"
+      },
+      "crypto_subject_required": true,
+      "topics": [
+        "digital_assets",
+        "crypto_exchange"
+      ]
+    }
+  ],
+  "taxonomy": [
+    "monetary_policy.rate_decision",
+    "monetary_policy.guidance",
+    "economic_data.inflation",
+    "economic_data.employment",
+    "economic_data.gdp",
+    "economic_data.wages",
+    "regulation.rule_proposal",
+    "regulation.rule_adoption",
+    "regulation.enforcement",
+    "crypto.exchange_outage",
+    "crypto.withdrawal_suspension",
+    "crypto.security_incident",
+    "crypto.stablecoin_depeg",
+    "crypto.treasury_purchase",
+    "crypto.etf_action",
+    "crypto.exchange_listing",
+    "crypto.exchange_delisting",
+    "crypto.deposit_suspension",
+    "crypto.stablecoin_change",
+    "crypto.treasury_sale",
+    "crypto.treasury_holdings",
+    "crypto.institutional_product"
+  ],
+  "topics": [
+    "monetary_policy",
+    "interest_rates",
+    "inflation",
+    "employment",
+    "wages",
+    "economic_growth",
+    "financial_stability",
+    "regulation",
+    "capital_markets",
+    "digital_assets",
+    "bitcoin",
+    "ethereum",
+    "crypto_exchange",
+    "stablecoin"
+  ],
+  "structured_treasury_version": "explicit_labels_v1"
+}

@@ -1,0 +1,35 @@
+{
+  "bge": {
+    "model": "BAAI/bge-m3",
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "files": [
+      "config.json",
+      "config_sentence_transformers.json",
+      "modules.json",
+      "sentence_bert_config.json",
+      "sentencepiece.bpe.model",
+      "special_tokens_map.json",
+      "tokenizer.json",
+      "tokenizer_config.json",
+      "1_Pooling/config.json",
+      "pytorch_model.bin"
+    ]
+  },
+  "gliner": {
+    "model": "urchade/gliner_multi-v2.1",
+    "revision": "443d26d654e0324125a96bebd8e796c14ff2efe6",
+    "files": [
+      "gliner_config.json",
+      "model.safetensors"
+    ]
+  },
+  "gliner_backbone": {
+    "model": "microsoft/mdeberta-v3-base",
+    "revision": "a0484667b22365f84929a935b5e50a51f71f159d",
+    "files": [
+      "config.json",
+      "tokenizer_config.json",
+      "spm.model"
+    ]
+  }
+}

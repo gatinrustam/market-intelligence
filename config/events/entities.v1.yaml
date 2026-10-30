@@ -1,0 +1,15 @@
+version: '1.0'
+entities:
+  organization:federal_reserve:
+    entity_type: organization
+    name: Federal Reserve
+    aliases: [Fed, Federal Reserve Board]
+  organization:sec:
+    entity_type: organization
+    name: Securities and Exchange Commission
+    aliases: [SEC]
+  organization:ecb:
+    entity_type: organization
+    name: European Central Bank
+    aliases: [ECB]
+jurisdictions: [US, EU]

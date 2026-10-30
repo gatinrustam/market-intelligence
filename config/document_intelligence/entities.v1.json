@@ -1,0 +1,338 @@
+{
+  "version": "1.0",
+  "entities": [
+    {
+      "entity_id": "organization:federal_reserve",
+      "type": "organization",
+      "canonical_name": "Federal Reserve",
+      "aliases": {
+        "en": [
+          "Federal Reserve",
+          "Fed",
+          "FOMC",
+          "Federal Open Market Committee"
+        ],
+        "ru": [
+          "ФРС",
+          "Федеральная резервная система"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "organization:federal_reserve",
+      "type": "organization",
+      "canonical_name": "Federal Reserve",
+      "aliases": {
+        "en": [
+          "Committee"
+        ],
+        "ru": [
+          "Комитет"
+        ]
+      },
+      "requires": "organization:federal_reserve"
+    },
+    {
+      "entity_id": "organization:sec",
+      "type": "organization",
+      "canonical_name": "SEC",
+      "aliases": {
+        "en": [
+          "SEC",
+          "Securities and Exchange Commission"
+        ],
+        "ru": [
+          "SEC",
+          "Комиссия по ценным бумагам и биржам"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "organization:ecb",
+      "type": "organization",
+      "canonical_name": "ECB",
+      "aliases": {
+        "en": [
+          "ECB",
+          "European Central Bank"
+        ],
+        "ru": [
+          "ЕЦБ",
+          "Европейский центральный банк"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "organization:ecb",
+      "type": "organization",
+      "canonical_name": "ECB",
+      "aliases": {
+        "en": [
+          "Governing Council"
+        ],
+        "ru": [
+          "Совет управляющих"
+        ]
+      },
+      "requires": "organization:ecb"
+    },
+    {
+      "entity_id": "asset:bitcoin",
+      "type": "asset",
+      "canonical_name": "Bitcoin",
+      "aliases": {
+        "en": [
+          "Bitcoin",
+          "BTC"
+        ],
+        "ru": [
+          "биткоин",
+          "биткоина",
+          "биткоинов",
+          "BTC",
+          "Bitcoin"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "asset:ethereum",
+      "type": "asset",
+      "canonical_name": "Ethereum",
+      "aliases": {
+        "en": [
+          "Ethereum",
+          "ETH"
+        ],
+        "ru": [
+          "эфириум",
+          "эфириума",
+          "Ethereum",
+          "ETH"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "organization:binance",
+      "type": "organization",
+      "canonical_name": "Binance",
+      "aliases": {
+        "en": [
+          "Binance"
+        ],
+        "ru": [
+          "Binance"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "organization:coinbase",
+      "type": "organization",
+      "canonical_name": "Coinbase",
+      "aliases": {
+        "en": [
+          "Coinbase"
+        ],
+        "ru": [
+          "Coinbase"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "currency:usd",
+      "type": "currency",
+      "canonical_name": "USD",
+      "aliases": {
+        "en": [
+          "USD",
+          "US dollar",
+          "U.S. dollar"
+        ],
+        "ru": [
+          "USD",
+          "доллар",
+          "долларов",
+          "доллара"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "currency:eur",
+      "type": "currency",
+      "canonical_name": "EUR",
+      "aliases": {
+        "en": [
+          "EUR",
+          "euro"
+        ],
+        "ru": [
+          "EUR",
+          "евро"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "economic_indicator:interest_rates",
+      "type": "economic_indicator",
+      "canonical_name": "Interest rates",
+      "aliases": {
+        "en": [
+          "interest rates",
+          "interest rate",
+          "federal funds target range",
+          "target range",
+          "federal funds rate",
+          "rates"
+        ],
+        "ru": [
+          "процентная ставка",
+          "процентную ставку",
+          "процентной ставки",
+          "ставка",
+          "ставку"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "economic_indicator:inflation",
+      "type": "economic_indicator",
+      "canonical_name": "Inflation",
+      "aliases": {
+        "en": [
+          "inflation",
+          "consumer price index",
+          "CPI"
+        ],
+        "ru": [
+          "инфляция",
+          "инфляции",
+          "индекс потребительских цен"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "economic_indicator:employment",
+      "type": "economic_indicator",
+      "canonical_name": "Employment",
+      "aliases": {
+        "en": [
+          "employment",
+          "unemployment",
+          "payrolls"
+        ],
+        "ru": [
+          "занятость",
+          "безработица",
+          "безработицы"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "economic_indicator:gdp",
+      "type": "economic_indicator",
+      "canonical_name": "GDP",
+      "aliases": {
+        "en": [
+          "gross domestic product",
+          "GDP"
+        ],
+        "ru": [
+          "ВВП",
+          "валовой внутренний продукт"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "economic_indicator:wages",
+      "type": "economic_indicator",
+      "canonical_name": "Wages",
+      "aliases": {
+        "en": [
+          "wages",
+          "wage growth"
+        ],
+        "ru": [
+          "зарплата",
+          "заработная плата",
+          "зарплаты"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "financial_instrument:etf",
+      "type": "financial_instrument",
+      "canonical_name": "ETF",
+      "aliases": {
+        "en": [
+          "ETF",
+          "exchange-traded fund",
+          "exchange-traded funds"
+        ],
+        "ru": [
+          "ETF",
+          "биржевой фонд"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "financial_instrument:treasuries",
+      "type": "financial_instrument",
+      "canonical_name": "Treasury securities",
+      "aliases": {
+        "en": [
+          "Treasury securities",
+          "Treasury bills"
+        ],
+        "ru": [
+          "казначейские облигации"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "location:us",
+      "type": "location",
+      "canonical_name": "United States",
+      "aliases": {
+        "en": [
+          "United States",
+          "U.S."
+        ],
+        "ru": [
+          "США",
+          "Соединенные Штаты"
+        ]
+      },
+      "requires": null
+    },
+    {
+      "entity_id": "location:euro_area",
+      "type": "location",
+      "canonical_name": "Euro area",
+      "aliases": {
+        "en": [
+          "euro area"
+        ],
+        "ru": [
+          "еврозона",
+          "еврозоне"
+        ]
+      },
+      "requires": null
+    }
+  ]
+}

@@ -1,0 +1,384 @@
+{
+  "$defs": {
+    "Basis": {
+      "additionalProperties": false,
+      "properties": {
+        "ruleset_version": {
+          "title": "Ruleset Version",
+          "type": "string"
+        },
+        "high_value_registry_version": {
+          "title": "High Value Registry Version",
+          "type": "string"
+        },
+        "configuration_hash": {
+          "title": "Configuration Hash",
+          "type": "string"
+        },
+        "input_hash": {
+          "title": "Input Hash",
+          "type": "string"
+        },
+        "snapshot_hash": {
+          "title": "Snapshot Hash",
+          "type": "string"
+        },
+        "matched_rule_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Matched Rule Ids",
+          "type": "array"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Reasons",
+          "type": "array"
+        },
+        "feature_basis": {
+          "$ref": "#/$defs/FeatureReasons"
+        },
+        "metadata_warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Metadata Warnings",
+          "type": "array"
+        }
+      },
+      "required": [
+        "ruleset_version",
+        "high_value_registry_version",
+        "configuration_hash",
+        "input_hash",
+        "snapshot_hash",
+        "matched_rule_ids",
+        "reasons",
+        "feature_basis",
+        "metadata_warnings"
+      ],
+      "title": "Basis",
+      "type": "object"
+    },
+    "Classification": {
+      "additionalProperties": false,
+      "properties": {
+        "route": {
+          "enum": [
+            "critical",
+            "important",
+            "review",
+            "low",
+            "archive"
+          ],
+          "title": "Route",
+          "type": "string"
+        }
+      },
+      "required": [
+        "route"
+      ],
+      "title": "Classification",
+      "type": "object"
+    },
+    "Document": {
+      "additionalProperties": false,
+      "properties": {
+        "document_id": {
+          "format": "uuid",
+          "title": "Document Id",
+          "type": "string"
+        },
+        "intelligence_id": {
+          "format": "uuid",
+          "title": "Intelligence Id",
+          "type": "string"
+        },
+        "pipeline_version": {
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "fact_ruleset_version": {
+          "title": "Fact Ruleset Version",
+          "type": "string"
+        },
+        "entity_registry_version": {
+          "title": "Entity Registry Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_id",
+        "intelligence_id",
+        "pipeline_version",
+        "fact_ruleset_version",
+        "entity_registry_version"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "FeatureBasis": {
+      "additionalProperties": false,
+      "properties": {
+        "reason": {
+          "minLength": 1,
+          "title": "Reason",
+          "type": "string"
+        },
+        "input_paths": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Input Paths",
+          "type": "array"
+        },
+        "rule_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Rule Ids",
+          "type": "array"
+        },
+        "fact_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Fact Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "reason",
+        "input_paths",
+        "rule_ids",
+        "fact_ids"
+      ],
+      "title": "FeatureBasis",
+      "type": "object"
+    },
+    "FeatureReasons": {
+      "additionalProperties": false,
+      "properties": {
+        "market_relevance": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "crypto_relevance": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "macro_relevance": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "event_specificity": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "information_density": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "source_quality": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "document_quality": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "novelty": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "financial_fact_count": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "measurement_count": {
+          "$ref": "#/$defs/FeatureBasis"
+        },
+        "high_value_fact_count": {
+          "$ref": "#/$defs/FeatureBasis"
+        }
+      },
+      "required": [
+        "market_relevance",
+        "crypto_relevance",
+        "macro_relevance",
+        "event_specificity",
+        "information_density",
+        "source_quality",
+        "document_quality",
+        "novelty",
+        "financial_fact_count",
+        "measurement_count",
+        "high_value_fact_count"
+      ],
+      "title": "FeatureReasons",
+      "type": "object"
+    },
+    "Features": {
+      "additionalProperties": false,
+      "properties": {
+        "market_relevance": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "unknown"
+          ],
+          "title": "Market Relevance",
+          "type": "string"
+        },
+        "crypto_relevance": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "unknown"
+          ],
+          "title": "Crypto Relevance",
+          "type": "string"
+        },
+        "macro_relevance": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high",
+            "unknown"
+          ],
+          "title": "Macro Relevance",
+          "type": "string"
+        },
+        "event_specificity": {
+          "enum": [
+            "specific",
+            "general",
+            "commentary",
+            "unknown"
+          ],
+          "title": "Event Specificity",
+          "type": "string"
+        },
+        "information_density": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ],
+          "title": "Information Density",
+          "type": "string"
+        },
+        "source_quality": {
+          "enum": [
+            "official_primary",
+            "high",
+            "medium",
+            "low",
+            "unknown"
+          ],
+          "title": "Source Quality",
+          "type": "string"
+        },
+        "document_quality": {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown"
+          ],
+          "title": "Document Quality",
+          "type": "string"
+        },
+        "novelty": {
+          "enum": [
+            "new",
+            "supporting_update",
+            "duplicate_like",
+            "repeated_source_item",
+            "unknown"
+          ],
+          "title": "Novelty",
+          "type": "string"
+        },
+        "financial_fact_count": {
+          "minimum": 0,
+          "title": "Financial Fact Count",
+          "type": "integer"
+        },
+        "measurement_count": {
+          "minimum": 0,
+          "title": "Measurement Count",
+          "type": "integer"
+        },
+        "high_value_fact_count": {
+          "minimum": 0,
+          "title": "High Value Fact Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "market_relevance",
+        "crypto_relevance",
+        "macro_relevance",
+        "event_specificity",
+        "information_density",
+        "source_quality",
+        "document_quality",
+        "novelty",
+        "financial_fact_count",
+        "measurement_count",
+        "high_value_fact_count"
+      ],
+      "title": "Features",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "message_id": {
+      "format": "uuid",
+      "title": "Message Id",
+      "type": "string"
+    },
+    "routing_id": {
+      "format": "uuid",
+      "title": "Routing Id",
+      "type": "string"
+    },
+    "document": {
+      "$ref": "#/$defs/Document"
+    },
+    "classification": {
+      "$ref": "#/$defs/Classification"
+    },
+    "features": {
+      "$ref": "#/$defs/Features"
+    },
+    "basis": {
+      "$ref": "#/$defs/Basis"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "message_id",
+    "routing_id",
+    "document",
+    "classification",
+    "features",
+    "basis",
+    "generated_at"
+  ],
+  "title": "Output",
+  "type": "object"
+}

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools==82.0.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "market-intelligence-market_context"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "fastapi==0.141.1", "pydantic==2.13.5", "pydantic-settings==2.15.0",
+  "SQLAlchemy==2.0.54", "alembic==1.20.0", "PyMySQL==1.2.3",
+  "nats-py==2.16.0", "httpx==0.28.1", "httpcore==1.0.9", "PyYAML==6.0.3",
+  "jsonschema==4.26.0", "rfc3339-validator==0.1.4", "rfc3986-validator==0.1.1",
+  "uvicorn==0.53.0"
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1", "pytest-asyncio==1.4.0"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = ["integration: requires isolated MariaDB", "jetstream: requires isolated NATS"]
